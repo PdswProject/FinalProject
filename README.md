@@ -1,13 +1,14 @@
 # base-proyectos
 Integrantes:
-DANIEL ESTEBAN CASTIBLANCO ROCHA
-DANIEL EDUARDO BELTRAN FRANCO
-DANIEL MAURICIO CIFUENTES RAMIREZ
-RAFAEL ANDRES JIMENEZ MARTINEZ
-CESAR EDUARDO LANOS CAMACHO
+DANIEL ESTEBAN CASTIBLANCO ROCHA  d.castiblanco
+DANIEL EDUARDO BELTRAN FRANCO  d.beltran
+DANIEL MAURICIO CIFUENTES RAMIREZ  d.cifuentes
+RAFAEL ANDRES JIMENEZ MARTINEZ  r.jimenez
+CESAR EDUARDO LANOS CAMACHO  c.lanos
 
 Heroku: https://dashboard.heroku.com/apps/pdswpro
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c42353620eed40daaf4102f82214411e)](https://www.codacy.com/app/hectorateci/base-proyectos?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PDSW-ECI/base-proyectos&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb072b2d097d4225903b79bea175971d)](https://www.codacy.com/app/dolardanies/FinalProject?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PdswProject/FinalProject&amp;utm_campaign=Badge_Grade)
 
-[![CircleCI](https://circleci.com/gh/PDSW-ECI/base-proyectos.svg?style=svg)](https://circleci.com/gh/PDSW-ECI/base-proyectos)
+[![CircleCI](https://circleci.com/gh/PdswProject/FinalProject.svg?style=svg)](https://circleci.com/gh/PdswProject/FinalProject)
+
