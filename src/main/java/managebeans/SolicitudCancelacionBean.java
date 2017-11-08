@@ -35,8 +35,8 @@ public class SolicitudCancelacionBean {
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dada la asignatura a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
-     * @param asig
-     * @return 
+     * @param asig The subject that you want cancel.
+     * @return The number of credit that will be pending.
      */
     public int calculoImpacto(Asignatura asig){
         return 0;
@@ -48,11 +48,15 @@ public class SolicitudCancelacionBean {
      * El sistema debe permitir seleccionar sólo 
      * aquellas asignaturas que esté actualmente 
      * viendo el usuario.
-     * @return 
+     * @return List of Asignatura.
      */
     public List<Asignatura> loadAsignaturas(){
         return null;
     }
+    
+    /**
+     * Store a register with justification for cancel of asignature.
+     */
     
     public void registroJustificacion(){
         
