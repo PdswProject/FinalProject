@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -59,6 +60,8 @@ public class SolicitudCancelacionTest {
      *         Resultado:Error- Solicitud o argumento invalido.
      *         CF2: Cuando se recibe una materia invalida.
      *         Resultado:Error-Materia invalida.
+     *         CF3: Cuando la justificacion no se almacena correctamente.
+     *          Resultado: Error en la persistencia.
      * 
      * 
      * 
@@ -115,11 +118,33 @@ public class SolicitudCancelacionTest {
     }
     
     @Test
-    public void registrojustificacion() throws ExcepcionSolicitudes{
+    public void registroJustificacion() throws ExcepcionSolicitudes{
          SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
-         sc.registroJustificacion();
+         try{
+             //Que sea valido
+            String tem=sc.registroJustificacion();
+            Assert.assertFalse(tem=="");
+
+         }catch(ExcepcionSolicitudes e){
+            throw new ExcepcionSolicitudes(e.getMessage());
+         }
+         
+    
+    }
+    @Test
+    public void almacenamientoJustificacion()throws ExcepcionSolicitudes{
+        
+         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+         try{
+        
+            sc.registroJustificacion();
+         
+         }catch(ExcepcionSolicitudes e){
+             throw new ExcepcionSolicitudes(e.getMessage());
+         }
+            
          //COmento que en la justificacion debe asegurarse que quedo almacenada
-         //o si no arroje un error.
+         //o si no arroje un error.    
     
     }
     

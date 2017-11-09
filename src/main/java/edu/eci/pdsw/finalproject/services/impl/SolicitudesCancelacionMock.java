@@ -50,8 +50,10 @@ public class SolicitudesCancelacionMock {
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
-    public void registroJustificacion() throws ExcepcionSolicitudes{
+    public String registroJustificacion() throws ExcepcionSolicitudes{
+
         throw new ExcepcionSolicitudes("No implementado aun");
+        
         
     }
     
