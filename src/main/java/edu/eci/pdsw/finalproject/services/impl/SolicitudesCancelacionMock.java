@@ -6,14 +6,12 @@
 package edu.eci.pdsw.finalproject.services.impl;
 
 import edu.eci.pdsw.finalproject.entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -23,9 +21,10 @@ import java.util.logging.Logger;
 public final class SolicitudesCancelacionMock {
     
     private final List<Asignatura> asignaturasPlanEstudios;
-    
+    private final List<Asignatura> vistasActualmente;
     public SolicitudesCancelacionMock(){
         asignaturasPlanEstudios = new LinkedList<>();
+        vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         
         
@@ -72,6 +71,10 @@ public final class SolicitudesCancelacionMock {
     public List<Asignatura> getAsignaturasPlanEstudios() {
         return asignaturasPlanEstudios;
     }
+
+    public List<Asignatura> getVistasActualmente() {
+        return vistasActualmente;
+    }
     
     
     public void cargarDatosPrueba(){
@@ -86,7 +89,11 @@ public final class SolicitudesCancelacionMock {
         asignaturasPlanEstudios.add(as2);
         asignaturasPlanEstudios.add(as3);
         
+        vistasActualmente.add(as1); 
+        
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
+        
+        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
 
     }
     

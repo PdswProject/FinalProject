@@ -1,6 +1,7 @@
 package edu.eci.pdsw.finalproject.test;
 
 import edu.eci.pdsw.finalproject.entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
@@ -28,9 +29,6 @@ public class SolicitudCancelacionTest {
      * 
      *         Resultado: Un valor booleano True
      *         
-     *         Clase3: La materia la este viendo el estudiante
-     *  
-     *         Resultado: True
      * 
      * CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
      * 
@@ -86,10 +84,9 @@ public class SolicitudCancelacionTest {
     }
     
     @Test 
-    public void creditosPendientesConsistentes() throws ExcepcionSolicitudes{
+    public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-
         Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
         int pendiente = sc.calculoImpactoSimple(a);
         int total = pa.getNumero_creditos();
@@ -98,9 +95,23 @@ public class SolicitudCancelacionTest {
 
         }    
     
-    //CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
+
     @Test
-    public void materiaPlanEstudios()throws ExcepcionSolicitudes{
+    public void pruebaDebeEstarViendolaActual()throws ExcepcionSolicitudes{
+        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+        List<Asignatura> lista = new LinkedList();
+        lista = sc.getVistasActualmente();
+        ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        Asignatura a= new Asignatura(101, "Logica", pa, "Departamento Matematica", 504, 111,3);
+        sc.calculoImpactoSimple(a);
+        int res=0;
+        for(Asignatura i:lista){
+            if(i==a){
+                res=1;
+            }
+        assertEquals(res,0);
+        }
+        
 
     }
     
@@ -123,7 +134,6 @@ public class SolicitudCancelacionTest {
         
          SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
          try{
-        
             sc.registroJustificacion();
          
          }catch(ExcepcionSolicitudes e){
