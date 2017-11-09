@@ -5,6 +5,8 @@
  */
 package edu.eci.pdsw.finalproject.entities;
 
+import java.util.List;
+
 /**
  *
  * @author USER
@@ -18,8 +20,10 @@ public class Estudiante {
     int solicitud_cancelacion;
     int acudiente;
     int consejero_academico;
+    List<Asignatura> materiaActual;
+    
 
-    public Estudiante(int id, String nombre, String apellido, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente) {
+    public Estudiante(int id, String nombre, String apellido, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, List<Asignatura> materiaActual) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -27,6 +31,16 @@ public class Estudiante {
         this.creditos_aprobados = creditos_aprobados;
         this.solicitud_cancelacion = solicitud_cancelacion;
         this.acudiente = acudiente;
+        this.consejero_academico = consejero_academico;
+        this.materiaActual = materiaActual;
+    }
+
+    public List<Asignatura> getMateriaActual() {
+        return materiaActual;
+    }
+
+    public void setMateriaActual(List<Asignatura> materiaActual) {
+        this.materiaActual = materiaActual;
     }
 
     

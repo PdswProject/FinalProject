@@ -5,9 +5,6 @@ import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.impl.SolicitudesCancelacionMock;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -24,7 +21,7 @@ public class SolicitudCancelacionTest {
      * 
      *         Clase1: Materia ingresada no se encuentra en el plan de estudios (no registrada)
      * 
-     *         Resultado: Una excepcion
+     *         Resultado: Un valor booleano
      * 
      *         Clase2: Creditos academicos pendientes por ver debe ser menor a creditos totales de programa academico
      * 
@@ -69,14 +66,20 @@ public class SolicitudCancelacionTest {
     @Test 
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock(); 
+        sc.cargarDatosPrueba();
+        List<Asignatura> lista = new LinkedList();
+        lista = sc.getAsignaturasPlanEstudios();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
         sc.calculoImpactoSimple(a);
-        Asignatura b= new Asignatura(2,"mate",pa,"ciencias",2,5);
-        List<Asignatura> lista=new LinkedList();
-        lista.add(a);
-        PlanEstudios pe = new PlanEstudios(20,65,pa,lista);
-        assertEquals(true, pe.getMaterias().equals(b));
+        int res=0;
+        for(Asignatura b:lista){
+            if(b==a){
+                res=1;
+            }
+        assertEquals(res,0);
+        }
+       
     }
     
     @Test 
@@ -84,34 +87,17 @@ public class SolicitudCancelacionTest {
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
-        int creditos= sc.calculoImpactoSimple(a);
+        int pendiente = sc.calculoImpactoSimple(a);
+        int total = pa.getNumero_creditos();
+        boolean c = pendiente<total;
+        assertTrue(c);
         }    
     
     //CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
     @Test
     public void materiaPlanEstudios()throws ExcepcionSolicitudes{
-        boolean res=false;
-        List<Asignatura> ej1; 
-        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
-        ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura asig=new Asignatura(111,"FIEM", pa, "Cualquiera", 12345, 12);
-        try{
-        ej1=sc.loadAsignaturasActuales();
-      
-        for (int i=0 ; i< ej1.size();i++){
-            Asignatura tem=ej1.get(i);
-            if(tem.getNombre().equals(asig.getNombre())){
-                res=true;
-            }
-            else{
-                res=false;
-            }
-        }
-        assertTrue(res);            
-           
-        }catch(ExcepcionSolicitudes e){
-                assertEquals(e.getMessage(), "Materia mostrada no esta en el plan de estudios o no la esta viendo");
-            }
+                
+        
     }
     
     @Test
