@@ -17,6 +17,15 @@ public class Asignatura {
     int profesor;
     int plan_estudios;
 
+    public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int plan_estudios) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.programa = programa;
+        this.unidadAcademica = unidadAcademica;
+        this.profesor = profesor;
+        this.plan_estudios = plan_estudios;
+    }
+
     public int getCodigo() {
         return codigo;
     }

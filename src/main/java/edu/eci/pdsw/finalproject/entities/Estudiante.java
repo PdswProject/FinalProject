@@ -19,6 +19,17 @@ public class Estudiante {
     int acudiente;
     int consejero_academico;
 
+    public Estudiante(int id, String nombre, String apellido, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.semestre = semestre;
+        this.creditos_aprobados = creditos_aprobados;
+        this.solicitud_cancelacion = solicitud_cancelacion;
+        this.acudiente = acudiente;
+    }
+
+    
     public int getId() {
         return id;
     }

@@ -3,31 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.finalproject.managebeans;
+package edu.eci.pdsw.finalproject.services.impl;
 
 import edu.eci.pdsw.finalproject.entities.Asignatura;
-import java.util.Date;
+import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author USER
  */
-
-@ManagedBean(name = "Solicitudes")
-@SessionScoped
-
-public class SolicitudCancelacionBean {
-    int id;
-    int estudiante;
-    int asignatura;
-    Date fecha;
-    String estado;
-    int decano;
+public class SolicitudesCancelacionMock {
     
-    
-    public SolicitudCancelacionBean(){
+    public SolicitudesCancelacionMock(){
         
     }
     
@@ -37,31 +25,35 @@ public class SolicitudCancelacionBean {
        cuantos créditos académicos tendría pendiente por ver.
      * @param asig The subject that you want cancel.
      * @return The number of credit that will be pending.
+     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
-    public int calculoImpactoSimple(Asignatura asig){
-        return 0;
+    public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes{
+        throw new ExcepcionSolicitudes("No implementado aun");
         
     }
-    
     
     /**
      * El sistema debe permitir seleccionar sólo 
      * aquellas asignaturas que esté actualmente 
      * viendo el usuario.
      * @return List of Asignatura.
+     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
-    public List<Asignatura> loadAsignaturasActuales(){
-        return null;
+    public List<Asignatura> loadAsignaturasActuales() throws ExcepcionSolicitudes{
+        throw new ExcepcionSolicitudes("No implementado aun");
     }
+    
+    
     
     /**
      * El sistema debe solcitar y registrar un texto con la justificacion de la solicitud
+     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
-    public void registroJustificacion(){
+    public void registroJustificacion() throws ExcepcionSolicitudes{
+        throw new ExcepcionSolicitudes("No implementado aun");
         
     }
-    
     
     
 }
