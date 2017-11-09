@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package managebeans;
+package edu.eci.pdsw.finalproject.managebeans;
 
-import entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.Asignatura;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;

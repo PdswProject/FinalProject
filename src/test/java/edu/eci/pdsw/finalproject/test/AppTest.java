@@ -1,4 +1,4 @@
-package edu.eci.cosw.sampleapp.test;
+package edu.eci.pdsw.finalproject.test;
 
 import static org.junit.Assert.fail;
 
@@ -8,7 +8,7 @@ public class AppTest {
     
     
     /**
-     * Clases de Equivalencia
+     * Clases de Equivalencia para metodo calculo de impacto
      * 
      * Clase1:Recibe una solicitud de cancelacion con una materia y argumento valido
      * 
