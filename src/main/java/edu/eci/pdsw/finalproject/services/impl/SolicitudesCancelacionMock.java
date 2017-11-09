@@ -12,6 +12,9 @@ import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -39,6 +42,7 @@ public final class SolicitudesCancelacionMock {
     public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes{
         return 0;
         
+
     }
     
     /**
@@ -59,9 +63,9 @@ public final class SolicitudesCancelacionMock {
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
-    public void registroJustificacion() throws ExcepcionSolicitudes{
+    public String registroJustificacion() throws ExcepcionSolicitudes{
+
         throw new ExcepcionSolicitudes("No implementado aun");
-        
        
     }
 
@@ -74,15 +78,16 @@ public final class SolicitudesCancelacionMock {
         
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
       
-        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504, 111);
-        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505, 111);
-        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510, 111);
+        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504, 111,3);
+        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505, 111,4);
+        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510, 111,3);
         
         asignaturasPlanEstudios.add(as1);
         asignaturasPlanEstudios.add(as2);
         asignaturasPlanEstudios.add(as3);
         
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
+
     }
     
     

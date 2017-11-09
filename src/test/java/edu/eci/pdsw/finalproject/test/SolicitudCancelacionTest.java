@@ -7,6 +7,7 @@ import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.impl.SolicitudesCancelacionMock;
 import java.util.LinkedList;
 import java.util.List;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -56,6 +57,8 @@ public class SolicitudCancelacionTest {
      *         Resultado:Error- Solicitud o argumento invalido.
      *         CF2: Cuando se recibe una materia invalida.
      *         Resultado:Error-Materia invalida.
+     *         CF3: Cuando la justificacion no se almacena correctamente.
+     *          Resultado: Error en la persistencia.
      * 
      * 
      * 
@@ -70,7 +73,7 @@ public class SolicitudCancelacionTest {
         List<Asignatura> lista = new LinkedList();
         lista = sc.getAsignaturasPlanEstudios();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
+        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
         sc.calculoImpactoSimple(a);
         int res=0;
         for(Asignatura b:lista){
@@ -86,26 +89,49 @@ public class SolicitudCancelacionTest {
     public void creditosPendientesConsistentes() throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
+
+        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
         int pendiente = sc.calculoImpactoSimple(a);
         int total = pa.getNumero_creditos();
         boolean c = pendiente<total;
         assertTrue(c);
+
         }    
     
     //CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
     @Test
     public void materiaPlanEstudios()throws ExcepcionSolicitudes{
-                
-        
+
     }
     
     @Test
-    public void registrojustificacion() throws ExcepcionSolicitudes{
+    public void registroJustificacion() throws ExcepcionSolicitudes{
          SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
-         sc.registroJustificacion();
+         try{
+             //Que sea valido
+            String tem=sc.registroJustificacion();
+            Assert.assertFalse(tem=="");
+
+         }catch(ExcepcionSolicitudes e){
+            throw new ExcepcionSolicitudes(e.getMessage());
+         }
+         
+    
+    }
+    @Test
+    public void almacenamientoJustificacion()throws ExcepcionSolicitudes{
+        
+         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+         try{
+        
+            sc.registroJustificacion();
+         
+         }catch(ExcepcionSolicitudes e){
+             throw new ExcepcionSolicitudes(e.getMessage());
+         }
+            
          //COmento que en la justificacion debe asegurarse que quedo almacenada
-         //o si no arroje un error.
+         //o si no arroje un error.    
     
     }
     

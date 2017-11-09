@@ -16,20 +16,31 @@ public class Asignatura {
     String unidadAcademica;
     int profesor;
     int plan_estudios;
+    int creditos;
 
-    public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int plan_estudios) {
+    public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int plan_estudios, int creditos) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.programa = programa;
         this.unidadAcademica = unidadAcademica;
         this.profesor = profesor;
         this.plan_estudios = plan_estudios;
+        this.creditos=creditos;
     }
 
+  
+
+  
     public int getCodigo() {
         return codigo;
     }
-
+    public int getCreditos(){
+        return creditos;
+    }
+    public void setCreditos(int creditos){
+        this.creditos=creditos;
+    }
+    
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
