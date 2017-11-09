@@ -5,7 +5,8 @@
  */
 package edu.eci.pdsw.finalproject.entities;
 
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,14 +17,17 @@ public class PlanEstudios {
     int id;
     int numero_materias;
     ProgramaAcademico programa;
-    Set<Asignatura> materias= new LinkedHashSet();
+    List<Asignatura> materias;
 
-    public PlanEstudios(int id, int numero_materias, ProgramaAcademico programa) {
+    public PlanEstudios(int id, int numero_materias, ProgramaAcademico programa, List<Asignatura> materias) {
+        this.materias = new LinkedList();
         this.id = id;
         this.numero_materias = numero_materias;
         this.programa = programa;
+        this.materias = materias;
     }
 
+   
 
     
 
@@ -51,15 +55,15 @@ public class PlanEstudios {
         this.programa = programa;
     }
 
-    public Set<Asignatura> getMaterias() {
+    public List<Asignatura> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(Set<Asignatura> materias) {
+    public void setMaterias(List<Asignatura> materias) {
         this.materias = materias;
     }
 
-    
+
     
     
 }

@@ -70,12 +70,12 @@ public class SolicitudCancelacionTest {
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock(); 
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
-        PlanEstudios pe = new PlanEstudios(20,65,pa);
-        try{
-            sc.calculoImpactoSimple(a);
-        }catch(ExcepcionSolicitudes e){
-            assertEquals(e.getMessage(), "Materia no esta registrada");
-        }    
+        sc.calculoImpactoSimple(a);
+        Asignatura b= new Asignatura(2,"mate",pa,"ciencias",2,5);
+        List<Asignatura> lista=new LinkedList();
+        lista.add(a);
+        PlanEstudios pe = new PlanEstudios(20,65,pa,lista);
+        assertEquals(true, pe.getMaterias().equals(b));
     }
     
     @Test 
