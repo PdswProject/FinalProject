@@ -11,6 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 import org.junit.Test;
@@ -43,7 +44,7 @@ public class SolicitudCancelacionTest {
      * 
      *         Resultado: True
      * 
-     * CLASESD DE EQUIVALENCIA PARA METODO REGISTRO DE JUSTIFICACION
+     * CLASES DE EQUIVALENCIA PARA METODO REGISTRO DE JUSTIFICACION
      *         
      *         Clase1: La justificacion es vacia
      * 
@@ -85,6 +86,42 @@ public class SolicitudCancelacionTest {
         Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
         int creditos= sc.calculoImpactoSimple(a);
         }    
+    
+    //CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
+    @Test
+    public void materiaPlanEstudios()throws ExcepcionSolicitudes{
+        boolean res=false;
+        List<Asignatura> ej1; 
+        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+        ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        Asignatura asig=new Asignatura(111,"FIEM", pa, "Cualquiera", 12345, 12);
+        try{
+        ej1=sc.loadAsignaturasActuales();
+      
+        for (int i=0 ; i< ej1.size();i++){
+            Asignatura tem=ej1.get(i);
+            if(tem.getNombre().equals(asig.getNombre())){
+                res=true;
+            }
+            else{
+                res=false;
+            }
+        }
+        assertTrue(res);            
+           
+        }catch(ExcepcionSolicitudes e){
+                assertEquals(e.getMessage(), "Materia mostrada no esta en el plan de estudios o no la esta viendo");
+            }
+    }
+    
+    @Test
+    public void registrojustificacion() throws ExcepcionSolicitudes{
+         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+         sc.registroJustificacion();
+         //COmento que en la justificacion debe asegurarse que quedo almacenada
+         //o si no arroje un error.
+    
+    }
     
 }
 
