@@ -73,7 +73,7 @@ public class SolicitudCancelacionTest {
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock(); 
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
+        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
         PlanEstudios pe = new PlanEstudios(20,65,pa);
         try{
             sc.calculoImpactoSimple(a);
@@ -86,7 +86,7 @@ public class SolicitudCancelacionTest {
     public void creditosPendientesConsistentes() throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3);
+        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
         int creditos= sc.calculoImpactoSimple(a);
         }    
     
@@ -97,7 +97,7 @@ public class SolicitudCancelacionTest {
         List<Asignatura> ej1; 
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura asig=new Asignatura(111,"FIEM", pa, "Cualquiera", 12345, 12);
+        Asignatura asig=new Asignatura(111,"FIEM", pa, "Cualquiera", 12345, 12,4);
         try{
         ej1=sc.loadAsignaturasActuales();
       

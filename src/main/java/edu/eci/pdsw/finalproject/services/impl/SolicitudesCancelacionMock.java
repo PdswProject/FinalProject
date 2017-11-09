@@ -8,6 +8,8 @@ package edu.eci.pdsw.finalproject.services.impl;
 import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,8 +30,10 @@ public class SolicitudesCancelacionMock {
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes{
-        throw new ExcepcionSolicitudes("No implementado aun");
-        
+
+        int resp=asig.getCreditos();
+        return resp ;
+            
     }
     
     /**
