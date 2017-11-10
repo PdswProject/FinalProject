@@ -11,8 +11,10 @@ import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -21,16 +23,18 @@ import java.util.List;
  */
 public final class SolicitudesCancelacionMock implements Solicitudes{
     
+    private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
+    
     public SolicitudesCancelacionMock(){
+        this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         
         
     }
-    
     /**
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dada la asignatura a cancelar, 
@@ -64,7 +68,8 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
-    public String registroJustificacion() throws ExcepcionSolicitudes{
+    @Override
+    public void registroJustificacion() throws ExcepcionSolicitudes{
 
         throw new ExcepcionSolicitudes("No implementado aun");
        
@@ -77,6 +82,12 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
     public List<Asignatura> getVistasActualmente() {
         return vistasActualmente;
     }
+    
+    @Override
+    public List<Asignatura> loadAsignaturasPlanEstudios(PlanEstudios plan) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
     public void cargarDatosPrueba(){
@@ -98,6 +109,42 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
 
     }
-    
-    
+}
+    class Tupla<A, B> {
+
+    A a;
+    B b;
+
+    public Tupla(A a, B b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public A getA() {
+        return a;
+    }
+
+    public B getB() {
+        return b;
+    }
+
+    @Override
+    public int hashCode() {
+        return a.hashCode() + b.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Tupla<?, ?>) {
+            return ((Tupla<?, ?>) obj).getA().equals(this.getA())
+                    && ((Tupla<?, ?>) obj).getB().equals(this.getB());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Touple:(" + a.toString() + "," + b.toString() + ")";
+    }
 }

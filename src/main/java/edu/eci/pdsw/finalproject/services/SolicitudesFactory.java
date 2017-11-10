@@ -5,7 +5,6 @@
  */
 package edu.eci.pdsw.finalproject.services;
 
-import com.google.inject.AbstractModule;
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
 import org.mybatis.guice.XMLMyBatisModule;

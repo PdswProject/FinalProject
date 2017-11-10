@@ -6,6 +6,9 @@
 package edu.eci.pdsw.finalproject.managebeans;
 
 import edu.eci.pdsw.finalproject.entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.Estudiante;
+import edu.eci.pdsw.finalproject.entities.PlanEstudios;
+import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
 import edu.eci.pdsw.finalproject.services.SolicitudesFactory;
 import java.io.Serializable;
@@ -24,44 +27,114 @@ import javax.faces.bean.SessionScoped;
 public class SolicitudCancelacionBean implements Serializable{
     private final Solicitudes scm=SolicitudesFactory.getInstance().getSolicitudes();
     private Asignatura asignatura;
-    List<Asignatura> listaAsignaturas=new LinkedList<>();
+    private PlanEstudios pe;
+    private Estudiante est;
+    List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     
+    String nombreAsignatura;
+    int creditos;
+   
+    int idEstudiante;
+    String nombre;
+    String apellido;
+    int creditosAprobados;
+    List<Asignatura> materiasActualesEst;
     
-    
-    public SolicitudCancelacionBean(){
+    public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
+        materiasActualesEst= scm.loadAsignaturasActuales(est);
+        listaAsignaturasPE = scm.loadAsignaturasPlanEstudios(pe);
         
     }
-    
-    /**
-     * Algoritmo de cálculo de impacto que se limita
-       a indicar, dada la asignatura a cancelar, 
-       cuantos créditos académicos tendría pendiente por ver.
-     * @param asig The subject that you want cancel.
-     * @return The number of credit that will be pending.
-     */
-    public int calculoImpactoSimple(Asignatura asig){
-        return 0;
-        
+
+    public Asignatura getAsignatura() {
+        return asignatura;
+    }
+
+    public void setAsignatura(Asignatura asignatura) {
+        this.asignatura = asignatura;
+    }
+
+    public PlanEstudios getPe() {
+        return pe;
+    }
+
+    public void setPe(PlanEstudios pe) {
+        this.pe = pe;
+    }
+
+    public Estudiante getEst() {
+        return est;
+    }
+
+    public void setEst(Estudiante est) {
+        this.est = est;
+    }
+
+    public List<Asignatura> getListaAsignaturasPE() {
+        return listaAsignaturasPE;
+    }
+
+    public void setListaAsignaturasPE(List<Asignatura> listaAsignaturasPE) {
+        this.listaAsignaturasPE = listaAsignaturasPE;
+    }
+
+    public String getNombreAsignatura() {
+        return nombreAsignatura;
+    }
+
+    public void setNombreAsignatura(String nombreAsignatura) {
+        this.nombreAsignatura = nombreAsignatura;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
+    public int getIdEstudiante() {
+        return idEstudiante;
+    }
+
+    public void setIdEstudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getCreditosAprobados() {
+        return creditosAprobados;
+    }
+
+    public void setCreditosAprobados(int creditosAprobados) {
+        this.creditosAprobados = creditosAprobados;
+    }
+
+    public List<Asignatura> getMateriasActualesEst() {
+        return materiasActualesEst;
+    }
+
+    public void setMateriasActualesEst(List<Asignatura> materiasActualesEst) {
+        this.materiasActualesEst = materiasActualesEst;
     }
     
     
-    /**
-     * El sistema debe permitir seleccionar sólo 
-     * aquellas asignaturas que esté actualmente 
-     * viendo el usuario.
-     * @return List of Asignatura.
-     */
-    public List<Asignatura> loadAsignaturasActuales(){
-        return null;
-    }
-    
-    /**
-     * El sistema debe solcitar y registrar un texto con la justificacion de la solicitud
-     */
-    
-    public void registroJustificacion(){
-        
-    }
     
     
     
