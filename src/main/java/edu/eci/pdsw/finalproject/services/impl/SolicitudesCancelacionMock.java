@@ -11,6 +11,7 @@ import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,7 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
         asignaturasPlanEstudios = new LinkedList<>();
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
-        
+        cargarDatosEstaticosGrafo();
         
     }
     /**
@@ -94,9 +95,9 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
         
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
       
-        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504, 111,3);
-        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505, 111,4);
-        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510, 111,3);
+        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
+        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
+        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
         
         asignaturasPlanEstudios.add(as1);
         asignaturasPlanEstudios.add(as2);
@@ -108,6 +109,19 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
         
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
 
+    }
+    private void cargarDatosEstaticosGrafo()
+    {
+        
+        
+        Asignatura a1 =new Asignatura(0, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(0, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(0, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(0, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(0, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
+        
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
+        
     }
 }
     class Tupla<A, B> {

@@ -18,6 +18,11 @@ public class ProgramaAcademico {
     int decano;
     int numero_creditos;
 
+    public ProgramaAcademico()
+    {
+        
+    }
+    
     public ProgramaAcademico(int id, String nombre, int plan_estudios, int decano, int numero_creditos) {
         this.id = id;
         this.nombre = nombre;

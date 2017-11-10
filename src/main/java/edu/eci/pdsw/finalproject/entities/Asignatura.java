@@ -5,30 +5,38 @@
  */
 package edu.eci.pdsw.finalproject.entities;
 
+import java.util.List;
+
 /**
  *
  * @author USER
  */
 public class Asignatura {
-    int codigo;
-    String nombre;
-    ProgramaAcademico programa;
-    String unidadAcademica;
-    int profesor;
-    int plan_estudios;
-    int creditos;
+    private int codigo;
+    private String nombre;
+    private ProgramaAcademico programa;
+    private String unidadAcademica;
+    private boolean aprobada;
+    private int vecesCancelada;
+    private int creditos;
+    private int profesor;
+    private List<Asignatura> correquisitos;
 
-    public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int plan_estudios, int creditos) {
+    public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.programa = programa;
         this.unidadAcademica = unidadAcademica;
         this.profesor = profesor;
-        this.plan_estudios = plan_estudios;
         this.creditos=creditos;
     }
 
-  
+    public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos, List<Asignatura> correquisitos)
+    {
+        this(codigo, nombre, programa, unidadAcademica, profesor, creditos);
+        this.correquisitos=correquisitos;
+        
+    }
 
   
     public int getCodigo() {
@@ -77,13 +85,6 @@ public class Asignatura {
         this.profesor = profesor;
     }
 
-    public int getPlan_estudios() {
-        return plan_estudios;
-    }
-
-    public void setPlan_estudios(int plan_estudios) {
-        this.plan_estudios = plan_estudios;
-    }
     
     
 }
