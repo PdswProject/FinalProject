@@ -6,7 +6,10 @@
 package edu.eci.pdsw.finalproject.managebeans;
 
 import edu.eci.pdsw.finalproject.entities.Asignatura;
-import java.util.Date;
+import edu.eci.pdsw.finalproject.services.Solicitudes;
+import edu.eci.pdsw.finalproject.services.SolicitudesFactory;
+import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,13 +21,11 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "Solicitudes")
 @SessionScoped
 
-public class SolicitudCancelacionBean {
-    int id;
-    int estudiante;
-    int asignatura;
-    Date fecha;
-    String estado;
-    int decano;
+public class SolicitudCancelacionBean implements Serializable{
+    private final Solicitudes scm=SolicitudesFactory.getInstance().getSolicitudes();
+    private Asignatura asignatura;
+    List<Asignatura> listaAsignaturas=new LinkedList<>();
+    
     
     
     public SolicitudCancelacionBean(){

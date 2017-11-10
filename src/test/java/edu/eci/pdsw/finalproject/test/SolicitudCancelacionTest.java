@@ -114,7 +114,7 @@ public class SolicitudCancelacionTest {
         
 
     }
-    
+    /**
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
          SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
@@ -144,7 +144,7 @@ public class SolicitudCancelacionTest {
          //o si no arroje un error.    
     
     }
-    
+    */
 }
 
 

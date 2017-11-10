@@ -11,29 +11,47 @@ and open the template in the editor.
     
     
     <body>
-        <p:layout style="min-width:400px;min-height:200px;">
-            
-            <p:layoutUnit position="west" resizable="fase" size="500">
-                
-                Estudiante
-                
-                <p:panelGrid columns="2">
+        <h:form id="panelSolicitudes">
+            <p:layout style="min-width:400px;min-height:200px;">
 
-                    <h:outputText value="Nombre:" />
-                    <h:outputText value="Daniel Castiblanco" />
+                <p:layoutUnit position="west" resizable="fase" size="500">
 
-                    <h:outputText value="Programa Academico:" />
-                    <h:outputText value="Ingenieria de Sistemas" />
+                    Estudiante
 
-                    <h:outputText value="Semestre:" />
-                    <h:outputText value="6" />
-                </p:panelGrid>
-            </p:layoutUnit>
+                    <p:panelGrid columns="2">
 
-            <p:layoutUnit position="center">
-                Solicitud
-                
-            </p:layoutUnit>
-        </p:layout>
+                        <h:outputText value="Nombre:" />
+                        <h:outputText value="Daniel Castiblanco" />
+
+                        <h:outputText value="Programa Academico:" />
+                        <h:outputText value="Ingenieria de Sistemas" />
+
+                        <h:outputText value="Semestre:" />
+                        <h:outputText value="6" />
+                    </p:panelGrid>
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    Solicitud
+                    <h:form id="form">
+
+                        <p:tabView>
+                            <p:tab title="Impacto por Cancelar">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText
+                                        value="El impacto actuamente es nulo "/>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Proyeccion">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText value="De acuerdo al analisis el estudiante se graduara en ..." />
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:tabView>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
     </body>
 </html>

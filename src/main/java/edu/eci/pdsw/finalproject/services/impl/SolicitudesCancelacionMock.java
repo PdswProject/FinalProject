@@ -10,6 +10,7 @@ import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
+import edu.eci.pdsw.finalproject.services.Solicitudes;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author USER
  */
-public final class SolicitudesCancelacionMock {
+public final class SolicitudesCancelacionMock implements Solicitudes{
     
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
@@ -48,10 +49,11 @@ public final class SolicitudesCancelacionMock {
      * El sistema debe permitir seleccionar sólo 
      * aquellas asignaturas que esté actualmente 
      * viendo el usuario.
+     * @param e
      * @return List of Asignatura.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
-    public List<Asignatura> loadAsignaturasActuales() throws ExcepcionSolicitudes{
+    public List<Asignatura> loadAsignaturasActuales(Estudiante e) throws ExcepcionSolicitudes{
         throw new ExcepcionSolicitudes("No implementado aun");
     }
     
