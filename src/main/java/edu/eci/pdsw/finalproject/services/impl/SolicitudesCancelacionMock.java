@@ -38,15 +38,15 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
     }
     /**
      * Algoritmo de cálculo de impacto que se limita
-       a indicar, dada la asignatura a cancelar, 
+       a indicar, dado el estudiante y la asignatura a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
      * @param asig The subject that you want cancel.
+     * @param e The student.
      * @return The number of credit that will be pending.
-     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
+     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      */
-    public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes{
+    public int calculoImpactoSimple(Estudiante e,Asignatura asig) throws ExcepcionSolicitudes{
         return 0;
-        
 
     }
     

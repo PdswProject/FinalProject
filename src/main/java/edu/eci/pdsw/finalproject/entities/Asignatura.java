@@ -85,6 +85,12 @@ public class Asignatura {
         this.profesor = profesor;
     }
 
-    
+    public List<Asignatura> getCorrequisitos() {
+        return correquisitos;
+    }
+
+    public void setCorrequisitos(List<Asignatura> correquisitos) {
+        this.correquisitos = correquisitos;
+    }
     
 }

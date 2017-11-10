@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.finalproject.entities;
 
+import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import java.util.List;
 
 /**
@@ -33,6 +34,17 @@ public class Estudiante {
         this.acudiente = acudiente;
         this.consejero_academico = consejero_academico;
         this.materiaActual = materiaActual;
+    }
+    
+    /**
+     * Dada una asignatura, calcula el numero de creditos que dejaria de ver si la cancela
+     * @param asig La asignatura a cancelar
+     * @return Los creditos que tendria pendientes.
+     * @throws ExcepcionSolicitudes si la asignatura no esta en su plan de estudios.
+     */
+    public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes
+    {
+        return 0;
     }
 
     public List<Asignatura> getMateriaActual() {
