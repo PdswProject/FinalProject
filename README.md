@@ -3,7 +3,7 @@ Integrantes:
 DANIEL ESTEBAN CASTIBLANCO ROCHA  d.castiblanco
 DANIEL EDUARDO BELTRAN FRANCO  d.beltran
 DANIEL MAURICIO CIFUENTES RAMIREZ  d.cifuentes
-CESAR EDUARDO LANOS CAMACHO  c.lanos
+CESAR EDUARDO LANOS CAMACHO  cefarr
 
 Heroku: https://dashboard.heroku.com/apps/pdswpro
         https://pdswpro.herokuapp.com/
