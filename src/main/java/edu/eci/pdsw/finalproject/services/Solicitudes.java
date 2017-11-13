@@ -45,7 +45,7 @@ public interface Solicitudes {
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
-    public abstract void registroJustificacion()throws ExcepcionSolicitudes;
+    public abstract String registroJustificacion()throws ExcepcionSolicitudes;
         
 
     /**

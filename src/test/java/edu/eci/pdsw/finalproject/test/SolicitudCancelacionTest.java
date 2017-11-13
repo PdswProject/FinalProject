@@ -63,15 +63,18 @@ public class SolicitudCancelacionTest {
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
+
     
+//(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos)
     @Test 
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock(); 
         sc.cargarDatosPrueba();
+        ProgramaAcademico cer;
         List<Asignatura> lista = new LinkedList();
         lista = sc.getAsignaturasPlanEstudios();
-        ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
+        cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        Asignatura a=new Asignatura(3, "Fisica", cer, "Ciencia", 3, 3);
         sc.calculoImpactoSimple(a);
         int res=0;
         for(Asignatura b:lista){
@@ -87,7 +90,7 @@ public class SolicitudCancelacionTest {
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(1,"fisica",pa,"ciencias",2,3,4);
+        Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         int pendiente = sc.calculoImpactoSimple(a);
         int total = pa.getNumero_creditos();
         boolean c = pendiente<total;
@@ -102,7 +105,7 @@ public class SolicitudCancelacionTest {
         List<Asignatura> lista = new LinkedList();
         lista = sc.getVistasActualmente();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-        Asignatura a= new Asignatura(101, "Logica", pa, "Departamento Matematica", 504, 111,3);
+        Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         sc.calculoImpactoSimple(a);
         int res=0;
         for(Asignatura i:lista){
@@ -114,7 +117,7 @@ public class SolicitudCancelacionTest {
         
 
     }
-    /**
+
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
          SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
@@ -127,15 +130,15 @@ public class SolicitudCancelacionTest {
             throw new ExcepcionSolicitudes(e.getMessage());
          }
          
+   }
     
-    }
     @Test
     public void almacenamientoJustificacion()throws ExcepcionSolicitudes{
         
          SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
          try{
-            sc.registroJustificacion();
-         
+            String re=sc.registroJustificacion();
+            Assert.assertFalse(re=="");         
          }catch(ExcepcionSolicitudes e){
              throw new ExcepcionSolicitudes(e.getMessage());
          }
@@ -144,7 +147,6 @@ public class SolicitudCancelacionTest {
          //o si no arroje un error.    
     
     }
-    */
 }
 
 

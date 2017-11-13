@@ -70,9 +70,10 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
      */
     
     @Override
-    public void registroJustificacion() throws ExcepcionSolicitudes{
+    public String registroJustificacion() throws ExcepcionSolicitudes{
 
-        throw new ExcepcionSolicitudes("No implementado aun");
+        //throw new ExcepcionSolicitudes("No implementado aun");
+        return " ";
        
     }
 
@@ -122,6 +123,11 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
         
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
+    }
+
+    @Override
+    public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
     class Tupla<A, B> {
