@@ -6,6 +6,11 @@
 package edu.eci.pdsw.finalproject.services.impl;
 
 import edu.eci.pdsw.finalproject.entities.*;
+import edu.eci.pdsw.finalproject.entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.Estudiante;
+import edu.eci.pdsw.finalproject.entities.PlanEstudios;
+import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
+import edu.eci.pdsw.finalproject.services.CalculadorDeImpacto;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
 
@@ -26,14 +31,11 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
+    private CalculadorDeImpacto calculadorDeImpacto;       
+        
+    
     public SolicitudesCancelaciones(){
-        this.estudiantes = new LinkedHashMap<>();
-        asignaturasPlanEstudios = new LinkedList<>();
-        vistasActualmente= new LinkedList<>();
-        cargarDatosPrueba();
-        cargarDatosEstaticosGrafo();
-        
-        
+
     }
     
     
@@ -48,8 +50,7 @@ public final class SolicitudesCancelaciones implements Solicitudes{
      */
     @Override
     public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes{
-        return 0;
-
+        return calculadorDeImpacto.calcularImpacto(asig, null);
     }
     
     

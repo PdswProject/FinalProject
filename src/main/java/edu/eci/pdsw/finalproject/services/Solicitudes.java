@@ -34,9 +34,7 @@ public interface Solicitudes {
      * @return
      * @throws ExcepcionSolicitudes 
      */
-    public abstract PlanEstudios extraerPlanEstudios(Estudiante e)throws ExcepcionSolicitudes;
-    
-    
+    public abstract PlanEstudios extraerPlanEstudios(Estudiante e)throws ExcepcionSolicitudes; 
     
     /**
      * El sistema debe permitir seleccionar sólo 
