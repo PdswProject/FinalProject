@@ -67,20 +67,32 @@ public class SolicitudCancelacionTest {
     
 //(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos)
     @Test 
-    public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
-        SolicitudesCancelaciones sc = new SolicitudesCancelaciones(); 
-        sc.cargarDatosPrueba();
-        ProgramaAcademico cer;
-        List<Asignatura> lista = new LinkedList();
-        lista = sc.getAsignaturasPlanEstudios();
-        cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+    public void MateriaNoEstaRegistradaEnElPlanDeEstudios()throws ExcepcionSolicitudes{
+        
+        ProgramaAcademico cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        List<Asignatura> materiasPlan = new LinkedList<>();
+        List<Asignatura> materiasEst = new LinkedList<>();
+        
         Asignatura a=new Asignatura(3, "Fisica", cer, "Ciencia", 3, 3);
-        sc.calculoImpactoSimple(a);
+        Asignatura b=new Asignatura(4, "Logica", cer, "Ciencia", 3, 3);
+        
+        materiasPlan.add(a);
+        materiasPlan.add(b);
+        materiasEst.add(a);
+        materiasEst.add(b);
+        
+        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
+        
+        SolicitudesCancelaciones sc = new SolicitudesCancelaciones(); 
+        
+        Asignatura c=new Asignatura(5, "Quimica", cer, "Ciencia", 3, 3);
+        sc.calcularImpacto(e, c);
         int res=0;
-        for(Asignatura b:lista){
-            if(b==a){
+        for(Asignatura i:materiasPlan){
+            if(i==c){
                 res=1;
             }
+        System.out.println(res);
         assertEquals(res,0);
         }
        
@@ -91,7 +103,9 @@ public class SolicitudCancelacionTest {
         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
-        int pendiente = sc.calculoImpactoSimple(a);
+        List<Asignatura> materiasEst = new LinkedList<>();
+        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
+        int pendiente = sc.calcularImpacto(e, a);
         int total = pa.getNumero_creditos();
         boolean c = pendiente<total;
         assertTrue(c);
@@ -105,8 +119,10 @@ public class SolicitudCancelacionTest {
         List<Asignatura> lista = new LinkedList();
         lista = sc.getVistasActualmente();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        List<Asignatura> materiasEst = new LinkedList<>();
+        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
-        sc.calculoImpactoSimple(a);
+        sc.calcularImpacto(e, a);
         int res=0;
         for(Asignatura i:lista){
             if(i==a){
@@ -117,17 +133,22 @@ public class SolicitudCancelacionTest {
         
 
     }
-
+    /*
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
          SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
+         List<Asignatura> materiasEst = new LinkedList<>();
+         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
+         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
+         String justificacion;
+         justificacion= "Demasiada carga academica";
          try{
              //Que sea valido
-            String tem=sc.registroJustificacion();
-            Assert.assertFalse(tem=="");
+            sc.solicitarCancelacion(e, a, justificacion);
 
-         }catch(ExcepcionSolicitudes e){
-            throw new ExcepcionSolicitudes(e.getMessage());
+         }catch(ExcepcionSolicitudes o){
+            throw new ExcepcionSolicitudes(o.getMessage());
          }
          
    }
@@ -146,7 +167,7 @@ public class SolicitudCancelacionTest {
          //COmento que en la justificacion debe asegurarse que quedo almacenada
          //o si no arroje un error.    
     
-    }
+    }*/
 }
 
 

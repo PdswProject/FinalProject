@@ -102,6 +102,14 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     public boolean validarPlanEstudios(PlanEstudios pe) throws ExcepcionSolicitudes {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public List<Asignatura> getAsignaturasPlanEstudios() {
+        return asignaturasPlanEstudios;
+    }
+
+    public List<Asignatura> getVistasActualmente() {
+        return vistasActualmente;
+    }
     
     
     
