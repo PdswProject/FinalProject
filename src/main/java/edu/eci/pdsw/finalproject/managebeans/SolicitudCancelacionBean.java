@@ -41,8 +41,8 @@ public class SolicitudCancelacionBean implements Serializable{
     List<Asignatura> materiasActualesEst;
     
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
-        materiasActualesEst= scm.loadAsignaturasActuales(est);
-        listaAsignaturasPE = scm.loadAsignaturasPlanEstudios(pe);
+        materiasActualesEst= scm.verMateriasActuales(est);
+       
         
     }
 

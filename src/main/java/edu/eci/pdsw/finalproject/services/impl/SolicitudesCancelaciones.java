@@ -5,12 +5,10 @@
  */
 package edu.eci.pdsw.finalproject.services.impl;
 
-import edu.eci.pdsw.finalproject.entities.Asignatura;
-import edu.eci.pdsw.finalproject.entities.Estudiante;
-import edu.eci.pdsw.finalproject.entities.PlanEstudios;
-import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
+import edu.eci.pdsw.finalproject.entities.*;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -20,22 +18,25 @@ import java.util.Map;
 
 /**
  *
- * @author USER
+ * @author 2104481
  */
-public final class SolicitudesCancelacionMock implements Solicitudes{
+public final class SolicitudesCancelaciones implements Solicitudes{
     
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
-    public SolicitudesCancelacionMock(){
+    public SolicitudesCancelaciones(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
         
+        
     }
+    
+    
     /**
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dado el estudiante y la asignatura a cancelar, 
@@ -45,10 +46,23 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
      * @return The number of credit that will be pending.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      */
-    public int calculoImpactoSimple(Estudiante e,Asignatura asig) throws ExcepcionSolicitudes{
+    @Override
+    public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes{
         return 0;
 
     }
+    
+    
+    /**
+     * Extrae el plan de estudios del estudiante
+     * @param e
+     * @return 
+     */
+    @Override
+    public PlanEstudios extraerPlanEstudios(Estudiante e){
+        return null;
+    }
+    
     
     /**
      * El sistema debe permitir seleccionar sólo 
@@ -58,35 +72,34 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
      * @return List of Asignatura.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
-    public List<Asignatura> loadAsignaturasActuales(Estudiante e) throws ExcepcionSolicitudes{
+    @Override
+    public List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
         throw new ExcepcionSolicitudes("No implementado aun");
     }
-    
-    
-    
-    /**
-     * El sistema debe solcitar y registrar un texto con la justificacion de la solicitud
-     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
-     */
-    
+
+
     @Override
-    public String registroJustificacion() throws ExcepcionSolicitudes{
-
-        //throw new ExcepcionSolicitudes("No implementado aun");
-        return " ";
-       
+    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Asignatura> getAsignaturasPlanEstudios() {
-        return asignaturasPlanEstudios;
-    }
-
-    public List<Asignatura> getVistasActualmente() {
-        return vistasActualmente;
-    }
-    
     @Override
-    public List<Asignatura> loadAsignaturasPlanEstudios(PlanEstudios plan) throws ExcepcionSolicitudes {
+    public void ajustarMaxCreditosSemestre(int numcreditos) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void agregarMateria(String programa, int plan, Asignatura a) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarMateria(String programa, int plan, Asignatura a) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean validarPlanEstudios(PlanEstudios pe) throws ExcepcionSolicitudes {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -124,13 +137,9 @@ public final class SolicitudesCancelacionMock implements Solicitudes{
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
     }
-
-    @Override
-    public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
-    class Tupla<A, B> {
+
+class Tupla<A, B> {
 
     A a;
     B b;

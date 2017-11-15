@@ -5,7 +5,7 @@ import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
-import edu.eci.pdsw.finalproject.services.impl.SolicitudesCancelacionMock;
+import edu.eci.pdsw.finalproject.services.impl.SolicitudesCancelaciones;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.Assert;
@@ -68,7 +68,7 @@ public class SolicitudCancelacionTest {
 //(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos)
     @Test 
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
-        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock(); 
+        SolicitudesCancelaciones sc = new SolicitudesCancelaciones(); 
         sc.cargarDatosPrueba();
         ProgramaAcademico cer;
         List<Asignatura> lista = new LinkedList();
@@ -88,7 +88,7 @@ public class SolicitudCancelacionTest {
     
     @Test 
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
-        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+        SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         int pendiente = sc.calculoImpactoSimple(a);
@@ -101,7 +101,7 @@ public class SolicitudCancelacionTest {
 
     @Test
     public void pruebaDebeEstarViendolaActual()throws ExcepcionSolicitudes{
-        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+        SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
         List<Asignatura> lista = new LinkedList();
         lista = sc.getVistasActualmente();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
@@ -120,7 +120,7 @@ public class SolicitudCancelacionTest {
 
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
-         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
          try{
              //Que sea valido
             String tem=sc.registroJustificacion();
@@ -135,7 +135,7 @@ public class SolicitudCancelacionTest {
     @Test
     public void almacenamientoJustificacion()throws ExcepcionSolicitudes{
         
-         SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
          try{
             String re=sc.registroJustificacion();
             Assert.assertFalse(re=="");         
