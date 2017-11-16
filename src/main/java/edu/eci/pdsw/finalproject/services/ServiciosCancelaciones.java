@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author 2104784
  */
-public interface Solicitudes {
+public interface ServiciosCancelaciones {
         
     /**
      * Algoritmo de cálculo de impacto que se limita

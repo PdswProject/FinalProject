@@ -18,7 +18,7 @@ import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
 import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
 
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
-import edu.eci.pdsw.finalproject.services.Solicitudes;
+import edu.eci.pdsw.finalproject.services.ServiciosCancelaciones;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -35,7 +35,7 @@ import java.util.Set;
  *
  * @author 2104481
  */
-public final class SolicitudesCancelaciones implements Solicitudes{
+public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     @Inject
     private DecanoDAO d;
@@ -56,16 +56,14 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         
     
 //>>>>>>> 3d14d84ef9be0b08471480b8eca6c9d645195472
-    public SolicitudesCancelaciones(){
+    public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
 
-    }
-    
-        
+    }        
     
     /**
      * Algoritmo de cálculo de impacto que se limita
@@ -76,12 +74,9 @@ public final class SolicitudesCancelaciones implements Solicitudes{
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      * @return the int
      */
-    @Override
-    public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes{
+    public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
         return calculadorDeImpacto.calcularImpacto(asig, null);
-    }
-    
-    
+    }    
     /**
      * Extrae el plan de estudios del estudiante
      * @param e
@@ -91,8 +86,6 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     public PlanEstudios extraerPlanEstudios(Estudiante e){
         return null;
     }
-    
-        
     
     /**
      * El sistema debe permitir seleccionar sólo 
@@ -111,8 +104,11 @@ public final class SolicitudesCancelaciones implements Solicitudes{
 
     @Override
     public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion) throws ExcepcionSolicitudes {
-       //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
-        int rep=calcularImpacto(e, a);
+        //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
+        //Calcular el impacto, despues crear una solcitud cancelacion
+        int resSc=calculadorDeImpacto.calcularImpacto(a, null);
+        
+        //int rep=calcularImpacto(e, a);
         
     }
 

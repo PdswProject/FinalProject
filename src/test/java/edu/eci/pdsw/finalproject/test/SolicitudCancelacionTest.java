@@ -5,7 +5,7 @@ import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
-import edu.eci.pdsw.finalproject.services.impl.SolicitudesCancelaciones;
+import edu.eci.pdsw.finalproject.services.impl.ServiciosCancelacionesImpl;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.Assert;
@@ -84,7 +84,7 @@ public class SolicitudCancelacionTest {
         
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         
-        SolicitudesCancelaciones sc = new SolicitudesCancelaciones(); 
+        ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl(); 
         
         Asignatura c=new Asignatura(5, "Quimica", cer, "Ciencia", 3, 3);
         sc.calcularImpacto(e, c);
@@ -98,7 +98,7 @@ public class SolicitudCancelacionTest {
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
     
-        SolicitudesCancelaciones sc = new SolicitudesCancelaciones(); 
+        ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl(); 
         sc.cargarDatosPrueba();
         ProgramaAcademico cer;
         List<Asignatura> lista = new LinkedList();
@@ -120,7 +120,7 @@ public class SolicitudCancelacionTest {
     
     @Test 
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
-        SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
+        ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
 //<<<<<<< HEAD
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
@@ -141,14 +141,14 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebaDebeEstarViendolaActual()throws ExcepcionSolicitudes{
 //<<<<<<< HEAD
-        SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
+        ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
         List<Asignatura> lista = new LinkedList();
         lista = sc.getVistasActualmente();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
-        sc.calcularImpacto(e, a);
+        //sc.calcularImpacto(e, a);
 //=======
 
         lista = sc.getVistasActualmente();
@@ -159,7 +159,7 @@ public class SolicitudCancelacionTest {
             if(i==a){
                 res=1;
             }
-        assertEquals(res,0);
+        assertEquals(res,null);
         }
         
 
@@ -167,7 +167,7 @@ public class SolicitudCancelacionTest {
 
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
-         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
+         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
          List<Asignatura> materiasEst = new LinkedList<>();
          ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
          Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
