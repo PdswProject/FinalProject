@@ -13,13 +13,11 @@ import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.CalculadorDeImpacto;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
-
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  *
@@ -38,15 +36,16 @@ public final class SolicitudesCancelaciones implements Solicitudes{
 
     }
     
+        
     
     /**
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dado el estudiante y la asignatura a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
-     * @param asig The subject that you want cancel.
      * @param e The student.
-     * @return The number of credit that will be pending.
+     * @param materia The subject that you want cancel.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
+     * @return the int
      */
     @Override
     public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes{
@@ -64,6 +63,7 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         return null;
     }
     
+        
     
     /**
      * El sistema debe permitir seleccionar sólo 
@@ -113,7 +113,6 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     }
     
     
-    
     public void cargarDatosPrueba(){
         
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
@@ -146,7 +145,22 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
     }
-}
+
+    @Override
+    public int calcularImpacto(Estudiante e, String materia) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Asignatura> loadAsignaturasActuales(Estudiante e) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Asignatura> loadAsignaturasPlanEstudios(PlanEstudios plan) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    }
 
 class Tupla<A, B> {
 

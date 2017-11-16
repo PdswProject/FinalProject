@@ -67,6 +67,7 @@ public class SolicitudCancelacionTest {
     
 //(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos)
     @Test 
+<<<<<<< HEAD
     public void MateriaNoEstaRegistradaEnElPlanDeEstudios()throws ExcepcionSolicitudes{
         
         ProgramaAcademico cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
@@ -90,6 +91,20 @@ public class SolicitudCancelacionTest {
         int res=0;
         for(Asignatura i:materiasPlan){
             if(i==c){
+=======
+    public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
+        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock(); 
+        sc.cargarDatosPrueba();
+        ProgramaAcademico cer;
+        List<Asignatura> lista = new LinkedList();
+        lista = sc.getAsignaturasPlanEstudios();
+        cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        Asignatura a=new Asignatura(3, "Fisica", cer, "Ciencia", 3, 3);
+        sc.calculoImpactoSimple(a);
+        int res=0;
+        for(Asignatura b:lista){
+            if(b==a){
+>>>>>>> cambie algunos nombres
                 res=1;
             }
         System.out.println(res);
@@ -102,10 +117,15 @@ public class SolicitudCancelacionTest {
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+<<<<<<< HEAD
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         int pendiente = sc.calcularImpacto(e, a);
+=======
+        Materia a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
+        int pendiente = sc.calculoImpactoSimple(a);
+>>>>>>> cambie algunos nombres
         int total = pa.getNumero_creditos();
         boolean c = pendiente<total;
         assertTrue(c);
@@ -115,6 +135,7 @@ public class SolicitudCancelacionTest {
 
     @Test
     public void pruebaDebeEstarViendolaActual()throws ExcepcionSolicitudes{
+<<<<<<< HEAD
         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
         List<Asignatura> lista = new LinkedList();
         lista = sc.getVistasActualmente();
@@ -123,6 +144,14 @@ public class SolicitudCancelacionTest {
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         sc.calcularImpacto(e, a);
+=======
+        SolicitudesCancelacionMock sc = new SolicitudesCancelacionMock();
+        List<Asignatura> lista = new LinkedList();
+        lista = sc.getVistasActualmente();
+        ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+        Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
+        sc.calculoImpactoSimple(a);
+>>>>>>> cambie algunos nombres
         int res=0;
         for(Asignatura i:lista){
             if(i==a){

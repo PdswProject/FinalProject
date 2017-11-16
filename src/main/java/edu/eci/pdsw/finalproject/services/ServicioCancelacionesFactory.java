@@ -14,14 +14,14 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
  *
  * @author USER
  */
-public class SolicitudesFactory {
-    private static SolicitudesFactory instance = new SolicitudesFactory();
+public class ServicioCancelacionesFactory {
+    private static ServicioCancelacionesFactory instance = new ServicioCancelacionesFactory();
 
     private static Injector injector;
     
     private static Injector testInjector;
 
-    public SolicitudesFactory() {
+    public ServicioCancelacionesFactory() {
         
          injector = createInjector(new XMLMyBatisModule() {
 
@@ -57,7 +57,7 @@ public class SolicitudesFactory {
         return testInjector.getInstance(Solicitudes.class);
     }
     
-    public static SolicitudesFactory getInstance() {
+    public static ServicioCancelacionesFactory getInstance() {
         return instance;
     }
 

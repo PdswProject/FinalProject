@@ -9,13 +9,13 @@ import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
-import edu.eci.pdsw.finalproject.services.Solicitudes;
-import edu.eci.pdsw.finalproject.services.SolicitudesFactory;
+import edu.eci.pdsw.finalproject.services.ServicioCancelacionesFactory;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import edu.eci.pdsw.finalproject.services.Solicitudes;
 /**
  *
  * @author USER
@@ -25,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 
 public class SolicitudCancelacionBean implements Serializable{
-    private final Solicitudes scm=SolicitudesFactory.getInstance().getSolicitudes();
+    private final Solicitudes scm=ServicioCancelacionesFactory.getInstance().getSolicitudes();
     private Asignatura asignatura;
     private PlanEstudios pe;
     private Estudiante est;
