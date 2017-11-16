@@ -103,11 +103,11 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
 
     @Override
-    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion) throws ExcepcionSolicitudes {
+    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion,String estado) throws ExcepcionSolicitudes {
         //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
         //Calcular el impacto, despues crear una solcitud cancelacion
         int resSc=calculadorDeImpacto.calcularImpacto(a, null);
-        
+        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, estado);
         //int rep=calcularImpacto(e, a);
         
     }
@@ -178,6 +178,11 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
+    }
+
+    @Override
+    public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     }
 
