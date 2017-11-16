@@ -6,6 +6,8 @@
 
 package edu.eci.pdsw.finalproject.entities;
 
+import java.util.Date;
+
 /**
  *
  * @author cesar
@@ -17,7 +19,7 @@ public class SolicitudCancelacion {
     }
     
     
-    public SolicitudCancelacion(String justificacion, Asignatura materia){
+    public SolicitudCancelacion(String justificacion, Asignatura materia, Date fecha, String estado){
     
     }
     
