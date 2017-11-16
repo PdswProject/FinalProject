@@ -15,7 +15,7 @@ import java.util.List;
  * @author 2104784
  */
 public interface Solicitudes {
-    
+        
     /**
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dada la asignatura a cancelar, 
@@ -24,6 +24,7 @@ public interface Solicitudes {
      * @param asig The subject that you want cancel.
      * @return The number of credit that will be pending.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
+     * @return the int
      */
     public abstract int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes;
     
@@ -34,9 +35,7 @@ public interface Solicitudes {
      * @return
      * @throws ExcepcionSolicitudes 
      */
-    public abstract PlanEstudios extraerPlanEstudios(Estudiante e)throws ExcepcionSolicitudes;
-    
-    
+    public abstract PlanEstudios extraerPlanEstudios(Estudiante e)throws ExcepcionSolicitudes; 
     
     /**
      * El sistema debe permitir seleccionar sólo 
@@ -92,6 +91,9 @@ public interface Solicitudes {
      */
     public abstract void eliminarMateria(String programa, int plan, Asignatura a) throws ExcepcionSolicitudes;
     
+        
+        
+        
     
     /**
      * Valida que el grafo del plan de estudios sea dirigido, aciclico y que las asignaturas 

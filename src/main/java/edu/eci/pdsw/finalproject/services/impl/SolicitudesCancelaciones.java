@@ -5,15 +5,30 @@
  */
 package edu.eci.pdsw.finalproject.services.impl;
 
+import com.google.inject.Inject;
 import edu.eci.pdsw.finalproject.entities.*;
+
+import edu.eci.pdsw.finalproject.entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.Estudiante;
+import edu.eci.pdsw.finalproject.entities.PlanEstudios;
+import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
+import edu.eci.pdsw.finalproject.services.CalculadorDeImpacto;
+
+import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
+import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
+
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
-
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import org.mybatis.guice.transactional.Transactional;
+import edu.eci.pdsw.finalproject.persistence.PersistenceException;
+import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
+import java.util.Set;
 
 
 /**
@@ -22,35 +37,48 @@ import java.util.Map;
  */
 public final class SolicitudesCancelaciones implements Solicitudes{
     
+    @Inject
+    private DecanoDAO d;
+    
+    @Inject
+    private EstudianteDAO de;
+     
+    
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
+//<<<<<<< HEAD
 
+//=======
+    @Inject
+    private CalculadorDeImpacto calculadorDeImpacto;       
+        
+    
+//>>>>>>> 3d14d84ef9be0b08471480b8eca6c9d645195472
     public SolicitudesCancelaciones(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
-        
-        
+
     }
     
+        
     
     /**
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dado el estudiante y la asignatura a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
-     * @param asig The subject that you want cancel.
      * @param e The student.
-     * @return The number of credit that will be pending.
+     * @param materia The subject that you want cancel.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
+     * @return the int
      */
     @Override
     public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes{
-        return 0;
-
+        return calculadorDeImpacto.calcularImpacto(asig, null);
     }
     
     
@@ -64,6 +92,7 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         return null;
     }
     
+        
     
     /**
      * El sistema debe permitir seleccionar sólo 
@@ -73,9 +102,10 @@ public final class SolicitudesCancelaciones implements Solicitudes{
      * @return List of Asignatura.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
+    @Transactional
     @Override
     public List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
-        throw new ExcepcionSolicitudes("No implementado aun");
+        return e.getMateriaActual();
     }
 
 
@@ -86,9 +116,15 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         
     }
 
+    @Transactional
     @Override
     public void ajustarMaxCreditosSemestre(int numcreditos) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            d.update(numcreditos);
+        } catch (PersistenceException ex) {
+            System.err.println(ex);
+            throw new ExcepcionSolicitudes("No fue posible agregar los creditos");
+        }
     }
 
     @Override
@@ -113,7 +149,6 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     public List<Asignatura> getVistasActualmente() {
         return vistasActualmente;
     }
-    
     
     
     public void cargarDatosPrueba(){
@@ -148,7 +183,7 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
     }
-}
+    }
 
 class Tupla<A, B> {
 

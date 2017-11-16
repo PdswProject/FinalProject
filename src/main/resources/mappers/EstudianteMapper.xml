@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="edu.eci.pdsw.finalproject.mybatis.mappers.EstudianteMapper">
+        
+    <select parameterType="map" id="loadAsignaturas" resultMap="EstudianteResult">
+        select ea.Asignatura_codigo
+        from EstudianteAsignatura as ea left join Estudiante as e on(ea.Estudiante_id=e.id) left join Asignatura as a on(ea.Asignatura_codgo=a.codigo)
+        order by ea.Asignatura_codigo by desc
+    </select>
+    
+    <resultMap type='Estudiante' id='EstudianteResult'>
+        <id property='id' column='id'/>
+        <result property='nombre' column='nombre'/>
+        <result property='apellido' column='apellido'/>
+        <result property='semestre' column='semestre'/>
+        <result property='creditos_aprobados' column='creditosAprobados'/>
+        <result property='solicitud_cancelacion' column='Solicitud_Cancelacion_id'/>
+        <result property='acudiente' column='Acudiente_id'/>
+        <result property='consejero_academico' column='ConsejeroAcademico_id'/>
+        <collection property='materiaActual' ofType='Asignatura' resultMap="AsignaturaResult"></collection>
+    </resultMap>
+    
+  
+                
+</mapper>

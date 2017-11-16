@@ -16,6 +16,11 @@ public class Estudiante {
     int id;
     String nombre;
     String apellido;
+    
+    /**
+     * El numero del plan de estudios que esta viendo.
+     */
+    int PlanEstudios;
     int semestre;
     int creditos_aprobados;
     int solicitud_cancelacion;
@@ -46,6 +51,7 @@ public class Estudiante {
     {
         return 0;
     }
+            
 
     public List<Asignatura> getMateriaActual() {
         return materiaActual;
