@@ -22,6 +22,12 @@ public class Asignatura {
     private int profesor;
     private List<Asignatura> correquisitos;
 
+    
+    
+    public Asignatura(){
+    
+    
+    }
     public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos) {
         this.codigo = codigo;
         this.nombre = nombre;

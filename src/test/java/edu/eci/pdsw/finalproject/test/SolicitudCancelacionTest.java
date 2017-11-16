@@ -133,7 +133,7 @@ public class SolicitudCancelacionTest {
         
 
     }
-    /*
+
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
          SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
@@ -149,25 +149,8 @@ public class SolicitudCancelacionTest {
 
          }catch(ExcepcionSolicitudes o){
             throw new ExcepcionSolicitudes(o.getMessage());
-         }
-         
-   }
-    
-    @Test
-    public void almacenamientoJustificacion()throws ExcepcionSolicitudes{
-        
-         SolicitudesCancelaciones sc = new SolicitudesCancelaciones();
-         try{
-            String re=sc.registroJustificacion();
-            Assert.assertFalse(re=="");         
-         }catch(ExcepcionSolicitudes e){
-             throw new ExcepcionSolicitudes(e.getMessage());
-         }
-            
-         //COmento que en la justificacion debe asegurarse que quedo almacenada
-         //o si no arroje un error.    
-    
-    }*/
+         } 
+    }
 }
 
 

@@ -26,6 +26,7 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
+
     public SolicitudesCancelaciones(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
@@ -80,7 +81,9 @@ public final class SolicitudesCancelaciones implements Solicitudes{
 
     @Override
     public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
+        int rep=calcularImpacto(e, a);
+        
     }
 
     @Override
