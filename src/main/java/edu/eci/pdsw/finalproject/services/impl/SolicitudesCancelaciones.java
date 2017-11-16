@@ -7,11 +7,16 @@ package edu.eci.pdsw.finalproject.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.pdsw.finalproject.entities.*;
+
 import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
 import edu.eci.pdsw.finalproject.services.CalculadorDeImpacto;
+
+import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
+import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
+
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.Solicitudes;
 import java.util.Arrays;
@@ -20,11 +25,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.guice.transactional.Transactional;
+import edu.eci.pdsw.finalproject.persistence.PersistenceException;
+import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
+import java.util.Set;
+
+
 /**
  *
  * @author 2104481
  */
 public final class SolicitudesCancelaciones implements Solicitudes{
+    
+    @Inject
+    private DecanoDAO d;
+    
+    @Inject
+    private EstudianteDAO de;
+     
     
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
@@ -80,9 +98,10 @@ public final class SolicitudesCancelaciones implements Solicitudes{
      * @return List of Asignatura.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
+    @Transactional
     @Override
     public List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
-        throw new ExcepcionSolicitudes("No implementado aun");
+        return e.getMateriaActual();
     }
 
 
@@ -91,9 +110,15 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Transactional
     @Override
     public void ajustarMaxCreditosSemestre(int numcreditos) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            d.update(numcreditos);
+        } catch (PersistenceException ex) {
+            System.err.println(ex);
+            throw new ExcepcionSolicitudes("No fue posible agregar los creditos");
+        }
     }
 
     @Override

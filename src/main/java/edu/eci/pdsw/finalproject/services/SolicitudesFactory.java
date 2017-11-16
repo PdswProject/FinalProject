@@ -7,6 +7,10 @@ package edu.eci.pdsw.finalproject.services;
 
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
+import edu.eci.pdsw.finalproject.mybatis.DecanoDAOMyBatis;
+import edu.eci.pdsw.finalproject.mybatis.EstudianteDAOMyBatis;
+import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
+import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -30,6 +34,8 @@ public class SolicitudesFactory {
                 install(JdbcHelper.PostgreSQL);              
                 setClassPathResource("mybatis-config.xml");
                 
+                bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
+                bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
             }
 
         }
@@ -42,6 +48,8 @@ public class SolicitudesFactory {
                 install(JdbcHelper.PostgreSQL);
                 setClassPathResource("mybatis-config-h2.xml");
                 
+                bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);             
+                bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
             }
 
         }
