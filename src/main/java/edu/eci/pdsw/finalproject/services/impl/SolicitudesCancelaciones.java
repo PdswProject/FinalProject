@@ -175,10 +175,10 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         
         
         Asignatura a1 =new Asignatura(0, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
-        Asignatura a4 =new Asignatura(0, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
-        Asignatura a5 =new Asignatura(0, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
-        Asignatura a3 =new Asignatura(0, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
-        Asignatura a2 =new Asignatura(0, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
+        Asignatura a4 =new Asignatura(1, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(2, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(4, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
         
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
