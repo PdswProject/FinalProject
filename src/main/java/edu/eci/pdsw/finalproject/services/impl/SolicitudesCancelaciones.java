@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.finalproject.services.impl;
 
+import com.google.inject.Inject;
 import edu.eci.pdsw.finalproject.entities.*;
 import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
@@ -29,10 +30,16 @@ public final class SolicitudesCancelaciones implements Solicitudes{
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
+    @Inject
     private CalculadorDeImpacto calculadorDeImpacto;       
         
     
     public SolicitudesCancelaciones(){
+        this.estudiantes = new LinkedHashMap<>();
+        asignaturasPlanEstudios = new LinkedList<>();
+        vistasActualmente= new LinkedList<>();
+        cargarDatosPrueba();
+        cargarDatosEstaticosGrafo();
 
     }
     
@@ -144,21 +151,6 @@ public final class SolicitudesCancelaciones implements Solicitudes{
         
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
-    }
-
-    @Override
-    public int calcularImpacto(Estudiante e, String materia) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Asignatura> loadAsignaturasActuales(Estudiante e) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Asignatura> loadAsignaturasPlanEstudios(PlanEstudios plan) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     }
 
