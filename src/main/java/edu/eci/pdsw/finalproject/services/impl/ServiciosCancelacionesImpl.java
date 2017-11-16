@@ -105,7 +105,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     @Override
     public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion,String estado) throws ExcepcionSolicitudes {
         //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
-        //Calcular el impacto, despues crear una solcitud cancelacion
+        //Calcular el impacto, despues crear una solcitud ccancelacion
         int resSc=calculadorDeImpacto.calcularImpacto(a, null);
         SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, estado);
         //int rep=calcularImpacto(e, a);
