@@ -84,9 +84,10 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
      * @return retorna el plan de estudios que esta viendo el estudiante
+     * @throws ExcepcionSolicitudes si el estudiante no existe
      */
     @Override
-    public PlanEstudios extraerPlanEstudios(Estudiante e){
+    public PlanEstudios extraerPlanEstudios(Estudiante e) throws ExcepcionSolicitudes{
         return extractorPlanEstudios.extraerPlanEstudios(e.getPlanEstudios(),e.getProgramaAcademico().getNombre());
     }
     

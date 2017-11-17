@@ -54,8 +54,26 @@ public class SolicitudCancelacionTest {
       * EXTRAER PLAN ESTUDIOS
       *  Clases de equivalencia:
       * 
-      *  Clase1:
-     * 
+      *  Clase1: estudiante no existe | hay error en persistencia
+      *  resultado esperado: Error
+      * 
+      *  Clase2: estudiante existe y no hay error en persistencia
+      *  resultado esperado: retorna el plan de estudios de acuerdo al archivo JSON que lo representa.
+      * 
+      *  Condiciones de frontera:
+      * 
+      *  CF1: el estudiante no existe
+      *  Clases relacionadas: C1
+      *  resultado esperado: Error -estudiante no existe
+      * 
+      *  CF2: el estudiante existe y hay error en persistencia
+      *  Clases relacionadas: C1,C2
+      *  resultado esperado: Error en persistencia
+      * 
+      *  CF3: el estudiante existe y no hay error en persistencia
+      *  Clases relacionadas: C2
+      *  resultado esperado: retorna el plan de estudios de acuerdo al archivo JSON que lo representa.
+      * 
      * CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
      * 
      *         Clase1: Materia actual mostrada debe estar en el plan de estudios
@@ -92,6 +110,25 @@ public class SolicitudCancelacionTest {
 
     @Test
     public void pruebasCalculoImpactoSimpleClase1()
+    {
+        
+    }
+    
+    
+    @Test
+    public void pruebasCalculoImpactoSimpleClase2()
+    {
+        
+    }
+    
+    @Test
+    public void pruebasExtraerPlanEstudiosClase1()
+    {
+        
+    }
+    
+    @Test
+    public void pruebasExtraerPlanEstudiosClase2()
     {
         
     }
