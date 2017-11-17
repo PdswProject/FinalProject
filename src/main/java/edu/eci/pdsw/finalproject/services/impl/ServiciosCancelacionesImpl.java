@@ -75,7 +75,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * @return the int
      */
     public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
-        return calculadorDeImpacto.calcularImpacto(asig, null);
+        return calculadorDeImpacto.calcularImpacto(asig, plan);
     }    
     /**
      * Extrae el plan de estudios del estudiante
@@ -103,12 +103,17 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
 
     @Override
-    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion,String estado) throws ExcepcionSolicitudes {
+    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion, PlanEstudios planEstudios) throws ExcepcionSolicitudes {
         //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
-        //Calcular el impacto, despues crear una solcitud ccancelacion
-        int resSc=calculadorDeImpacto.calcularImpacto(a, null);
-        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, estado);
+        //Calcular e l impacto, despues crear una solcitud ccancelacion
+        
+        //Falta que daniel CIN implemente el calculador de impacto para que funcione
+        
+        
+        //int resSc=calculadorDeImpacto.calcularImpacto(a, planEstudios);
+        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, false);
         //int rep=calcularImpacto(e, a);
+        
         
     }
 
