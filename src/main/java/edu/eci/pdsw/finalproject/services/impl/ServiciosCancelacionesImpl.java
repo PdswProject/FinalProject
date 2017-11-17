@@ -28,6 +28,7 @@ import java.util.Map;
 import org.mybatis.guice.transactional.Transactional;
 import edu.eci.pdsw.finalproject.persistence.PersistenceException;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
+import edu.eci.pdsw.finalproject.services.ExtractorPlanEstudios;
 import java.util.Set;
 
 
@@ -53,7 +54,9 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 //=======
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;       
-        
+    
+    @Inject
+    private ExtractorPlanEstudios extractorPlanEstudios;
     
 //>>>>>>> 3d14d84ef9be0b08471480b8eca6c9d645195472
     public ServiciosCancelacionesImpl(){
@@ -75,16 +78,16 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * @return the int
      */
     public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
-        return calculadorDeImpacto.calcularImpacto(asig, null);
+        return calculadorDeImpacto.calcularImpacto(asig, plan);
     }    
     /**
      * Extrae el plan de estudios del estudiante
-     * @param e
-     * @return 
+     * @param e el estudiante que tiene el plan de estudios
+     * @return retorna el plan de estudios que esta viendo el estudiante
      */
     @Override
     public PlanEstudios extraerPlanEstudios(Estudiante e){
-        return null;
+        return extractorPlanEstudios.extraerPlanEstudios(e.getPlanEstudios(),e.getProgramaAcademico().getNombre());
     }
     
     /**

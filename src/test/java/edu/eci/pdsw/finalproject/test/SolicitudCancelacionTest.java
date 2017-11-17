@@ -18,17 +18,43 @@ import org.junit.Test;
 public class SolicitudCancelacionTest {
     
     
-    /**
-     * CLASES DE EQUIVALENCIA PARA METODO CALCULO IMPACTO SIMPLE
-     * 
-     *         Clase1: Materia ingresada no se encuentra en el plan de estudios (no registrada)
-     * 
-     *         Resultado: Un valor booleano
-     * 
-     *         Clase2: Creditos academicos pendientes por ver debe ser menor a creditos totales de programa academico
-     * 
-     *         Resultado: Un valor booleano True
-     *         
+    /**CALCULO IMPACTO SIMPLE
+
+        Clases de equivalencia
+
+        Clase1: materia no existe | materia no se está cursando | estudiante no existe.
+        Resultado: error
+
+        Clase2: materia existe, estudiante existe y materia se está cursando
+        Resultado: la suma de los créditos de todas las materias que son correquisitos de la materia seleccionada
+
+        Condiciones de frontera
+
+        CF1: materia no existe | materia no se está cursando | estudiante no existe.
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: Error
+
+        CF2: la materia existe, pero los correquisitos registrados no existen
+        Clases relacionadas : CE1,CE2
+        Resultado esperado: Error
+
+        CF3: la materia no tiene correquisitos
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: los créditos de la materia seleccionada
+
+        CF4: la materia(m1) tiene 2 correquisitos(m2 y m3)
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: créditos m1 + creditos m2 + creditos m3
+
+        CF5: los correquisitos(m2 y m3) de la materia tienen correquisitos
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: 
+      
+      
+      * EXTRAER PLAN ESTUDIOS
+      *  Clases de equivalencia:
+      * 
+      *  Clase1:
      * 
      * CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
      * 
@@ -64,10 +90,13 @@ public class SolicitudCancelacionTest {
      */
     
 
-    
-//(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos)
+    @Test
+    public void pruebasCalculoImpactoSimpleClase1()
+    {
+        
+    }
+
     @Test 
-//<<<<<<< HEAD
     public void MateriaNoEstaRegistradaEnElPlanDeEstudios()throws ExcepcionSolicitudes{
         
         ProgramaAcademico cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
@@ -93,7 +122,7 @@ public class SolicitudCancelacionTest {
             if(i==c){}
         }
         }
-//=======
+
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
@@ -109,7 +138,7 @@ public class SolicitudCancelacionTest {
         int res=0;
         for(Asignatura b:lista){
             if(b==a){
-//>>>>>>> cambie algunos nombres
+
                 res=1;
             }
         System.out.println(res);
@@ -122,15 +151,14 @@ public class SolicitudCancelacionTest {
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-//<<<<<<< HEAD
+
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         int pendiente = sc.calcularImpacto(e, a);
-//=======
+
         Asignatura af=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         int pendienter = sc.calcularImpacto(e,af);
-//>>>>>>> cambie algunos nombres
         int total = pa.getNumero_creditos();
         boolean c = pendiente<total;
         assertTrue(c);
