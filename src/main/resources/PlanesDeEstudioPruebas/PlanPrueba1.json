@@ -1,0 +1,11 @@
+{      
+        "PlanEstudios":{
+            "id":1,
+            "asignaturas":[
+                {"Asignatura":{"id":1,"correquisitos":[]}}
+                ,{"Asignatura":{"id":4,"correquisitos":[]}}
+                ,{"Asignatura":{"id":5,"correquisitos":[]}}
+                ,{"Asignatura":{"id":3,"correquisitos":[5]}}
+                ,{"Asignatura":{"id":2 ,"correquisitos":[3,4]}}]}                        
+        
+}
