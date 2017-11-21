@@ -5,12 +5,14 @@
  */
 package edu.eci.pdsw.finalproject.services;
 
+import com.google.inject.AbstractModule;
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
 import edu.eci.pdsw.finalproject.mybatis.DecanoDAOMyBatis;
 import edu.eci.pdsw.finalproject.mybatis.EstudianteDAOMyBatis;
 import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
 import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
+import edu.eci.pdsw.finalproject.services.impl.ServiciosCancelacionesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -22,11 +24,20 @@ public class ServiciosCancelacionesFactory {
     private static ServiciosCancelacionesFactory instance = new ServiciosCancelacionesFactory();
 
     private static Injector injector;
-    
     private static Injector testInjector;
 
     public ServiciosCancelacionesFactory() {
         
+        injector = createInjector(new AbstractModule() {
+
+            @Override
+            protected void configure() {
+                bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
+            }
+
+        }
+        );
+        /*
          injector = createInjector(new XMLMyBatisModule() {
 
             @Override
@@ -37,6 +48,7 @@ public class ServiciosCancelacionesFactory {
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
             }
+        
 
         }
         );
@@ -53,7 +65,8 @@ public class ServiciosCancelacionesFactory {
             }
 
         }
-        );
+        );*/
+        
 
     }
 
@@ -61,9 +74,9 @@ public class ServiciosCancelacionesFactory {
         return injector.getInstance(ServiciosCancelaciones.class);
     }
 
-    public ServiciosCancelaciones getTestingSolicitudes() {
+    /*public ServiciosCancelaciones getTestingSolicitudes() {
         return testInjector.getInstance(ServiciosCancelaciones.class);
-    }
+    }*/
     
     public static ServiciosCancelacionesFactory getInstance() {
         return instance;

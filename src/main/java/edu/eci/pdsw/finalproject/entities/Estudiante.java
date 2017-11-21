@@ -5,7 +5,6 @@
  */
 package edu.eci.pdsw.finalproject.entities;
 
-import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import java.util.List;
 
 /**

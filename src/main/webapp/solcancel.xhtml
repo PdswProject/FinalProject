@@ -8,64 +8,35 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:p="http://primefaces.org/ui">
-    
-    
-    <body>
-        <h:form id="panelSolicitudes">
-            <p:layout style="min-width:400px;min-height:200px;">
+    <h:head></h:head>
 
-                <p:layoutUnit position="west" resizable="fase" size="500">
-
-                    Estudiante
-
-                    <p:panelGrid columns="2" >
-
-                        <h:outputText value="Nombre:" />
-                        <h:outputText value="Daniel Castiblanco" />
-
-                        <h:outputText value="Programa Academico:" />
-                        <h:outputText value="Ingenieria de Sistemas" />
-
-                        <h:outputText value="Semestre:" />
-                        <h:outputText value="6" />
-                    </p:panelGrid>
-                    
-                    <p:dataTable var="ListaDeAsignaturasActuales" value= "#{Solicitudes.materiasActualesEst}">
+    <h:body>
+        <p:layout style="min-width:800px;min-height:800px;">
+                          
+            <p:layoutUnit position="west" size="300" >  
+                                    
+                
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center">
+                LISTA DE MATERIAS VISTAS ACTUALMENTE<br/>
+                
+                <p:dataTable var="ListaDeAsignaturas" value= "#{Solicitudes.est.materiaActual}">
  
-                        <p:column headerText="Codigo">                
-                            <h:outputText value="#{ListaDeAsignaturasActuales.codigo}" />
-                        </p:column>
-                        <p:column headerText="Nombre">    
-                            <h:outputText value="#{ListaDeAsignaturasActuales.nombre}" />
-                        </p:column>
-                        <p:column headerText="Creditos">    
-                            <h:outputText value="#{ListaDeAsignaturasActuales.creditos}" />
-                        </p:column>
-
-                    </p:dataTable>
-
-                </p:layoutUnit>
-
-                <p:layoutUnit position="center">
-                    Solicitud
-                    <h:form id="form">
-
-                        <p:tabView>
-                            <p:tab title="Impacto por Cancelar">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText
-                                        value="El impacto actuamente es nulo "/>
-                                </h:panelGrid>
-                            </p:tab>
-                            <p:tab title="Proyeccion">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText value="De acuerdo al analisis el estudiante se graduara en ..." />
-                                </h:panelGrid>
-                            </p:tab>
-                        </p:tabView>
-                    </h:form>
-                </p:layoutUnit>
-            </p:layout>
-        </h:form>
-    </body>
+                    <p:column headerText="Codigo">                
+                        <h:outputText value="#{ListaDeAsignaturas.codigo}" />
+                    </p:column>
+                    <p:column headerText="Nombre">    
+                        <h:outputText value="#{ListaDeAsignaturas.nombre}" />
+                    </p:column>
+                    <p:column headerText="Creditos">    
+                        <h:outputText value="#{ListaDeAsignaturas.creditos}" />
+                    </p:column>
+                   
+                </p:dataTable>
+            
+            </p:layoutUnit>
+        </p:layout>
+            
+    </h:body>
 </html>
