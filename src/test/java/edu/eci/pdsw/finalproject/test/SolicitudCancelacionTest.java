@@ -8,6 +8,7 @@ import edu.eci.pdsw.finalproject.services.ServiciosCancelaciones;
 import edu.eci.pdsw.finalproject.services.ServiciosCancelacionesFactory;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.impl.ServiciosCancelacionesImpl;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -128,6 +129,14 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebasExtraerPlanEstudiosClase1()
     {
+        ServiciosCancelaciones  sc= ServiciosCancelacionesFactory.getInstance().getSolicitudes();
+        ProgramaAcademico p = new ProgramaAcademico(1,"Plan Prueba",30,18,150);
+        try {
+            sc.extraerPlanEstudios(null);
+            
+        } catch (ExcepcionSolicitudes e) {
+            assertEquals("No se esta lanzando la excepcion adecuada",e.getMessage().equals("El estudiante no puede ser nulo"));
+        }
         
     }
     
@@ -137,9 +146,21 @@ public class SolicitudCancelacionTest {
         ServiciosCancelaciones  sc= ServiciosCancelacionesFactory.getInstance().getSolicitudes();
         ProgramaAcademico p = new ProgramaAcademico(1,"Plan Prueba",30,18,150);
         Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,new int[]{1,2});
+         Asignatura a1 =new Asignatura(1, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(4, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(5, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(2, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
+        
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         try {
             PlanEstudios plan = sc.extraerPlanEstudios(e);
-            assertTrue(plan.equals(planP));
+            
+            assertEquals("El plan extraido tiene mas o menos materias de las que deberia",pe.getNumero_materias(),plan.getNumero_materias());
+            for(int i=0;i<pe.getNumero_materias();i++)
+                assertEquals("El plan extraido no tiene las materias que deberia",pe.getMaterias().get(i),plan.getMaterias().get(i));
+            
+            
         } catch (ExcepcionSolicitudes ex) {
             Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
