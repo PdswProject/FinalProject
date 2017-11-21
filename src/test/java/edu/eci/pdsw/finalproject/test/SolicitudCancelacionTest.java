@@ -4,10 +4,14 @@ import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
+import edu.eci.pdsw.finalproject.services.ServiciosCancelaciones;
+import edu.eci.pdsw.finalproject.services.ServiciosCancelacionesFactory;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.impl.ServiciosCancelacionesImpl;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -130,7 +134,15 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebasExtraerPlanEstudiosClase2()
     {
-        
+        ServiciosCancelaciones  sc= ServiciosCancelacionesFactory.getInstance().getSolicitudes();
+        ProgramaAcademico p = new ProgramaAcademico(1,"Plan Prueba",30,18,150);
+        Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,new int[]{1,2});
+        try {
+            PlanEstudios plan = sc.extraerPlanEstudios(e);
+            assertTrue(plan.equals(planP));
+        } catch (ExcepcionSolicitudes ex) {
+            Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Test 

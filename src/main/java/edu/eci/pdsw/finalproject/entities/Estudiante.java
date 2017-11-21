@@ -20,7 +20,7 @@ public class Estudiante {
     /**
      * El numero del plan de estudios que esta viendo.
      */
-    private int PlanEstudios;
+    private int planEstudios;
     
     /**
      * El programa academico en el que se encuentra.
@@ -33,28 +33,30 @@ public class Estudiante {
     private int solicitud_cancelacion;
     private int acudiente;
     private int consejero_academico;
-    private List<Asignatura> materiaActual;
+    private int[] materiasActuales;
     
 
-    public Estudiante(int id, String nombre, String apellido, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, List<Asignatura> materiaActual) {
+    public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, int[] materiasActuales) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.planEstudios=planEstudios;
+        this.programaAcademico=programaAcademico;
         this.semestre = semestre;
         this.creditos_aprobados = creditos_aprobados;
         this.solicitud_cancelacion = solicitud_cancelacion;
         this.acudiente = acudiente;
         this.consejero_academico = consejero_academico;
-        this.materiaActual = materiaActual;
+        this.materiasActuales = materiasActuales;
     }
             
-     
-    public int getPlanEstudios() {
-        return PlanEstudios;
+    public int getPlanEstudios() {     
+
+        return planEstudios;
     }
 
-    public void setPlanEstudios(int PlanEstudios) {
-        this.PlanEstudios = PlanEstudios;
+    public void setPlanEstudios(int planEstudios) {
+        this.planEstudios = planEstudios;
     }
 
     public ProgramaAcademico getProgramaAcademico() {
@@ -64,12 +66,12 @@ public class Estudiante {
         this.programaAcademico = programaAcademico;
     }
     
-    public List<Asignatura> getMateriaActual() {
-        return materiaActual;
+    public int[] getMateriaActual() {
+        return materiasActuales;
     }
 
-    public void setMateriaActual(List<Asignatura> materiaActual) {
-        this.materiaActual = materiaActual;
+    public void setMateriaActual(int[] materiasActuales) {
+        this.materiasActuales = materiasActuales;
     }
 
     

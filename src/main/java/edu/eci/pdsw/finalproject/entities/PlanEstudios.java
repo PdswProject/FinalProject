@@ -77,6 +77,17 @@ public class PlanEstudios {
         this.materias = materias;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        PlanEstudios p = (PlanEstudios)obj;
+        boolean resp = false;
+        for(int i=0;i<materias.size();i++)
+        {
+            resp= resp && materias.get(i).getNombre().equals(p.getMaterias().get(i).getNombre());
+        }
+        return resp;
+    }
+
 
     
     
