@@ -6,7 +6,7 @@
 package edu.eci.pdsw.finalproject.services.impl;
 
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
-import edu.eci.pdsw.finalproject.services.extractorPlanEstudios;
+import edu.eci.pdsw.finalproject.services.ExtractorPlanEstudios;
 
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -15,7 +15,7 @@ import org.json.simple.parser.JSONParser;
  *
  * @author DANIEL CIFUENTES
  */
-public class extractorJSON implements extractorPlanEstudios{
+public class extractorJSON implements ExtractorPlanEstudios{
 
     @Override
     public PlanEstudios extraerPlanEstudios(int planEstudios, String programaAcademico) {
@@ -32,6 +32,7 @@ public class extractorJSON implements extractorPlanEstudios{
                               + "\"asignaturas\":"
                                 + "["+a1+','+a2+','+a3+','+a4+','+a5+"]}"
                 + "}";
+        
         
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

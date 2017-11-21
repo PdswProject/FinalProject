@@ -28,6 +28,7 @@ import java.util.Map;
 import org.mybatis.guice.transactional.Transactional;
 import edu.eci.pdsw.finalproject.persistence.PersistenceException;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
+import edu.eci.pdsw.finalproject.services.ExtractorPlanEstudios;
 import java.util.Set;
 
 
@@ -53,7 +54,9 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 //=======
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;       
-        
+    
+    @Inject
+    private ExtractorPlanEstudios extractorPlanEstudios;
     
 //>>>>>>> 3d14d84ef9be0b08471480b8eca6c9d645195472
     public ServiciosCancelacionesImpl(){
@@ -75,16 +78,17 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * @return the int
      */
     public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
-        return calculadorDeImpacto.calcularImpacto(asig, null);
+        return calculadorDeImpacto.calcularImpacto(asig, plan);
     }    
     /**
      * Extrae el plan de estudios del estudiante
-     * @param e
-     * @return 
+     * @param e el estudiante que tiene el plan de estudios
+     * @return retorna el plan de estudios que esta viendo el estudiante
+     * @throws ExcepcionSolicitudes si el estudiante no existe
      */
     @Override
-    public PlanEstudios extraerPlanEstudios(Estudiante e){
-        return null;
+    public PlanEstudios extraerPlanEstudios(Estudiante e) throws ExcepcionSolicitudes{
+        return extractorPlanEstudios.extraerPlanEstudios(e.getPlanEstudios(),e.getProgramaAcademico().getNombre());
     }
     
     /**
@@ -103,12 +107,17 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
 
     @Override
-    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion,String estado) throws ExcepcionSolicitudes {
+    public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion, PlanEstudios planEstudios) throws ExcepcionSolicitudes {
         //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
-        //Calcular el impacto, despues crear una solcitud cancelacion
-        int resSc=calculadorDeImpacto.calcularImpacto(a, null);
-        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, estado);
+        //Calcular e l impacto, despues crear una solcitud ccancelacion
+        
+        //Falta que daniel CIN implemente el calculador de impacto para que funcione
+        
+        
+        //int resSc=calculadorDeImpacto.calcularImpacto(a, planEstudios);
+        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, false);
         //int rep=calcularImpacto(e, a);
+        
         
     }
 

@@ -105,98 +105,98 @@ CREATE TABLE SolicitudCancelacion (
 ALTER TABLE Asignatura ADD CONSTRAINT Asignatura_PlanDeEstudios
     FOREIGN KEY (PlanDeEstudios_id)
     REFERENCES PlanDeEstudios (id)  
-    
+
 ;
 
 -- Reference: Asignatura_Profesor (table: Asignatura)
 ALTER TABLE Asignatura ADD CONSTRAINT Asignatura_Profesor
     FOREIGN KEY (Profesor_id)
     REFERENCES Profesor (id)  
-    
+
 ;
 
 -- Reference: ConsejeroAcademico_Profesor (table: ConsejeroAcademico)
 ALTER TABLE ConsejeroAcademico ADD CONSTRAINT ConsejeroAcademico_Profesor
     FOREIGN KEY (id)
     REFERENCES Profesor (id)  
-    
+
 ;
 
 -- Reference: Decano_Profesor (table: Decano)
 ALTER TABLE Decano ADD CONSTRAINT Decano_Profesor
     FOREIGN KEY (id)
     REFERENCES Profesor (id)  
-    
+
 ;
 
 -- Reference: Decano_ProgramaAcademico (table: ProgramaAcademico)
 ALTER TABLE ProgramaAcademico ADD CONSTRAINT Decano_ProgramaAcademico
     FOREIGN KEY (decano_id)
     REFERENCES Decano (id)  
-    
+
 ;
 
 -- Reference: EstudianteAsignatura_Asignatura (table: EstudianteAsignatura)
 ALTER TABLE EstudianteAsignatura ADD CONSTRAINT EstudianteAsignatura_Asignatura
     FOREIGN KEY (Asignatura_codigo)
     REFERENCES Asignatura (codigo)  
-    
+
 ;
 
 -- Reference: EstudianteProgramaAcademico_Estudiante (table: EstudianteProgramaAcademico)
 ALTER TABLE EstudianteProgramaAcademico ADD CONSTRAINT EstudianteProgramaAcademico_Estudiante
     FOREIGN KEY (ProgramaAcademico_id)
     REFERENCES Estudiante (id)  
-    
+
 ;
 
 -- Reference: EstudianteProgramaAcademico_ProgramaAcademico (table: EstudianteProgramaAcademico)
 ALTER TABLE EstudianteProgramaAcademico ADD CONSTRAINT EstudianteProgramaAcademico_ProgramaAcademico
     FOREIGN KEY (ProgramaAcademico_id)
     REFERENCES ProgramaAcademico (id)  
-    
+
 ;
 
 -- Reference: Estudiante_Acudiente (table: Estudiante)
 ALTER TABLE Estudiante ADD CONSTRAINT Estudiante_Acudiente
     FOREIGN KEY (Acudiente_id)
     REFERENCES Acudiente (cc)  
-    
+
 ;
 
 -- Reference: Estudiante_ConsejeroAcademico (table: Estudiante)
 ALTER TABLE Estudiante ADD CONSTRAINT Estudiante_ConsejeroAcademico
     FOREIGN KEY (ConsejeroAcademico_id)
     REFERENCES ConsejeroAcademico (id)  
-    
+
 ;
 
 -- Reference: Estudiante_EstudianteAsignatura (table: EstudianteAsignatura)
 ALTER TABLE EstudianteAsignatura ADD CONSTRAINT Estudiante_EstudianteAsignatura
     FOREIGN KEY (Estudiante_id)
     REFERENCES Estudiante (id)  
-    
+
 ;
 
 -- Reference: Estudiante_SolicitudCancelacion (table: SolicitudCancelacion)
 ALTER TABLE SolicitudCancelacion ADD CONSTRAINT Estudiante_SolicitudCancelacion
     FOREIGN KEY (estudiante)
     REFERENCES Estudiante (id)  
-    
+
 ;
 
 -- Reference: PlanDeEstudios_ProgramaAcademico (table: PlanDeEstudios)
 ALTER TABLE PlanDeEstudios ADD CONSTRAINT PlanDeEstudios_ProgramaAcademico
     FOREIGN KEY (ProgramaAcademico_id)
     REFERENCES ProgramaAcademico (id)  
-    
+
 ;
 
 -- Reference: SolicitudCancelacion_Decano (table: SolicitudCancelacion)
 ALTER TABLE SolicitudCancelacion ADD CONSTRAINT SolicitudCancelacion_Decano
     FOREIGN KEY (decano_id)
     REFERENCES Decano (id)  
-    
+
 ;
 
 -- End of file.

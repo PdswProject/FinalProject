@@ -13,20 +13,27 @@ import java.util.List;
  * @author USER
  */
 public class Estudiante {
-    int id;
-    String nombre;
-    String apellido;
-    
+    private int id;
+    private String nombre;
+    private String apellido;
+
     /**
      * El numero del plan de estudios que esta viendo.
      */
-    int PlanEstudios;
-    int semestre;
-    int creditos_aprobados;
-    int solicitud_cancelacion;
-    int acudiente;
-    int consejero_academico;
-    List<Asignatura> materiaActual;
+    private int PlanEstudios;
+    
+    /**
+     * El programa academico en el que se encuentra.
+     */
+    private ProgramaAcademico programaAcademico;
+    
+    
+    private int semestre;
+    private int creditos_aprobados;
+    private int solicitud_cancelacion;
+    private int acudiente;
+    private int consejero_academico;
+    private List<Asignatura> materiaActual;
     
 
     public Estudiante(int id, String nombre, String apellido, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, List<Asignatura> materiaActual) {
@@ -40,19 +47,23 @@ public class Estudiante {
         this.consejero_academico = consejero_academico;
         this.materiaActual = materiaActual;
     }
-    
-    /**
-     * Dada una asignatura, calcula el numero de creditos que dejaria de ver si la cancela
-     * @param asig La asignatura a cancelar
-     * @return Los creditos que tendria pendientes.
-     * @throws ExcepcionSolicitudes si la asignatura no esta en su plan de estudios.
-     */
-    public int calculoImpactoSimple(Asignatura asig) throws ExcepcionSolicitudes
-    {
-        return 0;
-    }
             
+     
+    public int getPlanEstudios() {
+        return PlanEstudios;
+    }
 
+    public void setPlanEstudios(int PlanEstudios) {
+        this.PlanEstudios = PlanEstudios;
+    }
+
+    public ProgramaAcademico getProgramaAcademico() {
+        return programaAcademico;
+    }
+    public void setProgramaAcademico(ProgramaAcademico programaAcademico) {
+        this.programaAcademico = programaAcademico;
+    }
+    
     public List<Asignatura> getMateriaActual() {
         return materiaActual;
     }

@@ -16,12 +16,12 @@ public class SolicitudCancelacion {
     private String justificacion;
     private Asignatura materia;
     private Date fecha;
-    private String estado;
+    private boolean estado;
     
     
     public SolicitudCancelacion(){
     }
-    public SolicitudCancelacion(String justificacion, Asignatura materia, Date fecha, String estado){
+    public SolicitudCancelacion(String justificacion, Asignatura materia, Date fecha, boolean estado){
         this.justificacion=justificacion;
         this.materia=materia;
         this.fecha=fecha;
@@ -35,7 +35,7 @@ public class SolicitudCancelacion {
     public void setMateria(Asignatura materia){
         this.materia=materia;
     }
-    public void setEstado(String estado){
+    public void setEstado(boolean estado){
         this.estado=estado;
     }
         

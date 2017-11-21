@@ -20,6 +20,10 @@ public class PlanEstudios {
     ProgramaAcademico programa;
     List<Asignatura> materias;
 
+    public PlanEstudios(){
+    
+    }
+    
     public PlanEstudios(int id, int numero_materias, ProgramaAcademico programa, List<Asignatura> materias) {
         this.materias = new LinkedList();
         this.id = id;

@@ -18,18 +18,62 @@ import org.junit.Test;
 public class SolicitudCancelacionTest {
     
     
-    /**
-     * CLASES DE EQUIVALENCIA PARA METODO CALCULO IMPACTO SIMPLE
-     * 
-     *         Clase1: Materia ingresada no se encuentra en el plan de estudios (no registrada)
-     * 
-     *         Resultado: Un valor booleano
-     * 
-     *         Clase2: Creditos academicos pendientes por ver debe ser menor a creditos totales de programa academico
-     * 
-     *         Resultado: Un valor booleano True
-     *         
-     * 
+    /**CALCULO IMPACTO SIMPLE
+
+        Clases de equivalencia
+
+        Clase1: materia no existe | materia no se está cursando | estudiante no existe.
+        Resultado: error
+
+        Clase2: materia existe, estudiante existe y materia se está cursando
+        Resultado: la suma de los créditos de todas las materias que son correquisitos de la materia seleccionada
+
+        Condiciones de frontera
+
+        CF1: materia no existe | materia no se está cursando | estudiante no existe.
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: Error
+
+        CF2: la materia existe, pero los correquisitos registrados no existen
+        Clases relacionadas : CE1,CE2
+        Resultado esperado: Error
+
+        CF3: la materia no tiene correquisitos
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: los créditos de la materia seleccionada
+
+        CF4: la materia(m1) tiene 2 correquisitos(m2 y m3)
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: créditos m1 + creditos m2 + creditos m3
+
+        CF5: los correquisitos(m2 y m3) de la materia tienen correquisitos
+        Clases relacionadas: CE1,CE2
+        Resultado esperado: 
+      
+      
+      * EXTRAER PLAN ESTUDIOS
+      *  Clases de equivalencia:
+      * 
+      *  Clase1: estudiante no existe | hay error en persistencia
+      *  resultado esperado: Error
+      * 
+      *  Clase2: estudiante existe y no hay error en persistencia
+      *  resultado esperado: retorna el plan de estudios de acuerdo al archivo JSON que lo representa.
+      * 
+      *  Condiciones de frontera:
+      * 
+      *  CF1: el estudiante no existe
+      *  Clases relacionadas: C1
+      *  resultado esperado: Error -estudiante no existe
+      * 
+      *  CF2: el estudiante existe y hay error en persistencia
+      *  Clases relacionadas: C1,C2
+      *  resultado esperado: Error en persistencia
+      * 
+      *  CF3: el estudiante existe y no hay error en persistencia
+      *  Clases relacionadas: C2
+      *  resultado esperado: retorna el plan de estudios de acuerdo al archivo JSON que lo representa.
+      * 
      * CLASES DE EQUIVALENCIA PARA METODO LOAD ASIGNATURAS ACTUALES
      * 
      *         Clase1: Materia actual mostrada debe estar en el plan de estudios
@@ -64,10 +108,32 @@ public class SolicitudCancelacionTest {
      */
     
 
+    @Test
+    public void pruebasCalculoImpactoSimpleClase1()
+    {
+        
+    }
     
-//(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos)
+    
+    @Test
+    public void pruebasCalculoImpactoSimpleClase2()
+    {
+        
+    }
+    
+    @Test
+    public void pruebasExtraerPlanEstudiosClase1()
+    {
+        
+    }
+    
+    @Test
+    public void pruebasExtraerPlanEstudiosClase2()
+    {
+        
+    }
+
     @Test 
-//<<<<<<< HEAD
     public void MateriaNoEstaRegistradaEnElPlanDeEstudios()throws ExcepcionSolicitudes{
         
         ProgramaAcademico cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
@@ -93,7 +159,7 @@ public class SolicitudCancelacionTest {
             if(i==c){}
         }
         }
-//=======
+
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
@@ -109,7 +175,7 @@ public class SolicitudCancelacionTest {
         int res=0;
         for(Asignatura b:lista){
             if(b==a){
-//>>>>>>> cambie algunos nombres
+
                 res=1;
             }
         System.out.println(res);
@@ -122,15 +188,14 @@ public class SolicitudCancelacionTest {
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-//<<<<<<< HEAD
+
         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         List<Asignatura> materiasEst = new LinkedList<>();
         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
         int pendiente = sc.calcularImpacto(e, a);
-//=======
+
         Asignatura af=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
         int pendienter = sc.calcularImpacto(e,af);
-//>>>>>>> cambie algunos nombres
         int total = pa.getNumero_creditos();
         boolean c = pendiente<total;
         assertTrue(c);
@@ -152,14 +217,14 @@ public class SolicitudCancelacionTest {
 //=======
 
         lista = sc.getVistasActualmente();
-        sc.calcularImpacto(e,a);
+        sc.calcularImpacto(e,null);
 //>>>>>>> cambie algunos nombres
         int res=0;
         for(Asignatura i:lista){
             if(i==a){
                 res=1;
             }
-        assertEquals(res,null);
+        assertEquals(res,1);
         }
         
 
@@ -168,15 +233,17 @@ public class SolicitudCancelacionTest {
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
          ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
+
          List<Asignatura> materiasEst = new LinkedList<>();
          ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+         PlanEstudios estud= new PlanEstudios(99, 20, pa, materiasEst);
          Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
          Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
          String justificacion;
          justificacion= "Demasiada carga academica";
          try{
              //Que sea valido
-            sc.solicitarCancelacion(e, a, justificacion);
+            sc.solicitarCancelacion(e, a, justificacion,estud);
 
          }catch(ExcepcionSolicitudes o){
             throw new ExcepcionSolicitudes(o.getMessage());

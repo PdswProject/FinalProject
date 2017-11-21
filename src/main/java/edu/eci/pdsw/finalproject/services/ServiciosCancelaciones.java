@@ -58,7 +58,7 @@ public interface ServiciosCancelaciones {
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
     
-    public abstract void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion,String estado) throws ExcepcionSolicitudes;
+    public abstract void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion, PlanEstudios planEstudio) throws ExcepcionSolicitudes;
         
 
     

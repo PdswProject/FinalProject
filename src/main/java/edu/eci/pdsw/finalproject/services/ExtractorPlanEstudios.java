@@ -11,7 +11,7 @@ import edu.eci.pdsw.finalproject.entities.PlanEstudios;
  *
  * @author DANIEL CIFUENTES
  */
-public interface extractorPlanEstudios {
+public interface ExtractorPlanEstudios {
     
     /**
      * crea un objeto plan de estudios, con todas sus materias, a partir de un archivo
