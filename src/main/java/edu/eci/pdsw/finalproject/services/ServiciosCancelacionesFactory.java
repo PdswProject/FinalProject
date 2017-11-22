@@ -28,16 +28,7 @@ public class ServiciosCancelacionesFactory {
 
     public ServiciosCancelacionesFactory() {
         
-        injector = createInjector(new AbstractModule() {
-
-            @Override
-            protected void configure() {
-                bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
-            }
-
-        }
-        );
-        /*
+        
          injector = createInjector(new XMLMyBatisModule() {
 
             @Override
@@ -65,7 +56,7 @@ public class ServiciosCancelacionesFactory {
             }
 
         }
-        );*/
+        );
         
 
     }
@@ -74,9 +65,9 @@ public class ServiciosCancelacionesFactory {
         return injector.getInstance(ServiciosCancelaciones.class);
     }
 
-    /*public ServiciosCancelaciones getTestingSolicitudes() {
+    public ServiciosCancelaciones getTestingSolicitudes() {
         return testInjector.getInstance(ServiciosCancelaciones.class);
-    }*/
+    }
     
     public static ServiciosCancelacionesFactory getInstance() {
         return instance;

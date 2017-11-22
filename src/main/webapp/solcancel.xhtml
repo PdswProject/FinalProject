@@ -7,13 +7,37 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
 
     <h:body>
         <p:layout style="min-width:800px;min-height:800px;">
                           
-            <p:layoutUnit position="west" size="300" >  
+            <p:layoutUnit position="west" size="500" >  
+                <p:panelGrid columns="2">
+                    <f:facet name="Datos del estudiante">
+                        Datos del estudiante
+                    </f:facet>
+
+                    <h:outputText value="Codigo:" />
+                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.id} />
+
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.nombre} />
+
+                    <h:outputText value="Apellido:" />
+                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.apellido} />
+
+                    <h:outputText value="Programa Academico:" />
+                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.programaAcademico.nombre} />
+                    
+                    <h:outputText value="Semestre:" />
+                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.semestre} />
+                    
+                    <h:outputText value="Creditos aprobados:" />
+                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.creditos_aprobados} />
+                </p:panelGrid>
                                     
                 
             </p:layoutUnit>
@@ -34,6 +58,8 @@ and open the template in the editor.
                     </p:column>
                    
                 </p:dataTable>
+                
+                <p:commandButton value="Solicitar cancelacion" id="nonAjax" actionListener="#{SolicitudesEstudiantes.asignatura.unidadAcademica}" ajax="false"/>
             
             </p:layoutUnit>
         </p:layout>
