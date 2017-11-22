@@ -8,6 +8,7 @@ package edu.eci.pdsw.finalproject.services;
 import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
+import edu.eci.pdsw.finalproject.entities.SolicitudCancelacion;
 import java.util.List;
 
 /**
@@ -103,4 +104,13 @@ public interface ServiciosCancelaciones {
      * @throws ExcepcionSolicitudes 
      */
     public abstract boolean validarPlanEstudios(PlanEstudios pe) throws ExcepcionSolicitudes;
+    
+    
+    
+    /**
+     * Retorna una lista de solicitudes de cancelacion.
+     * @return List<SolicitudCancelacion>
+     * @throws ExcepcionSolicitudes
+     */
+
 }

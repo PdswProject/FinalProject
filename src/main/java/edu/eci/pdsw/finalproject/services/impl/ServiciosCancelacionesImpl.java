@@ -29,6 +29,7 @@ import org.mybatis.guice.transactional.Transactional;
 import edu.eci.pdsw.finalproject.persistence.PersistenceException;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.ExtractorPlanEstudios;
+import java.util.ArrayList;
 import java.util.Set;
 
 
@@ -113,7 +114,6 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         
         //Falta que daniel CIN implemente el calculador de impacto para que funcione
         
-        
         //int resSc=calculadorDeImpacto.calcularImpacto(a, planEstudios);
         SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, false);
         //int rep=calcularImpacto(e, a);
@@ -193,6 +193,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     }
 
 class Tupla<A, B> {
