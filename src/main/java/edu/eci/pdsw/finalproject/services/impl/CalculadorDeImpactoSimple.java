@@ -17,6 +17,7 @@ public class CalculadorDeImpactoSimple implements CalculadorDeImpacto{
 
     @Override
     public int calcularImpacto(Asignatura asig, PlanEstudios plan) {
+        
         verificarPlanEstudios(plan);
         return calcularImpacto(asig);
     }

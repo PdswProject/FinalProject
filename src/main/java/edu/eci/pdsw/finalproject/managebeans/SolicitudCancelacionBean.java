@@ -22,18 +22,16 @@ import edu.eci.pdsw.finalproject.services.ServiciosCancelaciones;
  * @author USER
  */
 
-@ManagedBean(name = "Solicitudes")
+@ManagedBean(name = "SolicitudesEstudiantes")
 @SessionScoped
 
 public class SolicitudCancelacionBean implements Serializable{
     private final ServiciosCancelaciones scm=ServiciosCancelacionesFactory.getInstance().getSolicitudes();
     private Asignatura asignatura;
-    private PlanEstudios pe;
-    private Estudiante est;
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
-    
+    private int codigo;
     String nombreAsignatura;
-    int creditos;
+    private int creditos;
    
     int idEstudiante;
     String nombre;
@@ -41,10 +39,31 @@ public class SolicitudCancelacionBean implements Serializable{
     int creditosAprobados;
     List<Asignatura> materiasActualesEst;
     
+    private Estudiante estudiante;
+    
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
-        materiasActualesEst= scm.verMateriasActuales(est);
-       
+
+        materiasActualesEst=scm.verMateriasActuales(estudiante);
+        
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+    
+    
 
     public Asignatura getAsignatura() {
         return asignatura;
@@ -54,21 +73,7 @@ public class SolicitudCancelacionBean implements Serializable{
         this.asignatura = asignatura;
     }
 
-    public PlanEstudios getPe() {
-        return pe;
-    }
-
-    public void setPe(PlanEstudios pe) {
-        this.pe = pe;
-    }
-
-    public Estudiante getEst() {
-        return est;
-    }
-
-    public void setEst(Estudiante est) {
-        this.est = est;
-    }
+   
 
     public List<Asignatura> getListaAsignaturasPE() {
         return listaAsignaturasPE;
