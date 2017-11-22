@@ -21,22 +21,17 @@ and open the template in the editor.
                     </f:facet>
 
                     <h:outputText value="Codigo:" />
-                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.id} />
+                    
 
                     <h:outputText value="Nombre:" />
-                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.nombre} />
 
                     <h:outputText value="Apellido:" />
-                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.apellido} />
 
                     <h:outputText value="Programa Academico:" />
-                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.programaAcademico.nombre} />
                     
                     <h:outputText value="Semestre:" />
-                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.semestre} />
                     
                     <h:outputText value="Creditos aprobados:" />
-                    <h:outputText value=#{SolicitudesEstudiantes.estudiante.creditos_aprobados} />
                 </p:panelGrid>
                                     
                 
@@ -59,8 +54,7 @@ and open the template in the editor.
                    
                 </p:dataTable>
                 
-                <p:commandButton value="Solicitar cancelacion" id="nonAjax" actionListener="#{SolicitudesEstudiantes.asignatura.unidadAcademica}" ajax="false"/>
-            
+                <h:outputLink value="/logout">logout</h:outputLink>
             </p:layoutUnit>
         </p:layout>
             
