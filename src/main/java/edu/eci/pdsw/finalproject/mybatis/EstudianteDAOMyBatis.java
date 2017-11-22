@@ -10,7 +10,7 @@ import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.mybatis.mappers.EstudianteMapper;
 import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
 import java.util.List;
-import javax.persistence.PersistenceException;
+import edu.eci.pdsw.finalproject.persistence.PersistenceException;
 
 /**
  *
