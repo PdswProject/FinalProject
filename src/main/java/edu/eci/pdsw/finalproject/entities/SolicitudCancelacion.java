@@ -13,6 +13,7 @@ import java.util.Date;
  * @author cesar
  */
 public class SolicitudCancelacion {
+    private int id;
     private String justificacion;
     private Asignatura materia;
     private Date fecha;
@@ -39,6 +40,17 @@ public class SolicitudCancelacion {
         this.estado=estado;
     }
         
-    
+    public String getJustificacion(){
+        return justificacion;
+    }
+    public Asignatura getAsignatura(){
+        return materia;
+    }
+    public Date getFecha(){
+        return fecha;
+    }
+    public boolean getEstado(){
+        return estado;
+    }
     
 }

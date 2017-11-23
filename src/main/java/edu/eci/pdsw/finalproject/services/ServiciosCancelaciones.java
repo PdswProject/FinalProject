@@ -112,5 +112,5 @@ public interface ServiciosCancelaciones {
      * @return List<SolicitudCancelacion>
      * @throws ExcepcionSolicitudes
      */
-
+    public abstract List<SolicitudCancelacion> getSolicitudCancelacion() throws ExcepcionSolicitudes;
 }

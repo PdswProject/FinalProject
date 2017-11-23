@@ -139,9 +139,9 @@ public class SolicitudCancelacionBean implements Serializable{
         this.materiasActualesEst = materiasActualesEst;
     }
     
-    public List<SolicitudCancelacion> getListCancelacion(){
+    public List<SolicitudCancelacion> getListCancelacion() throws ExcepcionSolicitudes{
         
-        return null;
+        return ServiciosCancelacionesFactory.getInstance().getSolicitudes().getSolicitudCancelacion();
 
     }
     

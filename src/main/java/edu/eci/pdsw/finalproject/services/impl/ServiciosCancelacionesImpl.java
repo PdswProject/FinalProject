@@ -12,6 +12,8 @@ import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
 import edu.eci.pdsw.finalproject.entities.ProgramaAcademico;
+import edu.eci.pdsw.finalproject.mybatis.ConsultaSOlicitudCancelacionMyBatis;
+import edu.eci.pdsw.finalproject.persistence.ConsultaSolicitudCancelacionDAO;
 import edu.eci.pdsw.finalproject.services.CalculadorDeImpacto;
 
 import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
@@ -31,6 +33,8 @@ import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.ExtractorPlanEstudios;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -44,22 +48,18 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     @Inject
     private EstudianteDAO de;
+    @Inject
+    private ConsultaSOlicitudCancelacionMyBatis con;
      
     
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
-//<<<<<<< HEAD
-
-//=======
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;       
-    
     @Inject
     private ExtractorPlanEstudios extractorPlanEstudios;
-    
-//>>>>>>> 3d14d84ef9be0b08471480b8eca6c9d645195472
     public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
@@ -153,6 +153,17 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
     public List<Asignatura> getVistasActualmente() {
         return vistasActualmente;
+    }
+    
+    public List<SolicitudCancelacion> getSolicitudCancelacion() throws ExcepcionSolicitudes{
+        List <SolicitudCancelacion> re=new ArrayList<SolicitudCancelacion>();
+        try {             
+             re=con.Read();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosCancelacionesImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return re;
+        
     }
     
     
