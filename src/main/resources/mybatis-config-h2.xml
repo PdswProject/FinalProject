@@ -13,7 +13,7 @@
         <typeAlias type='edu.eci.pdsw.finalproject.entities.Consejero' alias='Consejero'/>
         <typeAlias type='edu.eci.pdsw.finalproject.entities.Decano' alias='Decano'/>
         <typeAlias type='edu.eci.pdsw.finalproject.entities.Estudiante' alias='Estudiante'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.PlanEstudios' alias='PlantEstudios'/>
+        <typeAlias type='edu.eci.pdsw.finalproject.entities.PlanEstudios' alias='PlanEstudios'/>
         <typeAlias type='edu.eci.pdsw.finalproject.entities.ProgramaAcademico' alias='ProgramaAcademico'/>
     </typeAliases>
                          
@@ -32,7 +32,7 @@
     <mappers>
         <mapper resource="mappers/ConsejeroMapper.xml"></mapper>       
         <mapper resource="mappers/DecanoMapper.xml"></mapper> 
-        <mapper resource="mappers/EstudianteMapper.xml"></mapper>         
+        <mapper resource="mappers/EstudianteMapper.xml"></mapper>
     </mappers> 
         
         

@@ -26,7 +26,7 @@ import edu.eci.pdsw.finalproject.services.ServiciosCancelaciones;
 @SessionScoped
 
 public class SolicitudCancelacionBean implements Serializable{
-    private final ServiciosCancelaciones scm=ServiciosCancelacionesFactory.getInstance().getSolicitudes();
+    private final ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
     private Asignatura asignatura;
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     private int codigo;
@@ -144,7 +144,9 @@ public class SolicitudCancelacionBean implements Serializable{
         return ServiciosCancelacionesFactory.getInstance().getSolicitudes().getSolicitudCancelacion();
 
     }
-    
-    
+
+    public ServiciosCancelaciones getScm() {
+        return scm;
+    }
     
 }

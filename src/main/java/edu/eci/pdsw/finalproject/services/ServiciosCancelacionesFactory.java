@@ -21,7 +21,7 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
  * @author USER
  */
 public class ServiciosCancelacionesFactory {
-    private static ServiciosCancelacionesFactory instance = new ServiciosCancelacionesFactory();
+    private static final ServiciosCancelacionesFactory instance = new ServiciosCancelacionesFactory();
 
     private static Injector injector;
     private static Injector testInjector;
@@ -33,9 +33,10 @@ public class ServiciosCancelacionesFactory {
 
             @Override
             protected void initialize() {
-                install(JdbcHelper.PostgreSQL);              
+                install(JdbcHelper.PostgreSQL);
                 setClassPathResource("mybatis-config.xml");
                 
+                bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
             }
@@ -51,6 +52,7 @@ public class ServiciosCancelacionesFactory {
                 install(JdbcHelper.PostgreSQL);
                 setClassPathResource("mybatis-config-h2.xml");
                 
+                bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);             
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
             }
@@ -61,11 +63,11 @@ public class ServiciosCancelacionesFactory {
 
     }
 
-    public ServiciosCancelaciones getSolicitudes() {
+    public ServiciosCancelaciones getServiciosCancelaciones() {
         return injector.getInstance(ServiciosCancelaciones.class);
     }
 
-    public ServiciosCancelaciones getTestingSolicitudes() {
+    public ServiciosCancelaciones getTestingServiciosCancelaciones() {
         return testInjector.getInstance(ServiciosCancelaciones.class);
     }
     
