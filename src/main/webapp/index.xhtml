@@ -12,7 +12,11 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form prependId="false">
-            <p:link value="Cancelacion" outcome="login" />            
+            <p:outputPanel deferred="true">
+                <h3>BIENVENIDO AL SISTEMA DE CANCELACION DE ASIGNATURAS.</h3>
+                <p> </p>
+            </p:outputPanel>
+            <p:link value="Acceder" outcome="login" />            
         </h:form>
     </h:body>
 </html>
