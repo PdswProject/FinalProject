@@ -42,6 +42,7 @@ public class SolicitudCancelacionBean implements Serializable{
     private Estudiante estudiante;
     
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
+
         materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
