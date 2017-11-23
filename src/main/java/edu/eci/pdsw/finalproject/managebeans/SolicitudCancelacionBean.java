@@ -8,6 +8,7 @@ package edu.eci.pdsw.finalproject.managebeans;
 import edu.eci.pdsw.finalproject.entities.Asignatura;
 import edu.eci.pdsw.finalproject.entities.Estudiante;
 import edu.eci.pdsw.finalproject.entities.PlanEstudios;
+import edu.eci.pdsw.finalproject.entities.SolicitudCancelacion;
 import edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.finalproject.services.ServiciosCancelacionesFactory;
 import java.io.Serializable;
@@ -41,6 +42,7 @@ public class SolicitudCancelacionBean implements Serializable{
     private Estudiante estudiante;
     
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
+
         materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
@@ -137,7 +139,11 @@ public class SolicitudCancelacionBean implements Serializable{
         this.materiasActualesEst = materiasActualesEst;
     }
     
-    
+    public List<SolicitudCancelacion> getListCancelacion(){
+        
+        return null;
+
+    }
     
     
     
