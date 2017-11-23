@@ -24,9 +24,10 @@ public class Asignatura {
 
     
     
-    public Asignatura(int codigo){
+    public Asignatura(int codigo,int creditos){
     
         this.codigo=codigo;
+        this.creditos=creditos;
     }
     public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos) {
         this.codigo=codigo;

@@ -39,7 +39,9 @@ public class ExtractorJSON implements ExtractorPlanEstudios{
             for(int i=0;i<asigs.length;i++)
             {
                 Long id=(Long)((JSONObject)asignaturas.get(i)).get("id");
-                asigs[i]= new Asignatura(id.intValue());
+                Long creditos=(Long)((JSONObject)asignaturas.get(i)).get("creditos");
+                System.out.println(id);
+                asigs[i]= new Asignatura(id.intValue(),creditos.intValue());
             }
             for(int i=0;i<asigs.length;i++)
             {
@@ -48,7 +50,6 @@ public class ExtractorJSON implements ExtractorPlanEstudios{
                 for(int j=0;j<correqs.length;j++)
                 {
                     Long c = (Long)correquisitos.get(j);
-                    System.out.println(correqs.length+","+asigs.length+","+c);
                     correqs[j]=asigs[c.intValue()-1];
                 }
                 asigs[i].setCorrequisitos(Arrays.asList(correqs));
@@ -56,7 +57,6 @@ public class ExtractorJSON implements ExtractorPlanEstudios{
             
             
             Long idPlan= (Long)o.get("id");
-            
             return new PlanEstudios(idPlan.intValue(), asigs.length, null, Arrays.asList(asigs));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ExtractorJSON.class.getName()).log(Level.SEVERE, null, ex);

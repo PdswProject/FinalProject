@@ -89,7 +89,12 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      */
     @Override
     public PlanEstudios extraerPlanEstudios(Estudiante e) throws ExcepcionSolicitudes{
-        return extractorPlanEstudios.extraerPlanEstudios(e.getPlanEstudios(),e.getProgramaAcademico().getNombre());
+        try{
+            return extractorPlanEstudios.extraerPlanEstudios(e.getPlanEstudios(),e.getProgramaAcademico().getNombre());
+        }catch(NullPointerException ex){
+            throw new ExcepcionSolicitudes("El estudiante no puede ser nulo");
+        }
+        
     }
     
     /**

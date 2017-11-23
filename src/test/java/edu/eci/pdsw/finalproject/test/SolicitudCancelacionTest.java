@@ -135,7 +135,7 @@ public class SolicitudCancelacionTest {
             sc.extraerPlanEstudios(null);
             
         } catch (ExcepcionSolicitudes e) {
-            assertEquals("No se esta lanzando la excepcion adecuada",e.getMessage().equals("El estudiante no puede ser nulo"));
+            assertTrue("No se esta lanzando la excepcion adecuada",e.getMessage().equals("El estudiante no puede ser nulo"));
         }
         
     }
@@ -152,14 +152,18 @@ public class SolicitudCancelacionTest {
         Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
         Asignatura a2 =new Asignatura(2, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
         Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a2));
-        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a4,a5,a3,a2));
         try {
             PlanEstudios plan = sc.extraerPlanEstudios(e);
             
             assertEquals("El plan extraido tiene mas o menos materias de las que deberia",pe.getNumero_materias(),plan.getNumero_materias());
             for(int i=0;i<pe.getNumero_materias();i++)
-                assertEquals("El plan extraido no tiene las materias que deberia",pe.getMaterias().get(i),plan.getMaterias().get(i));
-            
+            {
+                assertEquals("El plan extraido no tiene las materias que deberia",pe.getMaterias().get(i).getCodigo()
+                                                                                 ,plan.getMaterias().get(i).getCodigo());
+                assertEquals("Las materias no se estan creando con el numero de creditos adecuado",pe.getMaterias().get(i).getCreditos()
+                                                                                                  ,plan.getMaterias().get(i).getCreditos());
+            }
             
         } catch (ExcepcionSolicitudes ex) {
             Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
