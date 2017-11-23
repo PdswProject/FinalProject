@@ -12,6 +12,7 @@ and open the template in the editor.
     <h:head></h:head>
 
     <h:body>
+        <h:form id="con">
         <p:layout style="min-width:800px;min-height:800px;">
                           
             <p:layoutUnit position="west" size="500" >  
@@ -40,7 +41,7 @@ and open the template in the editor.
             <p:layoutUnit position="center">
                 LISTA DE MATERIAS VISTAS ACTUALMENTE<br/>
                 
-                <p:dataTable var="ListaDeAsignaturas" value= "#{SolicitudesEstudiantes.asignatura.nombre}">
+                <p:dataTable id="tableAsignaturas" var="ListaDeAsignaturas" value= "#{SolicitudesEstudiantes.materiasActualesEst}">
  
                     <p:column headerText="Codigo">                
                         <h:outputText value="#{ListaDeAsignaturas.codigo}" />
@@ -56,37 +57,41 @@ and open the template in the editor.
                 
                 <h:outputLink value="/logout">logout</h:outputLink>
                 
-                <h:form>
+                
                     
 
-                    <p:panel header="Seleccione las materias a cancelar" style="margin-bottom:12px;">
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <p:outputLabel for="asignatura1" value="Asignatura 1: " />
-                            <p:selectOneMenu id="asignatura1" value="#{SolicitudesEstudiantes.asignatura.nombre}" style="width:150px">
-                                  <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
-                                  <f:selectItems value="#{SolicitudesEstudiantes.materiasActualesEst}" />
-                            </p:selectOneMenu>
-                            
-                            <p:outputLabel for="asignatura2" value="Asignatura 2: " />
-                            <p:selectOneMenu id="asignatura2" value="#{SolicitudesEstudiantes.asignatura.nombre}" style="width:150px">
-                                  <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
-                                  <f:selectItems value="#{SolicitudesEstudiantes.materiasActualesEst}" />
-                            </p:selectOneMenu>
+                <p:panel header="Seleccione las materias a cancelar" style="margin-bottom:12px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="asignatura1" value="Asignatura 1: " />
+                        <p:selectOneMenu id="asignatura1" value="#{SolicitudesEstudiantes.asignatura.nombre}" style="width:150px">
+                            <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{SolicitudesEstudiantes.materiasActualesEst}" />
+                        </p:selectOneMenu>
 
-                            <p:outputLabel for="asignatura3" value="Asignatura 3: " />
-                            <p:selectOneMenu id="asignatura3" value="#{SolicitudesEstudiantes.asignatura.nombre}" style="width:150px">
-                                  <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
-                                  <f:selectItems value="#{SolicitudesEstudiantes.materiasActualesEst}" />
-                            </p:selectOneMenu>
-                        </h:panelGrid>
+                        <p:outputLabel for="asignatura2" value="Asignatura 2: " />
+                        <p:selectOneMenu id="asignatura2" value="#{SolicitudesEstudiantes.asignatura.nombre}" style="width:150px">
+                            <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{SolicitudesEstudiantes.materiasActualesEst}" />
+                        </p:selectOneMenu>
 
-                        <p:separator />
+                        <p:outputLabel for="asignatura3" value="Asignatura 3: " />
+                        <p:selectOneMenu id="asignatura3" value="#{SolicitudesEstudiantes.asignatura.nombre}" style="width:150px">
+                            <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{SolicitudesEstudiantes.materiasActualesEst}" />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
 
-                        <p:commandButton value="Calcular impacto" actionListener="#{SolicitudesEstudiantes.nombreAsignatura}" icon="ui-icon-check" />
-                    </p:panel>
-                </h:form>
+                    <p:separator />
+
+                    <p:commandButton value="Calcular impacto" actionListener="#{SolicitudesEstudiantes.nombreAsignatura}" icon="ui-icon-check" />
+                </p:panel>
+                
+                    
+
+                    
+                
             </p:layoutUnit>
         </p:layout>
-            
+    </h:form>
     </h:body>
 </html>

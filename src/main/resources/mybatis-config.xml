@@ -13,7 +13,7 @@
         <typeAlias type='edu.eci.pdsw.finalproject.entities.Consejero' alias='Consejero'/>
         <typeAlias type='edu.eci.pdsw.finalproject.entities.Decano' alias='Decano'/>
         <typeAlias type='edu.eci.pdsw.finalproject.entities.Estudiante' alias='Estudiante'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.PlanEstudios' alias='PlantEstudios'/>
+        <typeAlias type='edu.eci.pdsw.finalproject.entities.PlanEstudios' alias='PlanEstudios'/>
         <typeAlias type='edu.eci.pdsw.finalproject.entities.ProgramaAcademico' alias='ProgramaAcademico'/>
     </typeAliases>
                          
@@ -22,7 +22,7 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://ec2-23-23-227-188.compute-1.amazonaws.com:5432/d6hfg1pb9vfi2b?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory"/> 
+                <property name="url" value="jdbc:postgresql://ec2-23-23-227-188.compute-1.amazonaws.com:5432/d6hfg1pb9vfi2b?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/> 
                 <property name="username" value="bbuleextpqicnp" />
                 <property name="password" value="f80afba944395d4a64e88a28ef6540b19fc000312a470c9729e513c024030044" />
             </dataSource>
