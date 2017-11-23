@@ -55,7 +55,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;       
     
-    @Inject
+    
     private ExtractorPlanEstudios extractorPlanEstudios;
     
 //>>>>>>> 3d14d84ef9be0b08471480b8eca6c9d645195472
@@ -65,6 +65,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
+        extractorPlanEstudios= new ExtractorJSON();
 
     }        
     
@@ -172,7 +173,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
         
-        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
+        //Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
 
     }
     private void cargarDatosEstaticosGrafo()

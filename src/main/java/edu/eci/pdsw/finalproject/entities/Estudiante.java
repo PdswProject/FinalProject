@@ -32,10 +32,10 @@ public class Estudiante {
     private int solicitud_cancelacion;
     private int acudiente;
     private int consejero_academico;
-    private int[] materiasActuales;
+    private List<Asignatura> materiasActuales;
     
 
-    public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, int[] materiasActuales) {
+    public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, List<Asignatura> materiasActuales) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -65,11 +65,11 @@ public class Estudiante {
         this.programaAcademico = programaAcademico;
     }
     
-    public int[] getMateriaActual() {
+    public List<Asignatura> getMateriaActual() {
         return materiasActuales;
     }
 
-    public void setMateriaActual(int[] materiasActuales) {
+    public void setMateriaActual(List<Asignatura> materiasActuales) {
         this.materiasActuales = materiasActuales;
     }
 

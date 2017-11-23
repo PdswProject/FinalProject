@@ -12,6 +12,8 @@ import edu.eci.pdsw.finalproject.mybatis.DecanoDAOMyBatis;
 import edu.eci.pdsw.finalproject.mybatis.EstudianteDAOMyBatis;
 import edu.eci.pdsw.finalproject.persistence.DecanoDAO;
 import edu.eci.pdsw.finalproject.persistence.EstudianteDAO;
+import edu.eci.pdsw.finalproject.services.impl.CalculadorDeImpactoSimple;
+import edu.eci.pdsw.finalproject.services.impl.ExtractorJSON;
 import edu.eci.pdsw.finalproject.services.impl.ServiciosCancelacionesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
@@ -36,6 +38,9 @@ public class ServiciosCancelacionesFactory {
                 install(JdbcHelper.PostgreSQL);              
                 setClassPathResource("mybatis-config.xml");
                 
+                bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
+                bind(CalculadorDeImpacto.class).to(CalculadorDeImpactoSimple.class);
+                bind(ExtractorPlanEstudios.class).to(ExtractorJSON.class);
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
             }
