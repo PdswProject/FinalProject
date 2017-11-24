@@ -51,9 +51,9 @@ public class SolicitudCancelacionTest {
         Clases relacionadas: CE1,CE2
         Resultado esperado: créditos m1 + creditos m2 + creditos m3
 
-        CF5: los correquisitos(m2 y m3) de la materia tienen correquisitos
+        CF5: los correquisitos(m2) de la materia tienen correquisitos
         Clases relacionadas: CE1,CE2
-        Resultado esperado: 
+        Resultado esperado: creditos m1 + creditos m2 +impacto m2
       
       
       * EXTRAER PLAN ESTUDIOS
@@ -116,13 +116,45 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebasCalculoImpactoSimpleClase1()
     {
-        
+        ServiciosCancelaciones  sc=new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getSolicitudes();
+        ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
+        try {
+            sc.calcularImpacto(null, null);
+            
+        } catch (ExcepcionSolicitudes e) {
+            assertTrue("No se esta lanzando la excepcion adecuada",e.getMessage().equals("El estudiante no puede ser nulo"));
+        }
     }
     
     
     @Test
     public void pruebasCalculoImpactoSimpleClase2()
     {
+        ServiciosCancelaciones sc = new ServiciosCancelacionesImpl();
+         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
+        Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(5, "materia5", p, "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3",p, "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(2, "materia2",p, "pajarito", 1, 2,Arrays.asList(a3,a4));
+        
+        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a2));
+        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a3,a4));
+        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a5));
+        try
+        {
+            int impacto=sc.calcularImpacto(e1,new Asignatura[]{a2});            
+            assertEquals("No se calcula bien con CF5",a2.getCreditos()+a3.getCreditos()+a4.getCreditos()+a5.getCreditos(),impacto);
+            
+            impacto=sc.calcularImpacto(e2,new Asignatura[]{a3});
+            assertEquals("No se calcula bien si la asignatura tiene correquisitos",a2.getCreditos()+a3.getCreditos(),impacto);
+            impacto=sc.calcularImpacto(e3,new Asignatura[]{a5});
+            assertEquals("No se calcula bien con CF3",a5.getCreditos(),impacto);
+
+        }catch(ExcepcionSolicitudes ex){
+                        Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }
     
@@ -130,7 +162,7 @@ public class SolicitudCancelacionTest {
     public void pruebasExtraerPlanEstudiosClase1()
     {
         ServiciosCancelaciones  sc=new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getSolicitudes();
-        ProgramaAcademico p = new ProgramaAcademico(1,"Plan Prueba",30,18,150);
+        ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         try {
             sc.extraerPlanEstudios(null);
             
@@ -146,11 +178,11 @@ public class SolicitudCancelacionTest {
         ServiciosCancelaciones  sc=new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getSolicitudes();
         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         
-         Asignatura a1 =new Asignatura(1, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
-        Asignatura a4 =new Asignatura(4, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
-        Asignatura a5 =new Asignatura(5, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
-        Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
-        Asignatura a2 =new Asignatura(2, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
+         Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(5, "materia5", p, "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3",p, "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(2, "materia2",p, "pajarito", 1, 2,Arrays.asList(a3,a4));
         Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a2));
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a4,a5,a3,a2));
         try {

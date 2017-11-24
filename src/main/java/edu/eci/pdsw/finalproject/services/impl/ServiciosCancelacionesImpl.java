@@ -52,7 +52,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 //<<<<<<< HEAD
 
 //=======
-    @Inject
+    
     private CalculadorDeImpacto calculadorDeImpacto;       
     
     
@@ -66,6 +66,7 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
         extractorPlanEstudios= new ExtractorJSON();
+        calculadorDeImpacto=new CalculadorDeImpactoSimple();
 
     }        
     
@@ -78,9 +79,9 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      * @return the int
      */
-    public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
-        return calculadorDeImpacto.calcularImpacto(asig, plan);
-    }    
+//    public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
+//        return calculadorDeImpacto.calcularImpacto(asig, plan);
+//    }    
     /**
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
@@ -196,8 +197,8 @@ public final class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     }
 
     @Override
-    public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
+        return calculadorDeImpacto.calcularImpacto(asigs,extraerPlanEstudios(e));
     }
     }
 

@@ -18,15 +18,14 @@ public interface ServiciosCancelaciones {
         
     /**
      * Algoritmo de cálculo de impacto que se limita
-       a indicar, dada la asignatura a cancelar, 
+       a indicar, dado un arreglo de asignaturas a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
      * @param e
-     * @param asig The subject that you want cancel.
+     * @param asigs Un arreglo con las materias que se quieren cancelar.
      * @return The number of credit that will be pending.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
-     * @return the int
      */
-    public abstract int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes;
+    public abstract int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes;
     
     
     /**
