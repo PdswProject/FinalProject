@@ -2,9 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
-<mapper namespace="edu.eci.pdsw.finalproject.mybatis.mappers.EstudianteMapper">
+
+<mapper namespace="edu.eci.pdsw.samples.dao.mybatis.mappers.EstudianteMapper">
         
     <select parameterType="map" id="loadAsignaturas" resultMap="EstudianteResult">
         select ea.Asignatura_codigo

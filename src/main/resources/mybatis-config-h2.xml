@@ -4,19 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     
-    <settings>
-        <setting name="logImpl" value="LOG4J"/>        
+   <settings>
+        <setting name="logImpl" value="log4j"/>        
     </settings>
-    
+
     <typeAliases>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.Asignatura' alias='Asignatura'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.Consejero' alias='Consejero'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.Decano' alias='Decano'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.Estudiante' alias='Estudiante'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.PlanEstudios' alias='PlanEstudios'/>
-        <typeAlias type='edu.eci.pdsw.finalproject.entities.ProgramaAcademico' alias='ProgramaAcademico'/>
+	<typeAlias type='edu.eci.pdsw.samples.entities.Asignatura' alias='Asignatura'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Consejero' alias='Consejero'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Decano' alias='Decano'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.PlanEstudios' alias='PlanEstudios'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.ProgramaAcademico' alias='ProgramaAcademico'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.SolicitudCancelacion' alias='SolicitudCancelacion'/>
     </typeAliases>
-                         
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
@@ -28,12 +29,13 @@
             </dataSource>
         </environment>
     </environments>
-        
-    <mappers>
-        <mapper resource="mappers/ConsejeroMapper.xml"></mapper>       
+    
+   <mappers>
+            
+	<mapper resource="mappers/ConsejeroMapper.xml"></mapper>       
         <mapper resource="mappers/DecanoMapper.xml"></mapper> 
         <mapper resource="mappers/EstudianteMapper.xml"></mapper>
+        <mapper resource="mappers/ConsultaSolicitudCancelacionMapper.xml"></mapper>  
     </mappers> 
-        
-        
+    
 </configuration>
