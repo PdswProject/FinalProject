@@ -218,8 +218,9 @@ public class SolicitudCancelacionTest {
 
     }
 
-    @Test
+    //@Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
+        
         try{
             ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
 
