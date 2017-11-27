@@ -220,21 +220,22 @@ public class SolicitudCancelacionTest {
 
     @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
-         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
+        try{
+            ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
 
-         List<Asignatura> materiasEst = new LinkedList<>();
-         ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
-         PlanEstudios estud= new PlanEstudios(99, 20, pa, materiasEst);
-         Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
-         Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
-         String justificacion;
-         justificacion= "Demasiada carga academica";
-         try{
-             //Que sea valido
+            List<Asignatura> materiasEst = new LinkedList<>();
+            ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
+            PlanEstudios estud= new PlanEstudios(99, 20, pa, materiasEst);
+            Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
+            Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
+            String justificacion;
+            justificacion= "Demasiada carga academica";
+
+            //Que sea valido
             sc.solicitarCancelacion(e, a, justificacion,estud);
 
-         }catch(ExcepcionSolicitudes o){
-            throw new ExcepcionSolicitudes(o.getMessage());
+            }catch(ExcepcionSolicitudes o){
+                throw new ExcepcionSolicitudes(o.getMessage());
          } 
     }
 }
