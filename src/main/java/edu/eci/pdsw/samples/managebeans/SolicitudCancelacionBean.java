@@ -7,6 +7,8 @@ package edu.eci.pdsw.samples.managebeans;
 
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.PlanEstudios;
+import edu.eci.pdsw.samples.entities.ProgramaAcademico;
 import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.samples.services.ServiciosCancelacionesFactory;
@@ -16,6 +18,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import edu.eci.pdsw.samples.services.ServiciosCancelaciones;
+import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
+import java.util.ArrayList;
 /**
  *
  * @author USER
@@ -38,11 +42,35 @@ public class SolicitudCancelacionBean implements Serializable{
     int creditosAprobados;
     List<Asignatura> materiasActualesEst;
     
+    private List<Asignatura> vistasActualmente;
+    private List<Asignatura> asignaturasPlanEstudios;       
+        
     private Estudiante estudiante;
+    //estudiante=
     
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
+        asignaturasPlanEstudios = new LinkedList<>();
+        vistasActualmente= new LinkedList<>();
+        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
+        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
+        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
+        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        asignaturasPlanEstudios.add(as1);
+        asignaturasPlanEstudios.add(as2);
+        asignaturasPlanEstudios.add(as3);
+        vistasActualmente.add(as1); 
+        vistasActualmente.add(as2);
+        vistasActualmente.add(as3);
+        
+        PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
+
+        this.estudiante = new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
+        ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
+        re.cargarDatosPrueba();
+        //re.ca
         //null pointer estudiante no asignado
-        //materiasActualesEst=scm.verMateriasActuales(estudiante);
+        System.out.println("ERIC ERS UNA LOCA"+estudiante.getNombre()+"Y LO CONFIMRA-----------------||||---|-|-|-|--|");
+        materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
 
@@ -133,7 +161,15 @@ public class SolicitudCancelacionBean implements Serializable{
     public List<Asignatura> getMateriasActualesEst() {
         return materiasActualesEst;
     }
-
+    public List<String> getNombreMateriasActualesEst() {
+        List<String> nuev= new ArrayList<String>();
+        Asignatura temp;
+        for (int i =0; i<materiasActualesEst.size(); i++ ){
+            temp=materiasActualesEst.get(i);
+            nuev.add(temp.getNombre());
+        }
+        return nuev;
+    }
     public void setMateriasActualesEst(List<Asignatura> materiasActualesEst) {
         this.materiasActualesEst = materiasActualesEst;
     }
