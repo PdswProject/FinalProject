@@ -97,32 +97,32 @@ public class SolicitudCancelacionTest {
      */
     
 
-    //@Test
+    @Test
     public void pruebasCalculoImpactoSimpleClase1()
     {
         
     }
     
     
-    //@Test
+    @Test
     public void pruebasCalculoImpactoSimpleClase2()
     {
         
     }
     
-    //@Test
+    @Test
     public void pruebasExtraerPlanEstudiosClase1()
     {
         
     }
     
-    //@Test
+    @Test
     public void pruebasExtraerPlanEstudiosClase2()
     {
         
     }
 
-    //@Test 
+    @Test 
     public void MateriaNoEstaRegistradaEnElPlanDeEstudios()throws ExcepcionSolicitudes{ /*
         
         ProgramaAcademico cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
@@ -173,7 +173,7 @@ public class SolicitudCancelacionTest {
     
     }
     
-    //@Test 
+    @Test 
     public void pruebaCreditosPendientesConsistentes() throws ExcepcionSolicitudes{
         /*
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
@@ -191,7 +191,7 @@ public class SolicitudCancelacionTest {
         }    
     
 
-    //@Test
+    @Test
     public void pruebaDebeEstarViendolaActual()throws ExcepcionSolicitudes{
         /*
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl();
@@ -215,7 +215,7 @@ public class SolicitudCancelacionTest {
 
     }
 
-    //@Test
+    @Test
     public void registroJustificacion() throws ExcepcionSolicitudes{
         
         try{

@@ -9,7 +9,8 @@
     </settings>
 
     <typeAliases>
-	<typeAlias type='edu.eci.pdsw.samples.entities.Asignatura' alias='Asignatura'/>
+	<typeAlias type='edu.eci.pdsw.samples.entities.Acudiente' alias='Acudiente'/>
+        <typeAlias type='edu.eci.pdsw.samples.entities.Asignatura' alias='Asignatura'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Consejero' alias='Consejero'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Decano' alias='Decano'/>
         <typeAlias type='edu.eci.pdsw.samples.entities.Estudiante' alias='Estudiante'/>
@@ -31,7 +32,7 @@
     </environments>
     
    <mappers>
-            
+
 	<mapper resource="mappers/ConsejeroMapper.xml"></mapper>       
         <mapper resource="mappers/DecanoMapper.xml"></mapper> 
         <mapper resource="mappers/EstudianteMapper.xml"></mapper>
