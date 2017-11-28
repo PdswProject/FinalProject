@@ -14,6 +14,6 @@ import java.util.List;
  * @author cesar
  */
 public interface ConsultaSolicitudCancelacionMapper {
-        public List<SolicitudCancelacion> getSolictudCancelacion();
+        public List<SolicitudCancelacion> loadSolictudCancelacion();
     
 }

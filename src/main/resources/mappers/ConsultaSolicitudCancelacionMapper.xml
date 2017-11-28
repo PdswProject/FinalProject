@@ -6,11 +6,19 @@
 
 <mapper namespace="edu.eci.pdsw.samples.dao.mybatis.mappers.ConsultaSolicitudCancelacionMapper">
 
-    <select parameterType="map" id="getSolicitudCancelacion" resultMap="SolicitudCancelacionResult">
+    <select parameterType="map" id="loadSolicitudCancelacion" resultMap="SolicitudCancelacionResult">
         Select sc.id, sc.estado, ca.aval, es.nombre, es.id , acu.vistoBueno from ConsejeroAcademico ca, SolicitudCancelacion sc INNER JOIN  Estudiante es on es.id=sc.estudiante INNER JOIN Acudiente acu on acu.cc =es.Acudiente_id;
     </select> 
     
     <resultMap type='SolicitudCancelacion' id='SolicitudCancelacionResult'>
+        <id property="id" column="id"/>
+        <result property="estudiante" column="estudiante"/>
+        <result property="asignatua" column="asignatura"/>       
+        <result property="fecha" column="fecha"/>       
+        <result property="estado" column="estado"/>       
+        <result property="decano" column="decano_id"/>       
+        <association property="estudiante" javaType="Estudiante"/>
+        <collection property="SolicitudesCancelacion" ofType="SolicitudCancelacion" columnPrefix="id"></collection>
     
             
                  
