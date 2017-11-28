@@ -5,10 +5,32 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author USER
  */
 public class Consejero {
+    
+    private List<Estudiante> listaEstudiantes;
+    private String Nombre;
+    private Asignatura materiaAsignada;//Esta no se bien
+    private String Comentarios;
+    private int id;
+    private boolean aval;
+    
+    public Consejero(boolean aval,String Nombre, String Comentarios){
+        this.aval=aval;
+        listaEstudiantes=new ArrayList<Estudiante>() {};
+        this.Nombre=Nombre;
+        this.Comentarios=Comentarios;
+        
+
+    }
+    
+    
+    
     
 }

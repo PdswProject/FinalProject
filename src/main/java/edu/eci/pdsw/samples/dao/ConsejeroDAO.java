@@ -5,10 +5,15 @@
  */
 package edu.eci.pdsw.samples.dao;
 
+import edu.eci.pdsw.samples.entities.Estudiante;
+import java.util.List;
+
 /**
  *
  * @author DANIEL
  */
 public interface ConsejeroDAO {
+    
+    public List<Estudiante> loadEstudiantes();
     
 }

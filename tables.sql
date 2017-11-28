@@ -7,8 +7,8 @@ CREATE TABLE Acudiente (
     cc int  NOT NULL,
     nombre int  NOT NULL,
     apellido int  NOT NULL,
-    vistoBueno boolean  NOT NULL,
     estudiante int  NOT NULL,
+    vistoBueno boolean  NOT NULL,
     CONSTRAINT Acudiente_pk PRIMARY KEY (cc)
 );
 
@@ -198,7 +198,6 @@ ALTER TABLE SolicitudCancelacion ADD CONSTRAINT SolicitudCancelacion_Decano
     REFERENCES Decano (id)  
 
 ;
-
 
 -- End of file.
 

@@ -29,7 +29,7 @@ public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitud
         
         try {
 
-            groupCancelacionees=conMap.getSolictudCancelacion();
+            groupCancelacionees=conMap.loadSolictudCancelacion();
             
         } catch (Exception ex) {
             throw new PersistenceException("Error al solicitar los registros de solicitudes",ex);

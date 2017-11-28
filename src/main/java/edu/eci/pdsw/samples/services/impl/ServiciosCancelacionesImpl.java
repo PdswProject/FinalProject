@@ -33,11 +33,10 @@ import org.mybatis.guice.transactional.Transactional;
 
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.samples.services.ExtractorPlanEstudios;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
 /**
  *
  * @author 2104481
@@ -78,8 +77,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dado el estudiante y la asignatura a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
-     * @param e The student.
-     * @param materia The subject that you want cancel.
+    
      * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      * @return the int
      */
@@ -174,23 +172,22 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     
     public void cargarDatosPrueba(){
-        
-        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
-      
+        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
         Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        
+        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
         asignaturasPlanEstudios.add(as1);
         asignaturasPlanEstudios.add(as2);
         asignaturasPlanEstudios.add(as3);
-        
         vistasActualmente.add(as1); 
-        
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
-        
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
-
+        //Estudiante e1= new Estudiante (12,"pepito","peres",2,3,2,99,1234,vistasActualmente); 
+        //Acudiente (cc,nombre,apellido,vistoBueno,estudiante) values(99,"pepit","per",0, 12);
+        //public SolicitudCancelacion(String justificacion, Asignatura materia, Date fecha, boolean estado){
+        //Consejero con =new Consejero(false,"Pepito","puto");
+        //SolicitudCancelacion sol1= new SolicitudCancelacion("NO me alcanza el promedio", as4,Date.valueOf("12/13/2013"), false);
     }
     private void cargarDatosEstaticosGrafo()
     {
