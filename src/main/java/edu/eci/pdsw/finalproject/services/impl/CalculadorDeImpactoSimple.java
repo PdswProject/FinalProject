@@ -19,7 +19,10 @@ public class CalculadorDeImpactoSimple implements CalculadorDeImpacto{
     public int calcularImpacto(Asignatura[] asigs, PlanEstudios plan) {
         
         //verificarPlanEstudios(plan);
-        return calcularImpacto(asigs[0]);
+        int resp=0;
+        for(Asignatura asig:asigs)
+            resp+=calcularImpacto(asig);
+        return resp;
     }
     
     private int calcularImpacto(Asignatura asig)

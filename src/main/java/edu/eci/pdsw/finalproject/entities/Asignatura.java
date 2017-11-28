@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.finalproject.entities;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class Asignatura {
         this.unidadAcademica = unidadAcademica;
         this.profesor = profesor;
         this.creditos=creditos;
+        this.correquisitos= Arrays.asList();
     }
 
     public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos, List<Asignatura> correquisitos)

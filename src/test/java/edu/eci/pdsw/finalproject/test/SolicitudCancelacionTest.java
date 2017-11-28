@@ -147,7 +147,7 @@ public class SolicitudCancelacionTest {
             assertEquals("No se calcula bien con CF5",a2.getCreditos()+a3.getCreditos()+a4.getCreditos()+a5.getCreditos(),impacto);
             
             impacto=sc.calcularImpacto(e2,new Asignatura[]{a3});
-            assertEquals("No se calcula bien si la asignatura tiene correquisitos",a2.getCreditos()+a3.getCreditos(),impacto);
+            assertEquals("No se calcula bien si la asignatura tiene correquisitos",a3.getCreditos()+a5.getCreditos(),impacto);
             impacto=sc.calcularImpacto(e3,new Asignatura[]{a5});
             assertEquals("No se calcula bien con CF3",a5.getCreditos(),impacto);
 
