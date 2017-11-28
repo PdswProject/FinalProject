@@ -1,6 +1,3 @@
-
-
-
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
@@ -96,7 +93,7 @@ public class SolicitudCancelacionTest {
      * 
      * 
      * 
-     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
+     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes exception
      */
     
 

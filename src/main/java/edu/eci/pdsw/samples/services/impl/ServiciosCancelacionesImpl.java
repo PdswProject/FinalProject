@@ -78,8 +78,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * Algoritmo de cálculo de impacto que se limita
        a indicar, dado el estudiante y la asignatura a cancelar, 
        cuantos créditos académicos tendría pendiente por ver.
-     * @param e The student.
-     * @param materia The subject that you want cancel.
+    
      * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      * @return the int
      */
