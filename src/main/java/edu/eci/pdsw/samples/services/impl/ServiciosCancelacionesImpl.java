@@ -133,6 +133,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
             d.update(numcreditos);
         } catch (PersistenceException ex) {
             System.err.println(ex);
+            Logger.getLogger(ServiciosCancelacionesImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new ExcepcionSolicitudes("No fue posible agregar los creditos");
         }
     }
