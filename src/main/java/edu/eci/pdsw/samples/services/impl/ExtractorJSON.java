@@ -40,7 +40,6 @@ public class ExtractorJSON implements ExtractorPlanEstudios{
             {
                 Long id=(Long)((JSONObject)asignaturas.get(i)).get("id");
                 Long creditos=(Long)((JSONObject)asignaturas.get(i)).get("creditos");
-                System.out.println(id);
                 asigs[i]= new Asignatura(id.intValue(),creditos.intValue());
             }
             for(int i=0;i<asigs.length;i++)

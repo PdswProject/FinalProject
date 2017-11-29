@@ -57,10 +57,10 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
-    
+    @Inject
     private CalculadorDeImpacto calculadorDeImpacto;   
     
-    
+    @Inject
     private ExtractorPlanEstudios extractorPlanEstudios;
     
     
@@ -70,8 +70,6 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
-        calculadorDeImpacto=new CalculadorDeImpactoSimple();
-        extractorPlanEstudios= new ExtractorJSON();
 
     }        
     
