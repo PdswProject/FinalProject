@@ -18,7 +18,7 @@ import edu.eci.pdsw.samples.dao.mybatis.DecanoDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.EstudianteDAOMyBatis;
 import edu.eci.pdsw.samples.services.impl.CalculadorDeImpactoSimple;
 import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
-import edu.eci.pdsw.samples.services.impl.extractorJSON;
+import edu.eci.pdsw.samples.services.impl.ExtractorJSON;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -48,7 +48,7 @@ public class ServiciosCancelacionesFactory {
                 bind(ConsejeroDAO.class).to(ConsejeroDAOMyBatis.class);
                 bind(ConsultaSolicitudCancelacionDAO.class).to(ConsultaSolicitudCancelacionDAOMyBatis.class);
                 bind(CalculadorDeImpacto.class).to(CalculadorDeImpactoSimple.class);
-                bind(ExtractorPlanEstudios.class).to(extractorJSON.class);
+                bind(ExtractorPlanEstudios.class).to(ExtractorJSON.class);
                 
             }
         
@@ -68,7 +68,7 @@ public class ServiciosCancelacionesFactory {
                 bind(ConsejeroDAO.class).to(ConsejeroDAOMyBatis.class);
                 bind(ConsultaSolicitudCancelacionDAO.class).to(ConsultaSolicitudCancelacionDAOMyBatis.class);
                 bind(CalculadorDeImpacto.class).to(CalculadorDeImpactoSimple.class);
-                bind(ExtractorPlanEstudios.class).to(extractorJSON.class);
+                bind(ExtractorPlanEstudios.class).to(ExtractorJSON.class);
             }
 
         }

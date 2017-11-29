@@ -16,10 +16,13 @@ import edu.eci.pdsw.samples.services.CalculadorDeImpacto;
 public class CalculadorDeImpactoSimple implements CalculadorDeImpacto{
 
     @Override
-    public int calcularImpacto(Asignatura asig, PlanEstudios plan) {
+    public int calcularImpacto(Asignatura[] asigs, PlanEstudios plan) {
         
-        verificarPlanEstudios(plan);
-        return calcularImpacto(asig);
+        //verificarPlanEstudios(plan);
+        int resp=0;
+        for(Asignatura asig:asigs)
+            resp+=calcularImpacto(asig);
+        return resp;
     }
     
     private int calcularImpacto(Asignatura asig)

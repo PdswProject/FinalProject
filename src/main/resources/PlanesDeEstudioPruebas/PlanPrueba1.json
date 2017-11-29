@@ -1,11 +1,10 @@
-{      
-        "PlanEstudios":{
+{
             "id":1,
             "asignaturas":[
-                {"Asignatura":{"id":1,"correquisitos":[]}}
-                ,{"Asignatura":{"id":4,"correquisitos":[]}}
-                ,{"Asignatura":{"id":5,"correquisitos":[]}}
-                ,{"Asignatura":{"id":3,"correquisitos":[5]}}
-                ,{"Asignatura":{"id":2 ,"correquisitos":[3,4]}}]}                        
+                {"id":1,"creditos":4,"correquisitos":[]}
+                ,{"id":4,"creditos":3,"correquisitos":[]}
+                ,{"id":5,"creditos":3,"correquisitos":[]}
+                ,{"id":3,"creditos":4,"correquisitos":[5]}
+                ,{"id":2 ,"creditos":2,"correquisitos":[3,4]}]                      
         
 }

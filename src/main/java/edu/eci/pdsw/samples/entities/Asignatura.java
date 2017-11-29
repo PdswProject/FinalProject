@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,17 +25,19 @@ public class Asignatura {
 
     
     
-    public Asignatura(){
+    public Asignatura(int codigo,int creditos){
     
-    
+        this.codigo=codigo;
+        this.creditos=creditos;
     }
     public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos) {
-        this.codigo = codigo;
+        this.codigo=codigo;
         this.nombre = nombre;
         this.programa = programa;
         this.unidadAcademica = unidadAcademica;
         this.profesor = profesor;
         this.creditos=creditos;
+        this.correquisitos= Arrays.asList();
     }
 
     public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos, List<Asignatura> correquisitos)

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.samples.services.impl;
+package edu.eci.pdsw.finalproject.services.impl;
 
-import edu.eci.pdsw.samples.entities.Asignatura;
-import edu.eci.pdsw.samples.entities.PlanEstudios;
-import edu.eci.pdsw.samples.services.ExtractorPlanEstudios;
+import edu.eci.pdsw.finalproject.entities.Asignatura;
+import edu.eci.pdsw.finalproject.entities.PlanEstudios;
+import edu.eci.pdsw.finalproject.services.ExtractorPlanEstudios;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

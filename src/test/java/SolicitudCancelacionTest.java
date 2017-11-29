@@ -2,10 +2,15 @@ import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
 import edu.eci.pdsw.samples.entities.ProgramaAcademico;
+import edu.eci.pdsw.samples.services.ServiciosCancelaciones;
+import edu.eci.pdsw.samples.services.ServiciosCancelacionesFactory;
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -17,27 +22,36 @@ public class SolicitudCancelacionTest {
     
     
     /**CALCULO IMPACTO SIMPLE
+
         Clases de equivalencia
-        Clase1: materia no existe | materia no se est� cursando | estudiante no existe.
+
+        Clase1: materia no existe | materia no se está cursando | estudiante no existe.
         Resultado: error
-        Clase2: materia existe, estudiante existe y materia se est� cursando
-        Resultado: la suma de los cr�ditos de todas las materias que son correquisitos de la materia seleccionada
+
+        Clase2: materia existe, estudiante existe y materia se está cursando
+        Resultado: la suma de los créditos de todas las materias que son correquisitos de la materia seleccionada
+
         Condiciones de frontera
-        CF1: materia no existe | materia no se est� cursando | estudiante no existe.
+
+        CF1: materia no existe | materia no se está cursando | estudiante no existe.
         Clases relacionadas: CE1,CE2
         Resultado esperado: Error
+
         CF2: la materia existe, pero los correquisitos registrados no existen
         Clases relacionadas : CE1,CE2
         Resultado esperado: Error
+
         CF3: la materia no tiene correquisitos
         Clases relacionadas: CE1,CE2
-        Resultado esperado: los cr�ditos de la materia seleccionada
+        Resultado esperado: los créditos de la materia seleccionada
+
         CF4: la materia(m1) tiene 2 correquisitos(m2 y m3)
         Clases relacionadas: CE1,CE2
-        Resultado esperado: cr�ditos m1 + creditos m2 + creditos m3
-        CF5: los correquisitos(m2 y m3) de la materia tienen correquisitos
+        Resultado esperado: créditos m1 + creditos m2 + creditos m3
+
+        CF5: los correquisitos(m2) de la materia tienen correquisitos
         Clases relacionadas: CE1,CE2
-        Resultado esperado: 
+        Resultado esperado: creditos m1 + creditos m2 +impacto m2
       
       
       * EXTRAER PLAN ESTUDIOS
@@ -100,28 +114,91 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebasCalculoImpactoSimpleClase1()
     {
-        
+        ServiciosCancelaciones  sc=new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
+        try {
+            sc.calcularImpacto(null, null);
+            
+        } catch (ExcepcionSolicitudes e) {
+            assertTrue("No se esta lanzando la excepcion adecuada",e.getMessage().equals("El estudiante no puede ser nulo"));
+        }
     }
     
     
     @Test
     public void pruebasCalculoImpactoSimpleClase2()
     {
+        ServiciosCancelaciones sc =new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
+        Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(5, "materia5", p, "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3",p, "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(2, "materia2",p, "pajarito", 1, 2,Arrays.asList(a3,a4));
+        
+        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a2));
+        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a3,a4));
+        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a5));
+        try
+        {
+            int impacto=sc.calcularImpacto(e1,new Asignatura[]{a2});            
+            assertEquals("No se calcula bien con CF5",a2.getCreditos()+a3.getCreditos()+a4.getCreditos()+a5.getCreditos(),impacto);
+            
+            impacto=sc.calcularImpacto(e2,new Asignatura[]{a3});
+            assertEquals("No se calcula bien si la asignatura tiene correquisitos",a3.getCreditos()+a5.getCreditos(),impacto);
+            impacto=sc.calcularImpacto(e3,new Asignatura[]{a5});
+            assertEquals("No se calcula bien con CF3",a5.getCreditos(),impacto);
+
+        }catch(ExcepcionSolicitudes ex){
+                        Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }
     
     @Test
     public void pruebasExtraerPlanEstudiosClase1()
     {
+        ServiciosCancelaciones  sc=new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
+        try {
+            sc.extraerPlanEstudios(null);
+            
+        } catch (ExcepcionSolicitudes e) {
+            assertTrue("No se esta lanzando la excepcion adecuada",e.getMessage().equals("El estudiante no puede ser nulo"));
+        }
         
     }
     
     @Test
     public void pruebasExtraerPlanEstudiosClase2()
     {
+        ServiciosCancelaciones  sc=new ServiciosCancelacionesImpl();//ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         
+         Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(5, "materia5", p, "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3",p, "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(2, "materia2",p, "pajarito", 1, 2,Arrays.asList(a3,a4));
+        Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a2));
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a4,a5,a3,a2));
+        try {
+            PlanEstudios plan = sc.extraerPlanEstudios(e);
+            
+            assertEquals("El plan extraido tiene mas o menos materias de las que deberia",pe.getNumero_materias(),plan.getNumero_materias());
+            for(int i=0;i<pe.getNumero_materias();i++)
+            {
+                assertEquals("El plan extraido no tiene las materias que deberia",pe.getMaterias().get(i).getCodigo()
+                                                                                 ,plan.getMaterias().get(i).getCodigo());
+                assertEquals("Las materias no se estan creando con el numero de creditos adecuado",pe.getMaterias().get(i).getCreditos()
+                                                                                                  ,plan.getMaterias().get(i).getCreditos());
+            }
+            
+        } catch (ExcepcionSolicitudes ex) {
+            Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
     @Test 
     public void MateriaNoEstaRegistradaEnElPlanDeEstudios()throws ExcepcionSolicitudes{ /*
         
@@ -151,8 +228,7 @@ public class SolicitudCancelacionTest {
 
     public void pruebaMateriaNoRegistrada()throws ExcepcionSolicitudes{
         List<Asignatura> materiasEst = new LinkedList<>();
-        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
-    
+        
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl(); 
         sc.cargarDatosPrueba();
         ProgramaAcademico cer;
@@ -160,7 +236,9 @@ public class SolicitudCancelacionTest {
         lista = sc.getAsignaturasPlanEstudios();
         cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a=new Asignatura(3, "Fisica", cer, "Ciencia", 3, 3);
-        int req=sc.calcularImpacto(e,a);
+        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6,cer,1, 70, 001, 19213, 4, materiasEst);
+    
+        //int req=sc.calcularImpacto(e,a);
         int res=0;
         for(Asignatura b:lista){
             if(b==a){
@@ -225,7 +303,7 @@ public class SolicitudCancelacionTest {
             ProgramaAcademico pa = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
             PlanEstudios estud= new PlanEstudios(99, 20, pa, materiasEst);
             Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
-            Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6, 70, 001, 19213, 4, materiasEst);
+            Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6,pa,1, 70, 001, 19213, 4, materiasEst);
             String justificacion;
             justificacion= "Demasiada carga academica";
 

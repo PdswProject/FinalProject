@@ -57,10 +57,10 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
-    @Inject
+    
     private CalculadorDeImpacto calculadorDeImpacto;   
     
-    @Inject
+    
     private ExtractorPlanEstudios extractorPlanEstudios;
     
     
@@ -70,6 +70,8 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         vistasActualmente= new LinkedList<>();
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
+        calculadorDeImpacto=new CalculadorDeImpactoSimple();
+        extractorPlanEstudios= new ExtractorJSON();
 
     }        
     
@@ -81,9 +83,9 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
      * @return the int
      */
-    public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
-        return calculadorDeImpacto.calcularImpacto(asig, plan);
-    }    
+//    public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
+//        return calculadorDeImpacto.calcularImpacto(asig, plan);
+//    }    
     /**
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
@@ -92,7 +94,11 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      */
     @Override
     public PlanEstudios extraerPlanEstudios(Estudiante e) throws ExcepcionSolicitudes{
+        try{
         return extractorPlanEstudios.extraerPlanEstudios(e.getPlanEstudios(),e.getProgramaAcademico().getNombre());
+        }catch(NullPointerException ex){
+            throw new ExcepcionSolicitudes("El estudiante no puede ser nulo");
+        }
     }
     
     /**
@@ -182,7 +188,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         asignaturasPlanEstudios.add(as3);
         vistasActualmente.add(as1); 
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
-        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
+        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         //Estudiante e1= new Estudiante (12,"pepito","peres",2,3,2,99,1234,vistasActualmente); 
         //Acudiente (cc,nombre,apellido,vistoBueno,estudiante) values(99,"pepit","per",0, 12);
         //public SolicitudCancelacion(String justificacion, Asignatura materia, Date fecha, boolean estado){
@@ -204,8 +210,13 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     }
 
     @Override
-    public int calcularImpacto(Estudiante e, Asignatura asig) throws ExcepcionSolicitudes {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
+        try
+        {
+        return calculadorDeImpacto.calcularImpacto(asigs,extraerPlanEstudios(e));
+        }catch(NullPointerException ex){
+            throw new ExcepcionSolicitudes("El estudiante no puede ser nulo");
+        }
     }
 
     }

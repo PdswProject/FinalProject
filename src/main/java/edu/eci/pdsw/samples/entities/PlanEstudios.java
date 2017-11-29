@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.entities;
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -75,7 +76,6 @@ public class PlanEstudios {
     public void setMaterias(List<Asignatura> materias) {
         this.materias = materias;
     }
-
 
     
     

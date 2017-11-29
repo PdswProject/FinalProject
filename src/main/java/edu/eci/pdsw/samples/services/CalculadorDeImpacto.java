@@ -16,12 +16,12 @@ import edu.eci.pdsw.samples.entities.PlanEstudios;
 public interface CalculadorDeImpacto {
     
     /**
-     * Calcula el impacto de cancelar una asignatura.
-     * @param asig la asignatura a cancelar.
+     * Calcula el impacto de cancelar una o mas asignaturas.
+     * @param asigs un arreglo con las asignaturas a cancelar.
      * @param plan El plan de estudios del estudiante.
      * @return el numero de creditos que se dejarian de ver si se decide cancelar
      */
-    public int calcularImpacto(Asignatura asig, PlanEstudios plan);
+    public int calcularImpacto(Asignatura[] asigs, PlanEstudios plan);
     
     /**
      * Verifica que el grafo que representa un plan de estudios sea aciclico y dirigido.

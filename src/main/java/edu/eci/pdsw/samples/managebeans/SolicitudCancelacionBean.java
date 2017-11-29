@@ -63,8 +63,8 @@ public class SolicitudCancelacionBean implements Serializable{
         vistasActualmente.add(as3);
         
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
-
-        this.estudiante = new Estudiante(2104481, "daniel", "cas", 6,78, 001, 313, 9, vistasActualmente);
+        
+        this.estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
         re.cargarDatosPrueba();
         //re.ca
