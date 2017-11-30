@@ -24,7 +24,7 @@ public interface ServiciosCancelaciones {
      * @param e
      * @param asigs Un arreglo con las materias que se quieren cancelar.
      * @return The number of credit that will be pending.
-     * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
+     * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes
      */
     public abstract int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes;
     
