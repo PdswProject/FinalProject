@@ -1,9 +1,9 @@
 # base-proyectos
-**Integrantes:**<br />
-DANIEL ESTEBAN CASTIBLANCO ROCHA  d.castiblanco<br />
-DANIEL EDUARDO BELTRAN FRANCO  d.beltran<br />
-DANIEL MAURICIO CIFUENTES RAMIREZ  d.cifuentes<br />
-CESAR EDUARDO LANOS CAMACHO  cefarr<br />
+## **Integrantes:**<br />
+* DANIEL ESTEBAN CASTIBLANCO ROCHA:  d.castiblanco<br />
+* DANIEL EDUARDO BELTRAN FRANCO:  d.beltran<br />
+* DANIEL MAURICIO CIFUENTES RAMIREZ:  d.cifuentes<br />
+* CESAR EDUARDO LANOS CAMACHO:  cefarr<br />
 
 Heroku: https://pdswpro.herokuapp.com/
 
