@@ -1,5 +1,5 @@
 # base-proyectos
-**Integrantes:**
+**Integrantes:**<br />
 DANIEL ESTEBAN CASTIBLANCO ROCHA  d.castiblanco<br />
 DANIEL EDUARDO BELTRAN FRANCO  d.beltran<br />
 DANIEL MAURICIO CIFUENTES RAMIREZ  d.cifuentes<br />
