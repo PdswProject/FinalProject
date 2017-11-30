@@ -45,16 +45,16 @@ public class ShiroLoginBean implements Serializable {
 
         try {
             subject.login(token);
-
-            if (subject.hasRole("admin")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("restricted/index.xhtml");
+            if (subject.hasRole("estudiante")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("cancelacion/estudiante.xhtml");
             }
-            else if(subject.hasRole("employee")){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("employees/index.xhtml");
+            else if (subject.hasRole("consejero")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("consejeria/consejeroPrincipal.xhtml");
             }
-            else if (subject.hasRole("estudiante")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("cancelacion/solcancel.xhtml");
+            else if (subject.hasRole("coordinador")) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("coordinacion/coordinador.xhtml");
             }
+            
             else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("open/index.xhtml");
             }

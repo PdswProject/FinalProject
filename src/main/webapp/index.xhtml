@@ -13,10 +13,14 @@ and open the template in the editor.
     <h:body>
         <h:form prependId="false">
             <p:outputPanel deferred="true">
-                <h3>BIENVENIDO AL SISTEMA DE CANCELACION DE ASIGNATURAS.</h3>
+                <h3>BIENVENIDO AL SISTEMA DE CANCELACION DE ASIGNATURAS</h3>
                 <p> </p>
             </p:outputPanel>
-            <p:link value="Cancelacion" outcome="/cancelacion/solcancel" />            
+            <p:link value="Solicitud Cancelacion" outcome="/cancelacion/estudiante" />
+            <p:link value="Consejeria" outcome="/consejeria/consejeroPrincipal" />
+            <p:link value="Coordinacion de Cancelaciones" outcome="/coordinacion/coordinador" />
+            
+            
         </h:form>
     </h:body>
 </html>
