@@ -53,7 +53,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
-    private final List<Asignatura> vistasActualmente;
+    private final Asignatura[] vistasActualmente;
     
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;   
@@ -65,7 +65,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new LinkedList<>();
-        vistasActualmente= new LinkedList<>();
+        vistasActualmente= new Asignatura[6];
         cargarDatosPrueba();
         cargarDatosEstaticosGrafo();
 
@@ -99,7 +99,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      */
     @Transactional
     @Override
-    public List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
+    public Asignatura[] verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
         return e.getMateriaActual();
     }
 
@@ -149,7 +149,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         return asignaturasPlanEstudios;
     }
 
-    public List<Asignatura> getVistasActualmente() {
+    public Asignatura[] getVistasActualmente() {
         return vistasActualmente;
     }
     
@@ -174,14 +174,10 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         asignaturasPlanEstudios.add(as1);
         asignaturasPlanEstudios.add(as2);
         asignaturasPlanEstudios.add(as3);
-        vistasActualmente.add(as1); 
+        vistasActualmente[0]=as1; 
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
-        //Estudiante e1= new Estudiante (12,"pepito","peres",2,3,2,99,1234,vistasActualmente); 
-        //Acudiente (cc,nombre,apellido,vistoBueno,estudiante) values(99,"pepit","per",0, 12);
-        //public SolicitudCancelacion(String justificacion, Asignatura materia, Date fecha, boolean estado){
-        //Consejero con =new Consejero(false,"Pepito","puto");
-        //SolicitudCancelacion sol1= new SolicitudCancelacion("NO me alcanza el promedio", as4,Date.valueOf("12/13/2013"), false);
+        
     }
     private void cargarDatosEstaticosGrafo()
     {

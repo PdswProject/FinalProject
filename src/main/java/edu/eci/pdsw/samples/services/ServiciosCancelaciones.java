@@ -45,7 +45,7 @@ public interface ServiciosCancelaciones {
      * @return List of Asignatura.
      * @throws edu.eci.pdsw.finalproject.services.ExcepcionSolicitudes
      */
-    public abstract List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes;
+    public abstract Asignatura[] verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes;
     
     
     

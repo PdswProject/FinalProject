@@ -16,7 +16,8 @@ and open the template in the editor.
         <h:form id="con">
         <p:layout style="min-width:800px;min-height:800px;">
             <p:layoutUnit position="center">
-                LISTA DE MATERIAS VISTAS ACTUALMENTE<br/>
+                
+                DATOS DEL ESTUDIANTE<br/>
                        
                 <p:dataTable id="estudiante" var="infoEstud" value= "#{SolicitudesEstudiantes}">
  
@@ -35,7 +36,7 @@ and open the template in the editor.
                    
                 </p:dataTable>
                 
-                
+                LISTA DE MATERIAS VISTAS ACTUALMENTE<br/>
                 
                 <p:dataTable id="tableAsignaturas" var="ListaDeAsignaturas" value= "#{SolicitudesEstudiantes.materiasActualesEst}">
  
@@ -52,10 +53,6 @@ and open the template in the editor.
                 </p:dataTable>
                 
                 
-                
-                
-                    
-
                 <p:panel header="Seleccione las materias a cancelar" style="margin-bottom:12px;">
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="asignatura1" value="Asignatura 1: " />
