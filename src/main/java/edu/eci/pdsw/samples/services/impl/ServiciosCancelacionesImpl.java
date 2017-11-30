@@ -16,7 +16,6 @@ import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
 import edu.eci.pdsw.samples.entities.ProgramaAcademico;
-import edu.eci.pdsw.samples.dao.mybatis.ConsultaSolicitudCancelacionDAOMyBatis;
 
 import edu.eci.pdsw.samples.services.CalculadorDeImpacto;
 
@@ -33,7 +32,6 @@ import org.mybatis.guice.transactional.Transactional;
 
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.samples.services.ExtractorPlanEstudios;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,17 +71,9 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
     }        
     
-    /**
-     * Algoritmo de cálculo de impacto que se limita
-       a indicar, dado el estudiante y la asignatura a cancelar, 
-       cuantos créditos académicos tendría pendiente por ver.
+
     
-     * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes si el estudiante o la asignatura no existen
-     * @return the int
-     */
-//    public int calcularImpacto(Asignatura asig, PlanEstudios plan) throws ExcepcionSolicitudes{
-//        return calculadorDeImpacto.calcularImpacto(asig, plan);
-//    }    
+    
     /**
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
