@@ -46,7 +46,7 @@ public class SolicitudCancelacionBean implements Serializable{
     private List<Asignatura> asignaturasPlanEstudios;       
         
     private Estudiante estudiante;
-    //estudiante=
+    
     
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
         asignaturasPlanEstudios = new LinkedList<>();
@@ -67,9 +67,7 @@ public class SolicitudCancelacionBean implements Serializable{
         this.estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
         re.cargarDatosPrueba();
-        //re.ca
-        //null pointer estudiante no asignado
-        System.out.println("ERIC ERS UNA LOCA"+estudiante.getNombre()+"Y LO CONFIMRA-----------------||||---|-|-|-|--|");
+        
         materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
