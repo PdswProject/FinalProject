@@ -43,26 +43,33 @@ public class SolicitudCancelacionBean implements Serializable{
     Asignatura[] materiasActualesEst;
     
     private Asignatura[] vistasActualmente;
-    private List<Asignatura> asignaturasPlanEstudios;       
+    private  Asignatura[] asignaturasPlanEstudios;       
         
     Estudiante estudiante;
     
     
     public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
         
-        asignaturasPlanEstudios = new LinkedList<>();
+        List<Asignatura>asig = new LinkedList<>();
         
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
         Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        asignaturasPlanEstudios.add(as1);
-        asignaturasPlanEstudios.add(as2);
-        asignaturasPlanEstudios.add(as3);
+        asig.add(as1);
+        asig.add(as2);
+        asig.add(as3);
+        Asignatura[] asignaturasPlanEstudios = new Asignatura[3];
+        
+        for (int i=0;i<asig.size();i++){
+            asignaturasPlanEstudios[i] = asig.get(i);
+        } 
+        
+
         vistasActualmente[0]= as1;
         vistasActualmente[1]= as2;
         vistasActualmente[2]= as3;
-        
+ 
         
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
         

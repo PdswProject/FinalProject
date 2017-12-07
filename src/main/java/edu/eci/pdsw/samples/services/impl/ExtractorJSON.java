@@ -56,7 +56,7 @@ public class ExtractorJSON implements ExtractorPlanEstudios{
             
             
             Long idPlan= (Long)o.get("id");
-            return new PlanEstudios(idPlan.intValue(), asigs.length, null, Arrays.asList(asigs));
+            //return new PlanEstudios(idPlan.intValue(), asigs.length, null, Arrays.(asigs));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ExtractorJSON.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -39,7 +39,7 @@ import java.util.logging.Logger;
  *
  * @author 2104481
  */
-public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
+public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     @Inject
     private DecanoDAO d;
@@ -52,7 +52,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      
     
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
-    private final List<Asignatura> asignaturasPlanEstudios;
+    private final Asignatura[] asignaturasPlanEstudios;
     private final Asignatura[] vistasActualmente;
     
     @Inject
@@ -64,12 +64,13 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
-        asignaturasPlanEstudios = new LinkedList<>();
-        vistasActualmente= new Asignatura[6];
+        asignaturasPlanEstudios = new Asignatura[10];
         cargarDatosPrueba();
+        vistasActualmente= new Asignatura[6];
+        
         cargarDatosEstaticosGrafo();
 
-    }        
+    }      
     
 
     
@@ -145,7 +146,7 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Asignatura> getAsignaturasPlanEstudios() {
+    public Asignatura[] getAsignaturasPlanEstudios() {
         return asignaturasPlanEstudios;
     }
 
@@ -166,14 +167,22 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     
     public void cargarDatosPrueba(){
+        List<Asignatura>asig = new LinkedList<>();
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
         Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
         Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        asignaturasPlanEstudios.add(as1);
-        asignaturasPlanEstudios.add(as2);
-        asignaturasPlanEstudios.add(as3);
+        
+        asig.add(as1);
+        asig.add(as2);
+        asig.add(as3);
+        asig.add(as4);
+        for (int i=0;i<asig.size();i++){
+            asignaturasPlanEstudios[i] = asig.get(i);
+        } 
+        
+        
         vistasActualmente[0]=as1; 
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
@@ -181,15 +190,25 @@ public  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     }
     private void cargarDatosEstaticosGrafo()
     {
-        
+        List<Asignatura>asig = new LinkedList<>();
         
         Asignatura a1 =new Asignatura(0, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
         Asignatura a4 =new Asignatura(1, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
         Asignatura a5 =new Asignatura(2, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
         Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
         Asignatura a2 =new Asignatura(4, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
+        asig.add(a1);
+        asig.add(a2);
+        asig.add(a3);
+        asig.add(a4);
+        asig.add(a5);        
+        Asignatura[] asignaturasPlanEstudios = new Asignatura[5];
+        for (int i=0;i<asignaturasPlanEstudios.length;i++){
+            asignaturasPlanEstudios[i] = asig.get(i);
+        } 
         
-        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
+        
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),asignaturasPlanEstudios);
         
     }
 

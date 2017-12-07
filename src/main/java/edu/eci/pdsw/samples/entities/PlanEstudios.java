@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.entities;
 
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -18,14 +19,14 @@ public class PlanEstudios {
     int id;
     int numero_materias;
     ProgramaAcademico programa;
-    List<Asignatura> materias;
+    //Asignatura[] materias;
+    Asignatura[] materias;
 
     public PlanEstudios(){
     
     }
     
-    public PlanEstudios(int id, int numero_materias, ProgramaAcademico programa, List<Asignatura> materias) {
-        this.materias = new LinkedList();
+    public PlanEstudios(int id, int numero_materias, ProgramaAcademico programa, Asignatura[] materias) {
         this.id = id;
         this.numero_materias = numero_materias;
         this.programa = programa;
@@ -69,11 +70,11 @@ public class PlanEstudios {
         this.programa = programa;
     }
 
-    public List<Asignatura> getMaterias() {
+    public Asignatura[] getMaterias() {
         return materias;
     }
 
-    public void setMaterias(List<Asignatura> materias) {
+    public void setMaterias(Asignatura[] materias) {
         this.materias = materias;
     }
 
