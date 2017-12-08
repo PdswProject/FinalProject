@@ -5,8 +5,8 @@
 -- Table: Acudiente
 CREATE TABLE Acudiente (
     cc int  NOT NULL,
-    nombre int  NOT NULL,
-    apellido int  NOT NULL,
+    nombre varchar(25)  NULL,
+    apellido varchar(25)  NULL,
     estudiante int  NOT NULL,
     vistoBueno boolean  NOT NULL,
     CONSTRAINT Acudiente_pk PRIMARY KEY (cc)
@@ -145,7 +145,7 @@ ALTER TABLE EstudianteAsignatura ADD CONSTRAINT EstudianteAsignatura_Asignatura
 
 -- Reference: EstudianteProgramaAcademico_Estudiante (table: EstudianteProgramaAcademico)
 ALTER TABLE EstudianteProgramaAcademico ADD CONSTRAINT EstudianteProgramaAcademico_Estudiante
-    FOREIGN KEY (ProgramaAcademico_id)
+    FOREIGN KEY (Estudiante_id)
     REFERENCES Estudiante (id)  
 
 ;

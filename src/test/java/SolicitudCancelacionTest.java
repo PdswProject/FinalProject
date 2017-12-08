@@ -116,7 +116,8 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebasCalculoImpactoSimpleClase1()
     {
-        ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        //ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         try {
             sc.calcularImpacto(null, null);
@@ -130,7 +131,8 @@ public class SolicitudCancelacionTest {
     @Test
     public void pruebasCalculoImpactoSimpleClase2()
     {
-        ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        //ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
          ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
         Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
@@ -176,6 +178,7 @@ public class SolicitudCancelacionTest {
     public void pruebasExtraerPlanEstudiosClase1()
     {
         ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        //ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         try {
             sc.extraerPlanEstudios(null);
@@ -190,6 +193,7 @@ public class SolicitudCancelacionTest {
     public void pruebasExtraerPlanEstudiosClase2()
     {
         ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        //ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         
         Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
@@ -268,7 +272,7 @@ public class SolicitudCancelacionTest {
             materiasEst[i] = pr.get(i);
         } 
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl(); 
-        sc.cargarDatosPrueba();
+        //sc.cargarDatosPrueba();
         ProgramaAcademico cer;
         Asignatura[] lista = new Asignatura[10];
         lista = sc.getAsignaturasPlanEstudios();

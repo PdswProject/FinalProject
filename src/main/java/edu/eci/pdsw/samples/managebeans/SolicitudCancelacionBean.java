@@ -19,17 +19,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import edu.eci.pdsw.samples.services.ServiciosCancelaciones;
 import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 /**
  *
  * @author USER
  */
-
 @ManagedBean(name = "SolicitudesEstudiantes")
 @SessionScoped
 
 public class SolicitudCancelacionBean implements Serializable{
-    private final ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+    private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+    
     Asignatura asignatura;
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     private int codigo;
@@ -75,7 +76,7 @@ public class SolicitudCancelacionBean implements Serializable{
         
         estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
-        re.cargarDatosPrueba();
+        //re.cargarDatosPrueba();
         
         materiasActualesEst=scm.verMateriasActuales(estudiante);
         
