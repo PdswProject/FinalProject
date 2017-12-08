@@ -116,8 +116,13 @@ public class SolicitudCancelacionTest {
     //@Test
     public void pruebasCalculoImpactoSimpleClase1()
     {
+<<<<<<< HEAD
         ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
         //ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+=======
+        //ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+>>>>>>> master
         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         try {
             sc.calcularImpacto(null, null);
@@ -131,8 +136,13 @@ public class SolicitudCancelacionTest {
     //@Test
     public void pruebasCalculoImpactoSimpleClase2()
     {
+<<<<<<< HEAD
         ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
         //ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+=======
+        //ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+>>>>>>> master
          ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
         Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
         Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
@@ -274,7 +284,10 @@ public class SolicitudCancelacionTest {
         } 
         ServiciosCancelacionesImpl sc = new ServiciosCancelacionesImpl(); 
         //sc.cargarDatosPrueba();
+<<<<<<< HEAD
         
+=======
+>>>>>>> master
         ProgramaAcademico cer;
         //Asignatura[] lista = new Asignatura[10];
         List<Asignatura> lista=new ArrayList<Asignatura>();

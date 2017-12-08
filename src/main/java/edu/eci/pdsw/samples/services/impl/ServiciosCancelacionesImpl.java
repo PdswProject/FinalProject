@@ -68,6 +68,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
+<<<<<<< HEAD
         //asignaturasPlanEstudios = new Asignatura[10];
         asignaturasPlanEstudios=new ArrayList<Asignatura>();
         vistasActualmente=new ArrayList<Asignatura>();
@@ -75,6 +76,17 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         //vistasActualmente= new Asignatura[6];
         cargarDatosEstaticosGrafo();
     }          
+=======
+        asignaturasPlanEstudios = new Asignatura[10];
+        //cargarDatosPrueba();
+        vistasActualmente= new Asignatura[6];
+        cargarDatosEstaticosGrafo();
+    }      
+    
+
+    
+    
+>>>>>>> master
     /**
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
@@ -167,6 +179,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         return re;
         
     }
+<<<<<<< HEAD
     public void cargarDatosPrueba(){
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
@@ -193,6 +206,9 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         
     }
+=======
+    
+>>>>>>> master
     private void cargarDatosEstaticosGrafo()
     {
         List<Asignatura>asig = new LinkedList<>();

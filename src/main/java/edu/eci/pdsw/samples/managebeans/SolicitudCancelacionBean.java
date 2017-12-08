@@ -29,7 +29,12 @@ import java.util.ArrayList;
 @SessionScoped
 
 public class SolicitudCancelacionBean implements Serializable{
+<<<<<<< HEAD
     private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
+=======
+    private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
+    
+>>>>>>> master
     Asignatura asignatura;
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     private int codigo;
@@ -85,7 +90,12 @@ public class SolicitudCancelacionBean implements Serializable{
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asig);
         estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, asig);
         ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
+<<<<<<< HEAD
         re.cargarDatosPrueba();
+=======
+        //re.cargarDatosPrueba();
+        
+>>>>>>> master
         materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
