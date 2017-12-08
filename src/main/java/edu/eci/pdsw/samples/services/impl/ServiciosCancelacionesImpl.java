@@ -52,8 +52,12 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      
     
     private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
-    private final Asignatura[] asignaturasPlanEstudios;
-    private final Asignatura[] vistasActualmente;
+    //private final Asignatura[] asignaturasPlanEstudios;
+    //private final Asignatura[] vistasActualmente;
+    
+    private final List<Asignatura> asignaturasPlanEstudios;
+    private final List<Asignatura> vistasActualmente;
+    
     
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;   
@@ -64,9 +68,11 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
-        asignaturasPlanEstudios = new Asignatura[10];
-        //cargarDatosPrueba();
-        vistasActualmente= new Asignatura[6];
+        //asignaturasPlanEstudios = new Asignatura[10];
+        asignaturasPlanEstudios=new ArrayList<Asignatura>();
+        vistasActualmente=new ArrayList<Asignatura>();
+        cargarDatosPrueba();
+        //vistasActualmente= new Asignatura[6];
         cargarDatosEstaticosGrafo();
     }          
     /**
@@ -94,7 +100,8 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      */
     @Transactional
     @Override
-    public Asignatura[] verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
+    //public Asignatura[] verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
+    public List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
         return e.getMateriaActual();
     }
 
@@ -140,11 +147,13 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Asignatura[] getAsignaturasPlanEstudios() {
+    //public Asignatura[] getAsignaturasPlanEstudios() {
+    public List<Asignatura> getAsignaturasPlanEstudios() {
         return asignaturasPlanEstudios;
     }
 
-    public Asignatura[] getVistasActualmente() {
+    //public Asignatura[] getVistasActualmente() {
+    public List<Asignatura> getVistasActualmente() {
         return vistasActualmente;
     }
     
@@ -168,10 +177,17 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         pr.add(as1);
         pr.add(as2);
         pr.add(as3);
+        asignaturasPlanEstudios.add(as1);
+        asignaturasPlanEstudios.add(as2);
+        asignaturasPlanEstudios.add(as3);
         for (int i=0; i<pr.size();i++){
-            asignaturasPlanEstudios[i]=pr.get(i);
+            //asignaturasPlanEstudios[i]=pr.get(i);
         }
-        vistasActualmente[0]=as1; 
+        //vistasActualmente[0]=as1; 
+        vistasActualmente.add(as1);
+        
+        vistasActualmente.add(as2);
+        vistasActualmente.add(as3);
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
         //PlanEstudios plan= new PlanEstudios(1, 3, p1, pr);
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
@@ -198,9 +214,12 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         prr.add(a4);
         prr.add(a5);
         //Asignatura[] asignaturasPlanEstudios = new Asignatura[5];
-        for (int i=0;i<asignaturasPlanEstudios.length;i++){
-            asignaturasPlanEstudios[i] = asig.get(i);
-        } 
+        asignaturasPlanEstudios.add(a1);
+        asignaturasPlanEstudios.add(a2);
+        asignaturasPlanEstudios.add(a3);
+        //for (int i=0;i<asignaturasPlanEstudios.length;i++){
+            //asignaturasPlanEstudios[i] = asig.get(i);
+        //} 
         
         //PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),prr);        
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),asignaturasPlanEstudios);

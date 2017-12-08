@@ -33,10 +33,11 @@ public class Estudiante {
     private int solicitud_cancelacion;
     private int acudiente;
     private int consejero_academico;
-    private Asignatura[] materiasActuales;
+    //private Asignatura[] materiasActuales;
+    private List<Asignatura> materiasActuales;
 
     
-    public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, Asignatura[] materiasActuales) {
+    public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, List<Asignatura> materiasActuales) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -47,7 +48,8 @@ public class Estudiante {
         this.solicitud_cancelacion = solicitud_cancelacion;
         this.acudiente = acudiente;
         this.consejero_academico = consejero_academico;
-        this.materiasActuales = materiasActuales;
+        //this.materiasActuales = materiasActuales;
+        materiasActuales=new ArrayList<Asignatura>();
     }
        
             
@@ -67,11 +69,14 @@ public class Estudiante {
         this.programaAcademico = programaAcademico;
     }
     
-    public Asignatura[] getMateriaActual() {
+    //public Asignatura[] getMateriaActual() {
+    public List<Asignatura>getMateriaActual() {
         return materiasActuales;
     }
 
-    public void setMateriaActual(Asignatura[] materiasActuales) {
+    //public void setMateriaActual(Asignatura[] materiasActuales) {    
+    public void setMateriaActual(List<Asignatura> materiasActuales) {
+        
         this.materiasActuales = materiasActuales;
     }
 

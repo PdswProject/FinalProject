@@ -154,9 +154,9 @@ public class SolicitudCancelacionTest {
 
 
 
-        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
-        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
-        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
+        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
+        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
+        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
         try
         {
             int impacto=sc.calcularImpacto(e1,new Asignatura[]{a2});            
@@ -213,7 +213,7 @@ public class SolicitudCancelacionTest {
             materiasEst[i] = pr.get(i);
         } 
         
-        Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
+        Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
         //PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),materiasEst);
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),pr);
         try {
@@ -276,11 +276,13 @@ public class SolicitudCancelacionTest {
         //sc.cargarDatosPrueba();
         
         ProgramaAcademico cer;
-        Asignatura[] lista = new Asignatura[10];
+        //Asignatura[] lista = new Asignatura[10];
+        List<Asignatura> lista=new ArrayList<Asignatura>();
+        
         lista = sc.getAsignaturasPlanEstudios();
         cer = new ProgramaAcademico(101,"Ingenieria Civil",30,18,150);
         Asignatura a=new Asignatura(3, "Fisica", cer, "Ciencia", 3, 3);
-        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6,cer,1, 70, 001, 19213, 4, materiasEst);
+        Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6,cer,1, 70, 001, 19213, 4, pr);
     
         //int req=sc.calcularImpacto(e,a);
         int res=0;
@@ -364,7 +366,7 @@ public class SolicitudCancelacionTest {
             //PlanEstudios estud= new PlanEstudios(99, 20, pa, materiasEst);
             PlanEstudios estud= new PlanEstudios(99, 20, pa, pr);
             Asignatura a=new Asignatura(3, "Fisica", pa, "Ciencia", 3, 3);
-            Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6,pa,1, 70, 001, 19213, 4, materiasEst);
+            Estudiante e = new Estudiante(2104481, "Daniel", "Cast", 6,pa,1, 70, 001, 19213, 4, pr);
             String justificacion;
             justificacion= "Demasiada carga academica";
 
