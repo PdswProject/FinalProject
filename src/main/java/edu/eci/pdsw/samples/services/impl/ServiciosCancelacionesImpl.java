@@ -65,11 +65,9 @@ public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones
     public ServiciosCancelacionesImpl(){
         this.estudiantes = new LinkedHashMap<>();
         asignaturasPlanEstudios = new Asignatura[10];
-        cargarDatosPrueba();
+        //cargarDatosPrueba();
         vistasActualmente= new Asignatura[6];
-        
         cargarDatosEstaticosGrafo();
-
     }      
     
 
@@ -165,29 +163,6 @@ public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones
         
     }
     
-    
-    public void cargarDatosPrueba(){
-        List<Asignatura>asig = new LinkedList<>();
-        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
-        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
-        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
-        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        
-        asig.add(as1);
-        asig.add(as2);
-        asig.add(as3);
-        asig.add(as4);
-        for (int i=0;i<asig.size();i++){
-            asignaturasPlanEstudios[i] = asig.get(i);
-        } 
-        
-        
-        vistasActualmente[0]=as1; 
-        PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
-        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
-        
-    }
     private void cargarDatosEstaticosGrafo()
     {
         List<Asignatura>asig = new LinkedList<>();
