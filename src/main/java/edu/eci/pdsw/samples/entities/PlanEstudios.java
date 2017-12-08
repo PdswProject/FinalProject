@@ -19,18 +19,20 @@ public class PlanEstudios {
     int id;
     int numero_materias;
     ProgramaAcademico programa;
-    //Asignatura[] materias;
+    
     Asignatura[] materias;
+    //List<Asignatura> materias;
 
     public PlanEstudios(){
     
     }
     
     public PlanEstudios(int id, int numero_materias, ProgramaAcademico programa, Asignatura[] materias) {
+        this.materias=materias;
         this.id = id;
         this.numero_materias = numero_materias;
         this.programa = programa;
-        this.materias = materias;
+        //this.materias = materias;
     }
     
     /**
@@ -71,10 +73,12 @@ public class PlanEstudios {
     }
 
     public Asignatura[] getMaterias() {
+    //public List<Asignatura> getMaterias() {
         return materias;
     }
 
     public void setMaterias(Asignatura[] materias) {
+    //public void setMaterias(List<Asignatura> materias) {
         this.materias = materias;
     }
 

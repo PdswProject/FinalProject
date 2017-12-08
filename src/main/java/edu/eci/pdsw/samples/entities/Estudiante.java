@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,8 +34,8 @@ public class Estudiante {
     private int acudiente;
     private int consejero_academico;
     private Asignatura[] materiasActuales;
-    
 
+    
     public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, Asignatura[] materiasActuales) {
         this.id = id;
         this.nombre = nombre;
@@ -48,6 +49,7 @@ public class Estudiante {
         this.consejero_academico = consejero_academico;
         this.materiasActuales = materiasActuales;
     }
+       
             
     public int getPlanEstudios() {     
 

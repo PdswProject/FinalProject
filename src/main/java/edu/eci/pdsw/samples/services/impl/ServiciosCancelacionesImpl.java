@@ -39,7 +39,7 @@ import java.util.logging.Logger;
  *
  * @author 2104481
  */
-public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
+public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     @Inject
     private DecanoDAO d;
@@ -68,11 +68,7 @@ public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones
         //cargarDatosPrueba();
         vistasActualmente= new Asignatura[6];
         cargarDatosEstaticosGrafo();
-    }      
-    
-
-    
-    
+    }          
     /**
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
@@ -162,7 +158,25 @@ public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones
         return re;
         
     }
-    
+    public void cargarDatosPrueba(){
+        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
+        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
+        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
+        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        List<Asignatura> pr=new ArrayList<Asignatura>();
+        pr.add(as1);
+        pr.add(as2);
+        pr.add(as3);
+        for (int i=0; i<pr.size();i++){
+            asignaturasPlanEstudios[i]=pr.get(i);
+        }
+        vistasActualmente[0]=as1; 
+        PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
+        //PlanEstudios plan= new PlanEstudios(1, 3, p1, pr);
+        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
+        
+    }
     private void cargarDatosEstaticosGrafo()
     {
         List<Asignatura>asig = new LinkedList<>();
@@ -177,12 +191,18 @@ public final  class ServiciosCancelacionesImpl implements ServiciosCancelaciones
         asig.add(a3);
         asig.add(a4);
         asig.add(a5);        
-        Asignatura[] asignaturasPlanEstudios = new Asignatura[5];
+        List<Asignatura>prr=new ArrayList<Asignatura>();
+        prr.add(a1);
+        //prr.add(a2);
+        //prr.add(a3);
+        prr.add(a4);
+        prr.add(a5);
+        //Asignatura[] asignaturasPlanEstudios = new Asignatura[5];
         for (int i=0;i<asignaturasPlanEstudios.length;i++){
             asignaturasPlanEstudios[i] = asig.get(i);
         } 
         
-        
+        //PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),prr);        
         PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),asignaturasPlanEstudios);
         
     }

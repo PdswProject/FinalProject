@@ -29,8 +29,8 @@ import java.util.ArrayList;
 @SessionScoped
 
 public class SolicitudCancelacionBean implements Serializable{
-    private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
-    
+    //private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
+    private  ServiciosCancelaciones scm;
     Asignatura asignatura;
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     private int codigo;
@@ -45,7 +45,9 @@ public class SolicitudCancelacionBean implements Serializable{
     
     private Asignatura[] vistasActualmente;
     private  Asignatura[] asignaturasPlanEstudios;       
-        
+    private List<Asignatura> vistasActualmente1;
+    private  List<Asignatura> asignaturasPlanEstudios1;       
+                
     Estudiante estudiante;
     
     
@@ -60,25 +62,28 @@ public class SolicitudCancelacionBean implements Serializable{
         asig.add(as1);
         asig.add(as2);
         asig.add(as3);
-        Asignatura[] asignaturasPlanEstudios = new Asignatura[3];
         
+        Asignatura[] asignaturasPlanEstudios = new Asignatura[3];
+        asignaturasPlanEstudios1.add(as1);
+        
+        asignaturasPlanEstudios1.add(as2);
+        asignaturasPlanEstudios1.add(as3);
         for (int i=0;i<asig.size();i++){
             asignaturasPlanEstudios[i] = asig.get(i);
         } 
+        //vistasActualmente[0]= as1;
         
-
-        vistasActualmente[0]= as1;
         vistasActualmente[1]= as2;
         vistasActualmente[2]= as3;
- 
-        
+        //vistasActualmente1.add(as1);
+        //vistasActualmente1.add(as2);
+        //vistasActualmente1.add(as3);
         PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
-        
         estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
-        ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
+        //ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
         //re.cargarDatosPrueba();
         
-        materiasActualesEst=scm.verMateriasActuales(estudiante);
+        //materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
 
@@ -197,3 +202,6 @@ public class SolicitudCancelacionBean implements Serializable{
     }
     
 }
+
+
+
