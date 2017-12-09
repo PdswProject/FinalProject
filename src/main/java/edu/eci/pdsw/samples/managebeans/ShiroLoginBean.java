@@ -26,9 +26,11 @@ public class ShiroLoginBean implements Serializable {
     private String username;
     private String password;
     private Boolean rememberMe;
+    private SolicitudCancelacionBean prueb=new SolicitudCancelacionBean(username);
+    
 
     public ShiroLoginBean() {
-        
+
     }
 
     public Subject getSubject() {
@@ -42,9 +44,12 @@ public class ShiroLoginBean implements Serializable {
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
+        
+        prueb.setUser(username);
 
         try {
             subject.login(token);
+            //prueb.setUser(username);
             if (subject.hasRole("estudiante")) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("cancelacion/estudiante.xhtml");
             }

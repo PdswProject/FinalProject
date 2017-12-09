@@ -6,6 +6,7 @@
 
 package edu.eci.pdsw.samples.dao;
 
+import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import java.util.List;
  */
 public interface ConsultaSolicitudCancelacionDAO {
     // funciones basicas de crud
-    public List<SolicitudCancelacion> Read()throws PersistenceException;;
+    public List<SolicitudCancelacion> Read()throws PersistenceException;
+    
+    public Estudiante loadestud(String nombre)throws PersistenceException;
     
     
 

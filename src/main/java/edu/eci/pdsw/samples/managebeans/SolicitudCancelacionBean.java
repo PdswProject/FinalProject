@@ -5,6 +5,8 @@
  */
 package edu.eci.pdsw.samples.managebeans;
 
+import edu.eci.pdsw.samples.dao.PersistenceException;
+import edu.eci.pdsw.samples.dao.mybatis.ConsultaSolicitudCancelacionDAOMyBatis;
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
@@ -48,11 +50,16 @@ public class SolicitudCancelacionBean implements Serializable{
     private  Asignatura[] asignaturasPlanEstudios;       
     private List<Asignatura> vistasActualmente1;
     private  List<Asignatura> asignaturasPlanEstudios1=new ArrayList<>();       
-                
+    String Nombre;        
     Estudiante estudiante= new Estudiante();
+    public SolicitudCancelacionBean(String nombre) {
+        this.Nombre=nombre;
+    }
     
-    
-    public SolicitudCancelacionBean() {
+    public SolicitudCancelacionBean() throws PersistenceException{
+        ConsultaSolicitudCancelacionDAOMyBatis pru=new ConsultaSolicitudCancelacionDAOMyBatis();
+        Estudiante re=pru.loadestud(Nombre);
+        //System.out.println("IMprimee el nombr carajo"+ re.getId());
         materiasActualesEst=new ArrayList<Asignatura>();
         List<Asignatura> asig = new LinkedList<>();
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
@@ -136,7 +143,10 @@ public class SolicitudCancelacionBean implements Serializable{
     public void setNombreAsignatura(String nombreAsignatura) {
         this.nombreAsignatura = nombreAsignatura;
     }
-
+    public void setUser(String nombre){
+        this.Nombre=nombre;
+        System.out.println("Que nombre es "+ Nombre);
+    }
     public int getCreditos() {
         return creditos;
     }

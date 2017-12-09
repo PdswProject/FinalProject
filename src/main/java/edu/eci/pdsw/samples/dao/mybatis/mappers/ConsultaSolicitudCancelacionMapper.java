@@ -7,7 +7,9 @@
 package edu.eci.pdsw.samples.dao.mybatis.mappers;
 
 import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
+import edu.eci.pdsw.samples.entities.Estudiante;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -15,5 +17,6 @@ import java.util.List;
  */
 public interface ConsultaSolicitudCancelacionMapper {
         public List<SolicitudCancelacion> loadSolictudCancelacion();
+        public Estudiante loadestud(@Param("nomb") String nombre);
     
 }
