@@ -16,6 +16,7 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.ibatis.session.SqlSession;
 
 /**
  *
@@ -24,9 +25,19 @@ import java.util.logging.Logger;
 public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitudCancelacionDAO{
     
     private List<SolicitudCancelacion> groupCancelacionees;
+    private List<Estudiante> estudiantes;
     private Estudiante estu1;
+    private String prueb;
+    private SqlSession sqlss;
+     ConsultaSolicitudCancelacionMapper equmapper = null;
     @Inject
     ConsultaSolicitudCancelacionMapper conMap;
+    public ConsultaSolicitudCancelacionDAOMyBatis() {
+    }
+    public ConsultaSolicitudCancelacionDAOMyBatis(SqlSession session) {
+        this.sqlss = session;
+        equmapper = session.getMapper(ConsultaSolicitudCancelacionMapper.class);
+    }
 
     @Override
     public List<SolicitudCancelacion> Read() throws PersistenceException {
@@ -42,13 +53,37 @@ public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitud
     @Override
     public Estudiante loadestud(String nombre)throws PersistenceException{
         System.out.println("llegamos?");
-        
+
+        prueb=conMap.loadestud1(nombre);
+        System.out.println("Que imprime"+prueb);        
         //System.out.println("Que imprime"+estu1.getNombre());
-        return conMap.loadestud(nombre);
+        return conMap.loadestud(nombre);        
+    }
+    @Override
+    public String loadestud1(String nombre)throws PersistenceException{
+        System.out.println("llegamos?");
+        //prueb=conMap.loadestud1(nombre);
+        System.out.println("Que imprime"+prueb);
+        return prueb;
         
             
         
     }
+
+    @Override
+    public List<Estudiante> loadAll() {
+        estudiantes=conMap.loadAll();
+        System.out.println("que retorna");
+        for(int i=0;i<estudiantes.size();i++){
+            Estudiante re=estudiantes.get(i);
+            System.out.println("que retorna"+re.getNombre());
+    
+        }
+        
+        return estudiantes;
+  
+    }
+    
     
     
 }

@@ -17,6 +17,8 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ConsultaSolicitudCancelacionMapper {
         public List<SolicitudCancelacion> loadSolictudCancelacion();
+        public List<Estudiante> loadAll();
         public Estudiante loadestud(@Param("nomb") String nombre);
+        public String loadestud1(@Param("nomb") String nombre);
     
 }

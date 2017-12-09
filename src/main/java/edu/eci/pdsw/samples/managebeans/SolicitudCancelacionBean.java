@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class SolicitudCancelacionBean implements Serializable{
  
     
-    //private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
+    private  ServiciosCancelaciones scm;
     
     Asignatura asignatura=new Asignatura(0, 0);
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
@@ -55,11 +55,13 @@ public class SolicitudCancelacionBean implements Serializable{
     public SolicitudCancelacionBean(String nombre) {
         this.Nombre=nombre;
     }
-    
-    public SolicitudCancelacionBean() throws PersistenceException{
-        ConsultaSolicitudCancelacionDAOMyBatis pru=new ConsultaSolicitudCancelacionDAOMyBatis();
-        Estudiante re=pru.loadestud(Nombre);
-        //System.out.println("IMprimee el nombr carajo"+ re.getId());
+    public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes{   
+        ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
+        //ConsultaSolicitudCancelacionDAOMyBatis pru=new ConsultaSolicitudCancelacionDAOMyBatis();
+         List<Estudiante> Listpru=scm.getAllEstudiantes();
+        //Estudiante re=pru.loadestud(Nombre);
+        //String re1=pru.loadestud1(nombre);
+        //System.out.println("IMprimee el nombr carajo"+ re.getNombre());
         materiasActualesEst=new ArrayList<Asignatura>();
         List<Asignatura> asig = new LinkedList<>();
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);

@@ -255,4 +255,14 @@ public void cargarDatosPrueba(){
     }
     }
 }
+
+    @Override
+    public List<Estudiante> getAllEstudiantes() throws ExcepcionSolicitudes {
+        List<Estudiante> resp=con.loadAll();
+        return resp;
+
+    }
 }
+
+
+

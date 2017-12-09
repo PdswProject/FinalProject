@@ -16,7 +16,6 @@ public class Estudiante {
     private int id;
     private String nombre;
     private String apellido;
-
     /**
      * El numero del plan de estudios que esta viendo.
      */
@@ -29,7 +28,7 @@ public class Estudiante {
     
     
     private int semestre;
-    private int creditos_aprobados;
+    private int creditosAprobados;
     private int solicitud_cancelacion;
     private int acudiente;
     private int consejero_academico;
@@ -45,7 +44,7 @@ public class Estudiante {
         this.planEstudios=planEstudios;
         this.programaAcademico=programaAcademico;
         this.semestre = semestre;
-        this.creditos_aprobados = creditos_aprobados;
+        this.creditosAprobados = creditos_aprobados;
         this.solicitud_cancelacion = solicitud_cancelacion;
         this.acudiente = acudiente;
         this.consejero_academico = consejero_academico;
@@ -115,11 +114,11 @@ public class Estudiante {
     }
 
     public int getCreditos_aprobados() {
-        return creditos_aprobados;
+        return creditosAprobados;
     }
 
     public void setCreditos_aprobados(int creditos_aprobados) {
-        this.creditos_aprobados = creditos_aprobados;
+        this.creditosAprobados = creditos_aprobados;
     }
 
     public int getSolicitud_cancelacion() {

@@ -20,6 +20,9 @@ public interface ConsultaSolicitudCancelacionDAO {
     
     public Estudiante loadestud(String nombre)throws PersistenceException;
     
+    public String loadestud1(String nombre)throws PersistenceException;
+    public List<Estudiante> loadAll();
+    
     
 
     

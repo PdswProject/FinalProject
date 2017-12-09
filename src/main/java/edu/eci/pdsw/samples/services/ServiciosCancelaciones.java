@@ -107,4 +107,6 @@ public interface ServiciosCancelaciones {
      * @throws ExcepcionSolicitudes Por si molesta
      */
     public abstract List<SolicitudCancelacion> getSolicitudCancelacion() throws ExcepcionSolicitudes;
+    
+    public abstract List<Estudiante> getAllEstudiantes() throws ExcepcionSolicitudes;
 }

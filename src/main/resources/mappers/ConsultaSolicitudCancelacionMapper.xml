@@ -3,24 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.eci.pdsw.samples.dao.mybatis.mappers.ConsultaSolicitudCancelacionMapper">
-
-    <select parameterType="map" id="loadestud" resultMap="SolicitudCancelacionResult">
-
-        Select id, nombre, apellido, semestre,creditosAprobados, solicitudCancelacion_id, acudiente_id, consejeroAcademico_id from Estudiante where nombre=#{nomb};
-        
-    </select> 
-   
-    <resultMap type='Estudiante' id='SolicitudCancelacionResult'>
-        <id property='id' column='id'/>
-        <result property='nombre' column='nombre'/>
-        <result property='apellido' column='apellido'/>       
-        <result property='semestre' column='semestre'/>       
-        <result property='creditosAprobados' column='creditosAprobados'/>       
-        <result property='solicitudcancelacion_id' column='Numero de solicitud'/>       
-        <result property='acudiente_id' column='Acudiente'/>       
-        <result property='consejeroacademico_id' column='ConsejeroAcamdemico'/>       
-        <association property="estudiante" javaType="Estudiante"></association>
-        
+    
+    
+    <resultMap type='edu.eci.pdsw.samples.entities.Estudiante' id='datosestudiantes'>
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombre"/>
+        <result property="semestre" column="semestre"/>
+        <result property="creditosAprobados" column="creditosAprobados"/>
+        <result property="solicitud_cancelacion" column="solicitudCancelacion_id"/>
+        <result property="acudiente" column="acudiente_id"/>
+        <result property="consejero_academico" column="ConsejeroAcademico_id"/>
     </resultMap>
- 
+    
+    <select  id="loadAll" resultMap="datosestudiantes" >
+        SELECT * FROM Estudiante    
+    </select> 
+
+    
+    
 </mapper>
