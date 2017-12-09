@@ -91,11 +91,7 @@ public interface ServiciosCancelaciones {
      * @throws ExcepcionSolicitudes 
      */
     public abstract void eliminarMateria(String programa, int plan, Asignatura a) throws ExcepcionSolicitudes;
-    
-        
-        
-        
-    
+          
     /**
      * Valida que el grafo del plan de estudios sea dirigido, aciclico y que las asignaturas 
      * del mismo existan en el plan de estudios del estudiante

@@ -51,10 +51,10 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     private ConsultaSolicitudCancelacionDAO con;
      
     
-    private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
+    //private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
     //private final Asignatura[] asignaturasPlanEstudios;
     //private final Asignatura[] vistasActualmente;
-    
+    private final Estudiante estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
     
@@ -67,27 +67,39 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     
     public ServiciosCancelacionesImpl(){
-        this.estudiantes = new LinkedHashMap<>();
-<<<<<<< HEAD
-        //asignaturasPlanEstudios = new Asignatura[10];
+        //this.estudiantes = new LinkedHashMap<Tupla<Integer, String>, Estudiante>();
         asignaturasPlanEstudios=new ArrayList<Asignatura>();
+        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
+        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
+        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
+        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+
+        asignaturasPlanEstudios.add(as1);
+        asignaturasPlanEstudios.add(as2);
+        asignaturasPlanEstudios.add(as3);
+        estudiantes=new Estudiante(32, "Pepito", "Pelon",32,p1, 4, 54, 234, 12343, 98877,asignaturasPlanEstudios);
+        //asignaturasPlanEstudios = new Asignatura[10];
+
         vistasActualmente=new ArrayList<Asignatura>();
         cargarDatosPrueba();
         //vistasActualmente= new Asignatura[6];
-        cargarDatosEstaticosGrafo();
+        //cargarDatosEstaticosGrafo();
     }          
-=======
-        asignaturasPlanEstudios = new Asignatura[10];
+        //asignaturasPlanEstudios = new Asignatura[10];
         //cargarDatosPrueba();
-        vistasActualmente= new Asignatura[6];
-        cargarDatosEstaticosGrafo();
-    }      
-    
-
-    
-    
->>>>>>> master
-    /**
+        //vistasActualmente= new Asignatura[6];
+    @Override
+    public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
+        try
+        {
+            
+            return calculadorDeImpacto.calcularImpacto(asigs,extraerPlanEstudios(e));
+        }catch(NullPointerException ex){
+            throw new ExcepcionSolicitudes("El estudiante no puede ser nulo");
+        }
+    }
+/**
      * Extrae el plan de estudios del estudiante
      * @param e el estudiante que tiene el plan de estudios
      * @return retorna el plan de estudios que esta viendo el estudiante
@@ -102,6 +114,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         }
     }
     
+    
     /**
      * El sistema debe permitir seleccionar sólo 
      * aquellas asignaturas que esté actualmente 
@@ -112,12 +125,9 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
      */
     @Transactional
     @Override
-    //public Asignatura[] verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
     public List<Asignatura> verMateriasActuales(Estudiante e) throws ExcepcionSolicitudes{
         return e.getMateriaActual();
-    }
-
-
+    }  
     @Override
     public void solicitarCancelacion(Estudiante e, Asignatura a, String justificacion, PlanEstudios planEstudios) throws ExcepcionSolicitudes {
         //Solicitudes mater= new SolicitudesImpl(e,a,justificacion, 9); 
@@ -131,7 +141,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         
         
     }
-
+   
     @Transactional
     @Override
     public void ajustarMaxCreditosSemestre(int numcreditos) throws ExcepcionSolicitudes {
@@ -143,7 +153,6 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
             throw new ExcepcionSolicitudes("No fue posible agregar los creditos");
         }
     }
-
     @Override
     public void agregarMateria(String programa, int plan, Asignatura a) throws ExcepcionSolicitudes {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -159,16 +168,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //public Asignatura[] getAsignaturasPlanEstudios() {
-    public List<Asignatura> getAsignaturasPlanEstudios() {
-        return asignaturasPlanEstudios;
-    }
-
-    //public Asignatura[] getVistasActualmente() {
-    public List<Asignatura> getVistasActualmente() {
-        return vistasActualmente;
-    }
-    
+    @Override
     public List<SolicitudCancelacion> getSolicitudCancelacion() throws ExcepcionSolicitudes{
         List <SolicitudCancelacion> re=new ArrayList<SolicitudCancelacion>();
         try {             
@@ -179,8 +179,17 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         return re;
         
     }
-<<<<<<< HEAD
-    public void cargarDatosPrueba(){
+   public List<Asignatura> getAsignaturasPlanEstudios() {
+        return asignaturasPlanEstudios;
+    }
+
+    public List<Asignatura> getVistasActualmente() {
+        return vistasActualmente;
+    }
+    
+   
+
+public void cargarDatosPrueba(){
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
@@ -195,7 +204,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         asignaturasPlanEstudios.add(as3);
         for (int i=0; i<pr.size();i++){
             //asignaturasPlanEstudios[i]=pr.get(i);
-        }
+        
         //vistasActualmente[0]=as1; 
         vistasActualmente.add(as1);
         
@@ -206,55 +215,8 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         
     }
-=======
-    
->>>>>>> master
-    private void cargarDatosEstaticosGrafo()
-    {
-        List<Asignatura>asig = new LinkedList<>();
-        
-        Asignatura a1 =new Asignatura(0, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
-        Asignatura a4 =new Asignatura(1, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
-        Asignatura a5 =new Asignatura(2, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
-        Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
-        Asignatura a2 =new Asignatura(4, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
-        asig.add(a1);
-        asig.add(a2);
-        asig.add(a3);
-        asig.add(a4);
-        asig.add(a5);        
-        List<Asignatura>prr=new ArrayList<Asignatura>();
-        prr.add(a1);
-        //prr.add(a2);
-        //prr.add(a3);
-        prr.add(a4);
-        prr.add(a5);
-        //Asignatura[] asignaturasPlanEstudios = new Asignatura[5];
-        asignaturasPlanEstudios.add(a1);
-        asignaturasPlanEstudios.add(a2);
-        asignaturasPlanEstudios.add(a3);
-        //for (int i=0;i<asignaturasPlanEstudios.length;i++){
-            //asignaturasPlanEstudios[i] = asig.get(i);
-        //} 
-        
-        //PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),prr);        
-        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),asignaturasPlanEstudios);
-        
-    }
-
-    @Override
-    public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
-        try
-        {
-        return calculadorDeImpacto.calcularImpacto(asigs,extraerPlanEstudios(e));
-        }catch(NullPointerException ex){
-            throw new ExcepcionSolicitudes("El estudiante no puede ser nulo");
-        }
-    }
-
-    }
-
-class Tupla<A, B> {
+   
+    class Tupla<A, B> {
 
     A a;
     B b;
@@ -291,4 +253,6 @@ class Tupla<A, B> {
     public String toString() {
         return "Touple:(" + a.toString() + "," + b.toString() + ")";
     }
+    }
+}
 }
