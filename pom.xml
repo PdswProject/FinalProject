@@ -49,12 +49,7 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <dependency>
-            <groupId>edu.eci.pdsw</groupId>
-            <artifactId>pdswpro</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>war</type>
-        </dependency>
+      
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>

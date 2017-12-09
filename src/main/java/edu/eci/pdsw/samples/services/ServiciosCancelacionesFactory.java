@@ -46,8 +46,6 @@ public class ServiciosCancelacionesFactory {
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
                 bind(ConsejeroDAO.class).to(ConsejeroDAOMyBatis.class);
-                System.out.println("VAMOS?");
-                
                 bind(ConsultaSolicitudCancelacionDAO.class).to(ConsultaSolicitudCancelacionDAOMyBatis.class);
                 bind(CalculadorDeImpacto.class).to(CalculadorDeImpactoSimple.class);
                 bind(ExtractorPlanEstudios.class).to(ExtractorJSON.class);
@@ -80,8 +78,6 @@ public class ServiciosCancelacionesFactory {
     }
 
     public ServiciosCancelaciones getServiciosCancelaciones() {
-                System.out.println("que devuelve!#$%&/(/&%$##$%&/");
-        System.out.println("que devuelve?"+ injector.getInstance(ServiciosCancelacionesImpl.class));
         return injector.getInstance(ServiciosCancelacionesImpl.class);
     }
     

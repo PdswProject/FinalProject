@@ -15,25 +15,22 @@ and open the template in the editor.
     <h:body>
         <h1> Lista de SOlictud de Cancelaciones</h1>
         <h:form>
- 
+
             <p:dataTable var="sol" value="#{SolicitudesEstudiantes.listCancelacion}"  >
                 <f:facet name="header">
                     Lista Cancelacion
 
                 </f:facet>
-                     
-            <p:column headerText="# ID SOLICITUDES">
-                <h:outputText value="#{sol.justificacion}" />
-            </p:column>
 
-            <p:column headerText="">
-                <h:outputText value="#{sol.justificacion}" />
-            </p:column>
+                <p:column headerText="# ID SOLICITUDES">
+                    <h:outputText value="#{sol.justificacion}" />
+                </p:column>
+
 
             </p:dataTable>
-            
+
             <p:commandButton value="Consultar"></p:commandButton>
-            
+
         </h:form>
     </h:body>
 </html>

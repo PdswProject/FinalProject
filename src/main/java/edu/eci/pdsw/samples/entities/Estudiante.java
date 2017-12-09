@@ -35,7 +35,8 @@ public class Estudiante {
     private int consejero_academico;
     //private Asignatura[] materiasActuales;
     private List<Asignatura> materiasActuales;
-
+    
+    public Estudiante(){}
     
     public Estudiante(int id, String nombre, String apellido,int planEstudios,ProgramaAcademico programaAcademico, int semestre, int creditos_aprobados, int solicitud_cancelacion, int acudiente, int consejero_academico, List<Asignatura> materiasActuales) {
         this.id = id;

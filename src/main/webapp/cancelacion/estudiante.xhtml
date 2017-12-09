@@ -19,19 +19,19 @@ and open the template in the editor.
                 
                 DATOS DEL ESTUDIANTE<br/>
                        
-                <p:dataTable id="estudiante" var="infoEstud" value= "#{SolicitudesEstudiantes}">
+                <p:dataTable id="estudiante" var="estudiante" value= "#{SolicitudesEstudiantes.estudiante}">
  
                     <p:column headerText="Id">                
-                        <h:outputText value="#{SolicitudesEstudiantes.estudiante.id}" />
+                        <h:outputText value="#{estudiante.id}" />
                     </p:column>
                     <p:column headerText="Nombre">    
-                        <h:outputText value="#{SolicitudesEstudiantes.estudiante.nombre}" />
+                        <h:outputText value="#{estudiante.nombre}" />
                     </p:column>
                     <p:column headerText="Semestre">    
-                        <h:outputText value="#{SolicitudesEstudiantes.estudiante.semestre}" />
+                        <h:outputText value="#{estudiante.semestre}" />
                     </p:column>
                     <p:column headerText="Creditos">    
-                        <h:outputText value="#{SolicitudesEstudiantes.estudiante.creditos_aprobados}" />
+                        <h:outputText value="#{estudiante.creditos_aprobados}" />
                     </p:column>
                    
                 </p:dataTable>

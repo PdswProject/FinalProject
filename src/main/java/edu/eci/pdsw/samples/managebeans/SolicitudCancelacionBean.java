@@ -27,35 +27,34 @@ import java.util.ArrayList;
  */
 @ManagedBean(name = "SolicitudesEstudiantes")
 @SessionScoped
-
 public class SolicitudCancelacionBean implements Serializable{
-
-    private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
+ 
     
-    Asignatura asignatura;
+    //private  ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
+    
+    Asignatura asignatura=new Asignatura(0, 0);
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
-    private int codigo;
-    String nombreAsignatura;
-    private int creditos;
-    int idEstudiante;
-    String nombre;
-    String apellido;
-    int creditosAprobados;
+    private int codigo=0;
+    String nombreAsignatura="";
+    private int creditos=0;
+    int idEstudiante=0;
+    String nombre="";
+    String apellido="";
+    int creditosAprobados=0;
     //Asignatura[] materiasActualesEst;
-    List<Asignatura> materiasActualesEst;
+    List<Asignatura> materiasActualesEst=new ArrayList<>();
     
     private Asignatura[] vistasActualmente;
     private  Asignatura[] asignaturasPlanEstudios;       
     private List<Asignatura> vistasActualmente1;
-    private  List<Asignatura> asignaturasPlanEstudios1;       
+    private  List<Asignatura> asignaturasPlanEstudios1=new ArrayList<>();       
                 
-    Estudiante estudiante;
+    Estudiante estudiante= new Estudiante();
     
     
-    public SolicitudCancelacionBean()throws ExcepcionSolicitudes{
+    public SolicitudCancelacionBean() {
         materiasActualesEst=new ArrayList<Asignatura>();
-        List<Asignatura>asig = new LinkedList<>();
-        
+        List<Asignatura> asig = new LinkedList<>();
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
@@ -84,13 +83,13 @@ public class SolicitudCancelacionBean implements Serializable{
         //vistasActualmente1.add(as1);
         //vistasActualmente1.add(as2);
         //vistasActualmente1.add(as3);
-        PlanEstudios plan= new PlanEstudios(1, 3, p1, asig);
+        //PlanEstudios plan= new PlanEstudios(1, 3, p1, asig);
         estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, asig);
-        ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
-        re.cargarDatosPrueba();
+        //ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
+        //re.cargarDatosPrueba();
         //re.cargarDatosPrueba();
     
-        materiasActualesEst=scm.verMateriasActuales(estudiante);
+        //materiasActualesEst=scm.verMateriasActuales(estudiante);
         
     }
 
@@ -183,7 +182,7 @@ public class SolicitudCancelacionBean implements Serializable{
         return materiasActualesEst;
     }
     public List<String> getNombreMateriasActualesEst() {
-        List<String> nuev= new ArrayList<String>();
+        List<String> nuev= new ArrayList<>();
         Asignatura temp;
         for (int i =0; i<materiasActualesEst.size(); i++ ){
             temp=materiasActualesEst.get(i);
@@ -197,15 +196,13 @@ public class SolicitudCancelacionBean implements Serializable{
     }
     
     public List<SolicitudCancelacion> getListCancelacion() throws ExcepcionSolicitudes{
-        
-        return scm.getSolicitudCancelacion();
-
+        //return scm.getSolicitudCancelacion();
+        return new ArrayList<>();
     }
 
-    public ServiciosCancelaciones getScm() {
-        return scm;
-    }
+
     public int calcularImpacto(Estudiante estudiante, Asignatura[] vistasActualmente) throws ExcepcionSolicitudes{
-        return scm.calcularImpacto(estudiante, vistasActualmente);
+        //return scm.calcularImpacto(estudiante, vistasActualmente);
+        return 0;
     }   
 }
