@@ -26,7 +26,7 @@ public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitud
     
     private List<SolicitudCancelacion> groupCancelacionees;
     private List<Estudiante> estudiantes;
-    private Estudiante estu1;
+    //private Estudiante estu1;
     private String prueb;
     private SqlSession sqlss;
      ConsultaSolicitudCancelacionMapper equmapper = null;
@@ -51,25 +51,15 @@ public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitud
     }
     
     @Override
-    public Estudiante loadestud(String nombre)throws PersistenceException{
+    public Estudiante loadEstudEspecific(String nombre){
         System.out.println("llegamos?");
+        System.out.println("Erick es una loca v2");
 
-        prueb=conMap.loadestud1(nombre);
-        System.out.println("Que imprime"+prueb);        
-        //System.out.println("Que imprime"+estu1.getNombre());
-        return conMap.loadestud(nombre);        
-    }
-    @Override
-    public String loadestud1(String nombre)throws PersistenceException{
-        System.out.println("llegamos?");
-        //prueb=conMap.loadestud1(nombre);
-        System.out.println("Que imprime"+prueb);
-        return prueb;
-        
-            
-        
-    }
+        Estudiante estu1=conMap.loadEstudEspecific(nombre);
 
+        System.out.println("Que imprime"+estu1.getNombre());
+        return conMap.loadEstudEspecific(nombre);        
+    }
     @Override
     public List<Estudiante> loadAll() {
         estudiantes=conMap.loadAll();
@@ -77,7 +67,6 @@ public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitud
         for(int i=0;i<estudiantes.size();i++){
             Estudiante re=estudiantes.get(i);
             System.out.println("que retorna"+re.getNombre());
-    
         }
         
         return estudiantes;

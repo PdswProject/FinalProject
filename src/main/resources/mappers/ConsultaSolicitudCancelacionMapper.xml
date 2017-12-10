@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.eci.pdsw.samples.dao.mybatis.mappers.ConsultaSolicitudCancelacionMapper">
     
-    
     <resultMap type='edu.eci.pdsw.samples.entities.Estudiante' id='datosestudiantes'>
         <id property="id" column="id"/>
         <result property="nombre" column="nombre"/>
@@ -18,7 +17,9 @@
     <select  id="loadAll" resultMap="datosestudiantes" >
         SELECT * FROM Estudiante    
     </select> 
-
+    <select  id="loadEstudEspecific" resultMap="datosestudiantes" >
+        SELECT * FROM Estudiante est WHERE est.nombre=#{nomb}   
+    </select> 
     
     
 </mapper>

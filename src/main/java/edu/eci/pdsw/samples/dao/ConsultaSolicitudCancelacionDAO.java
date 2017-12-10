@@ -18,9 +18,8 @@ public interface ConsultaSolicitudCancelacionDAO {
     // funciones basicas de crud
     public List<SolicitudCancelacion> Read()throws PersistenceException;
     
-    public Estudiante loadestud(String nombre)throws PersistenceException;
+    public Estudiante loadEstudEspecific(String nombre);
     
-    public String loadestud1(String nombre)throws PersistenceException;
     public List<Estudiante> loadAll();
     
     

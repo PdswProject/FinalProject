@@ -32,7 +32,6 @@ public class Estudiante {
     private int solicitud_cancelacion;
     private int acudiente;
     private int consejero_academico;
-    //private Asignatura[] materiasActuales;
     private List<Asignatura> materiasActuales;
     
     public Estudiante(){}
@@ -48,7 +47,6 @@ public class Estudiante {
         this.solicitud_cancelacion = solicitud_cancelacion;
         this.acudiente = acudiente;
         this.consejero_academico = consejero_academico;
-        //this.materiasActuales = materiasActuales;
         materiasActuales=new ArrayList<Asignatura>();
     }
        

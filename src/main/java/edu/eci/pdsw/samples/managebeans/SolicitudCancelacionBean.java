@@ -23,48 +23,57 @@ import edu.eci.pdsw.samples.services.ServiciosCancelaciones;
 import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 /**
  *
  * @author USER
  */
 @ManagedBean(name = "SolicitudesEstudiantes")
 @SessionScoped
+//@RequestScoped
 public class SolicitudCancelacionBean implements Serializable{
  
+    @ManagedProperty(value="#{loginBean}")    
+    private ShiroLoginBean loginBean;
     
     private  ServiciosCancelaciones scm;
-    
     Asignatura asignatura=new Asignatura(0, 0);
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     private int codigo=0;
     String nombreAsignatura="";
     private int creditos=0;
     int idEstudiante=0;
-    String nombre="";
     String apellido="";
     int creditosAprobados=0;
-    //Asignatura[] materiasActualesEst;
     List<Asignatura> materiasActualesEst=new ArrayList<>();
-    
-    private Asignatura[] vistasActualmente;
-    private  Asignatura[] asignaturasPlanEstudios;       
-    private List<Asignatura> vistasActualmente1;
-    private  List<Asignatura> asignaturasPlanEstudios1=new ArrayList<>();       
-    String Nombre;        
+    private PlanEstudios plane;
+    private List<Asignatura> vistasActualmente;
+    private  List<Asignatura> asignaturasPlanEstudios=new ArrayList<>();       
+    String nombre;        
     Estudiante estudiante= new Estudiante();
-    public SolicitudCancelacionBean(String nombre) {
-        this.Nombre=nombre;
-    }
+
     public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes{   
+        //Nombre=getUser();
+        System.out.println("QUE VOY A CONSULTAR LA ERICK "+nombre);
         ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
-        //ConsultaSolicitudCancelacionDAOMyBatis pru=new ConsultaSolicitudCancelacionDAOMyBatis();
-         List<Estudiante> Listpru=scm.getAllEstudiantes();
-        //Estudiante re=pru.loadestud(Nombre);
-        //String re1=pru.loadestud1(nombre);
-        //System.out.println("IMprimee el nombr carajo"+ re.getNombre());
+        List<Estudiante> Listpru=scm.getAllEstudiantes();
+        //String prue2=getUser();
+        //System.out.println("QUE VOY A CONSULTAR LA ERICK "+prue2);
+        //asignaturasPlanEstudios
+
+        
+        
+        
+        //plane=scm.extraerPlanEstudios(re);
+        //vistasActualmente=plane.getMaterias();
+
         materiasActualesEst=new ArrayList<Asignatura>();
         List<Asignatura> asig = new LinkedList<>();
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
+        
+        
+        
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
         Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
@@ -74,32 +83,27 @@ public class SolicitudCancelacionBean implements Serializable{
         materiasActualesEst.add(as1);
         materiasActualesEst.add(as2);
         materiasActualesEst.add(as3);    
-        asignaturasPlanEstudios1.add(as1);
-        asignaturasPlanEstudios1.add(as2);
-        asignaturasPlanEstudios1.add(as3);
-                
-        //Asignatura[] asignaturasPlanEstudios = new Asignatura[3];
-        //asignaturasPlanEstudios1.add(as1);
-        //asignaturasPlanEstudios1.add(as2);
-        //asignaturasPlanEstudios1.add(as3);
-        //for (int i=0;i<asig.size();i++){
-        //    asignaturasPlanEstudios[i] = asig.get(i);
-        //} 
-        //vistasActualmente[0]= as1;
+        asignaturasPlanEstudios.add(as1);
+        asignaturasPlanEstudios.add(as2);
+        asignaturasPlanEstudios.add(as3);
         
-        //vistasActualmente[1]= as2;
-        //vistasActualmente[2]= as3;
-        //vistasActualmente1.add(as1);
-        //vistasActualmente1.add(as2);
-        //vistasActualmente1.add(as3);
-        //PlanEstudios plan= new PlanEstudios(1, 3, p1, asig);
-        estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, asig);
+
+        
+        //List<Asignatura> asig =re.getMateriaActual();
+        //ProgramaAcademico p1= re.getProgramaAcademico();
+        estudiante=scm.loadEstudEspecific("Nicolas");
+        //List<Asignatura> qqq=scm.allByEstud(estudiante.getId());
+        /**
+        List<Asignatura> qqq=scm.allAsig();
+        for(int i=0; i<qqq.size();i++){
+            Asignatura ui=qqq.get(i);
+            System.out.println("que imprime"+ui.getNombre());
+        }
+        */
+        //estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, asig);
         //ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
         //re.cargarDatosPrueba();
-        //re.cargarDatosPrueba();
-    
         //materiasActualesEst=scm.verMateriasActuales(estudiante);
-        
     }
 
     public int getCodigo() {
@@ -142,12 +146,17 @@ public class SolicitudCancelacionBean implements Serializable{
         return nombreAsignatura;
     }
 
+    public String getUser(){
+        String Nombre1=loginBean.getUsername();
+        return Nombre1;
+    
+    }
     public void setNombreAsignatura(String nombreAsignatura) {
         this.nombreAsignatura = nombreAsignatura;
     }
     public void setUser(String nombre){
-        this.Nombre=nombre;
-        System.out.println("Que nombre es "+ Nombre);
+        this.nombre=nombre;
+
     }
     public int getCreditos() {
         return creditos;
@@ -188,6 +197,9 @@ public class SolicitudCancelacionBean implements Serializable{
     public void setCreditosAprobados(int creditosAprobados) {
         this.creditosAprobados = creditosAprobados;
     }
+    
+    
+    
 
     //public Asignatura[] getMateriasActualesEst() {
     public List<Asignatura> getMateriasActualesEst() {
@@ -217,4 +229,18 @@ public class SolicitudCancelacionBean implements Serializable{
         //return scm.calcularImpacto(estudiante, vistasActualmente);
         return 0;
     }   
+
+    /**
+     * @return the bean
+     */
+    public ShiroLoginBean getloginBean() {
+        return loginBean;
+    }
+
+    /**
+     * @param bean the bean to set
+     */
+    public void setloginBean(ShiroLoginBean beana) {
+        this.loginBean = beana;
+    }
 }

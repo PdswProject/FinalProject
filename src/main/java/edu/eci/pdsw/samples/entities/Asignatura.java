@@ -15,15 +15,23 @@ import java.util.List;
 public class Asignatura {
     private int codigo;
     private String nombre;
-    private ProgramaAcademico programa;
+    //private ProgramaAcademico programa;
     private String unidadAcademica;
-    private boolean aprobada;
-    private int vecesCancelada;
+  //  private boolean aprobada;
+   // private int vecesCancelada;
     private int creditos;
     private int profesor;
+    private int plandeEstudios;
     private List<Asignatura> correquisitos;
 
-    
+    public Asignatura(int codigo, String nombre, String unidadAcademica,int profesor, int plandeEstudios){
+       this.codigo=codigo;
+       this.nombre=nombre;
+       this.unidadAcademica=unidadAcademica;
+       this.profesor=profesor;
+       this.plandeEstudios=plandeEstudios;
+
+    }
     
     public Asignatura(int codigo,int creditos){
     
@@ -33,10 +41,10 @@ public class Asignatura {
     public Asignatura(int codigo, String nombre, ProgramaAcademico programa, String unidadAcademica, int profesor, int creditos) {
         this.codigo=codigo;
         this.nombre = nombre;
-        this.programa = programa;
+        //this.programa = programa;
         this.unidadAcademica = unidadAcademica;
         this.profesor = profesor;
-        this.creditos=creditos;
+       // this.creditos=creditos;
         this.correquisitos= Arrays.asList();
     }
 
@@ -51,6 +59,7 @@ public class Asignatura {
     public int getCodigo() {
         return codigo;
     }
+
     public int getCreditos(){
         return creditos;
     }
@@ -69,7 +78,7 @@ public class Asignatura {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/**
     public ProgramaAcademico getPrograma() {
         return programa;
     }
@@ -77,7 +86,7 @@ public class Asignatura {
     public void setPrograma(ProgramaAcademico programa) {
         this.programa = programa;
     }
-
+*/
     public String getUnidadAcademica() {
         return unidadAcademica;
     }
@@ -101,5 +110,12 @@ public class Asignatura {
     public void setCorrequisitos(List<Asignatura> correquisitos) {
         this.correquisitos = correquisitos;
     }
+
+    public void setPlandeEstudios(int plan){
+        plandeEstudios=plan;
     
+    }
+    public int getPlandeEstudios(){
+        return plandeEstudios;
+    }
 }

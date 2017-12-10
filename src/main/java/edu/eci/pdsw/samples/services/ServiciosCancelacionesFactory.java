@@ -8,14 +8,18 @@ package edu.eci.pdsw.samples.services;
 
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
+import edu.eci.pdsw.samples.dao.AsignaturaDAO;
 import edu.eci.pdsw.samples.dao.ConsejeroDAO;
 import edu.eci.pdsw.samples.dao.ConsultaSolicitudCancelacionDAO;
 import edu.eci.pdsw.samples.dao.DecanoDAO;
 import edu.eci.pdsw.samples.dao.EstudianteDAO;
+import edu.eci.pdsw.samples.dao.mybatis.AsignaturaDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.ConsejeroDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.ConsultaSolicitudCancelacionDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.DecanoDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.EstudianteDAOMyBatis;
+import edu.eci.pdsw.samples.dao.mybatis.mappers.AsignaturaMapper;
+import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.services.impl.CalculadorDeImpactoSimple;
 import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
 import edu.eci.pdsw.samples.services.impl.ExtractorJSON;
@@ -44,6 +48,7 @@ public class ServiciosCancelacionesFactory {
                 setClassPathResource("mybatis-config.xml");
                 bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
+                bind(AsignaturaDAO.class).to(AsignaturaDAOMyBatis.class);                
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
                 bind(ConsejeroDAO.class).to(ConsejeroDAOMyBatis.class);
                 bind(ConsultaSolicitudCancelacionDAO.class).to(ConsultaSolicitudCancelacionDAOMyBatis.class);
@@ -63,6 +68,7 @@ public class ServiciosCancelacionesFactory {
                 install(JdbcHelper.PostgreSQL);
                 setClassPathResource("mybatis-config-h2.xml");
                 bind(ServiciosCancelaciones.class).to(ServiciosCancelacionesImpl.class);
+                bind(AsignaturaDAO.class).to(AsignaturaDAOMyBatis.class);                
                 bind(EstudianteDAO.class).to(EstudianteDAOMyBatis.class);                
                 bind(DecanoDAO.class).to(DecanoDAOMyBatis.class);
                 bind(ConsejeroDAO.class).to(ConsejeroDAOMyBatis.class);

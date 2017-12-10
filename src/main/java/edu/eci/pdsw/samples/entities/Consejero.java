@@ -23,7 +23,7 @@ public class Consejero {
     
     public Consejero(boolean aval,String Nombre, String Comentarios){
         this.aval=aval;
-        listaEstudiantes=new ArrayList<Estudiante>() {};
+        listaEstudiantes=new ArrayList<Estudiante>();
         this.Nombre=Nombre;
         this.Comentarios=Comentarios;
         

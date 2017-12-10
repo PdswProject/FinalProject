@@ -16,17 +16,21 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 
 @ManagedBean(name = "loginBean")
-@ViewScoped
+//@ViewScoped
+@SessionScoped
+//@RequestScoped
 public class ShiroLoginBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroLoginBean.class);
 
     private String username;
     private String password;
     private Boolean rememberMe;
-    private SolicitudCancelacionBean prueb=new SolicitudCancelacionBean(username);
+
     
 
     public ShiroLoginBean() {
@@ -45,8 +49,9 @@ public class ShiroLoginBean implements Serializable {
 
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
         
-        prueb.setUser(username);
-
+//        prueb.setUser(username);
+        setUsername(username);
+        System.out.println("que imprime la gor"+username);
         try {
             subject.login(token);
             //prueb.setUser(username);

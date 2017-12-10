@@ -32,7 +32,7 @@
     </environments>
         
     <mappers>
-         
+	<mapper resource="mappers/AsignaturaMapper.xml"></mapper>
 	<mapper resource="mappers/ConsejeroMapper.xml"></mapper>       
         <mapper resource="mappers/DecanoMapper.xml"></mapper> 
         <mapper resource="mappers/EstudianteMapper.xml"></mapper> 

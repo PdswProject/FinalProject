@@ -10,6 +10,7 @@ import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
 import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -109,4 +110,7 @@ public interface ServiciosCancelaciones {
     public abstract List<SolicitudCancelacion> getSolicitudCancelacion() throws ExcepcionSolicitudes;
     
     public abstract List<Estudiante> getAllEstudiantes() throws ExcepcionSolicitudes;
+    public abstract Estudiante loadEstudEspecific(String nombre) throws ExcepcionSolicitudes;
+    public abstract List<Asignatura> allByEstud( int codigo ) throws ExcepcionSolicitudes;
+    public abstract List<Asignatura> allAsig() throws ExcepcionSolicitudes ;
 }

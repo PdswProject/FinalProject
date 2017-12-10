@@ -15,7 +15,8 @@
         <h:panelGrid columns="2" style="text-align: right">
             <h:outputText value="Login:" style="color:blue" />
             <p:inputText id="username" required="true" value="#{loginBean.username}" style="text-align: right"  />
-            
+            <p:inputText id="name" required="true" value="#{SolicitudesEstudiantes.user}" style="text-align: right"  />
+           
 
             <h:outputText value="Password:" style="color:blue" />
             <p:password id="password" required="true" value="#{loginBean.password}" style="text-align: right"/>

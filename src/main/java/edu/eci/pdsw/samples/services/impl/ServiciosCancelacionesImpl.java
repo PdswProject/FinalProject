@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.pdsw.samples.dao.AsignaturaDAO;
 import edu.eci.pdsw.samples.dao.ConsultaSolicitudCancelacionDAO;
 import edu.eci.pdsw.samples.dao.DecanoDAO;
 import edu.eci.pdsw.samples.dao.EstudianteDAO;
@@ -48,17 +49,13 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     private EstudianteDAO de;
     
     @Inject
+    private AsignaturaDAO est;
+    @Inject
     private ConsultaSolicitudCancelacionDAO con;
-     
-    
-    //private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
-    //private final Asignatura[] asignaturasPlanEstudios;
-    //private final Asignatura[] vistasActualmente;
     private final Estudiante estudiantes;
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
-    
-    
+
     @Inject
     private CalculadorDeImpacto calculadorDeImpacto;   
     
@@ -79,16 +76,10 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         asignaturasPlanEstudios.add(as2);
         asignaturasPlanEstudios.add(as3);
         estudiantes=new Estudiante(32, "Pepito", "Pelon",32,p1, 4, 54, 234, 12343, 98877,asignaturasPlanEstudios);
-        //asignaturasPlanEstudios = new Asignatura[10];
-
         vistasActualmente=new ArrayList<Asignatura>();
         cargarDatosPrueba();
-        //vistasActualmente= new Asignatura[6];
-        //cargarDatosEstaticosGrafo();
+
     }          
-        //asignaturasPlanEstudios = new Asignatura[10];
-        //cargarDatosPrueba();
-        //vistasActualmente= new Asignatura[6];
     @Override
     public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
         try
@@ -202,10 +193,7 @@ public void cargarDatosPrueba(){
         asignaturasPlanEstudios.add(as1);
         asignaturasPlanEstudios.add(as2);
         asignaturasPlanEstudios.add(as3);
-        for (int i=0; i<pr.size();i++){
-            //asignaturasPlanEstudios[i]=pr.get(i);
-        
-        //vistasActualmente[0]=as1; 
+
         vistasActualmente.add(as1);
         
         vistasActualmente.add(as2);
@@ -214,6 +202,30 @@ public void cargarDatosPrueba(){
         //PlanEstudios plan= new PlanEstudios(1, 3, p1, pr);
         Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
         
+    }
+
+    @Override
+    public List<Estudiante> getAllEstudiantes() throws ExcepcionSolicitudes {
+        List<Estudiante> resp=con.loadAll();
+        return resp;
+    }
+
+    @Override
+    public Estudiante loadEstudEspecific(String nombre) throws ExcepcionSolicitudes {
+        Estudiante pru=con.loadEstudEspecific(nombre);
+        return pru;
+    }
+
+    @Override
+    public List<Asignatura> allByEstud(int codigo) throws ExcepcionSolicitudes {
+        return est.allByEstud(codigo);
+             
+    }
+
+    @Override
+    public List<Asignatura> allAsig() throws ExcepcionSolicitudes {
+        List<Asignatura>resp=est.allAsig();
+        return resp;
     }
    
     class Tupla<A, B> {
@@ -255,14 +267,3 @@ public void cargarDatosPrueba(){
     }
     }
 }
-
-    @Override
-    public List<Estudiante> getAllEstudiantes() throws ExcepcionSolicitudes {
-        List<Estudiante> resp=con.loadAll();
-        return resp;
-
-    }
-}
-
-
-
