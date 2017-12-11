@@ -12,7 +12,7 @@
     </select>
    
     <insert id="solicitudCancelacion">
-        insert into solicitudcancelacion (id,estudiante,asignatura,fecha,estado,decano_id,justificacion) values (#{id},#{estu},#{conasi},#{dat},#{est},#{dec},#{jus});
+        insert into solicitudcancelacion (id,estudiante,asignatura,fecha,estado,decano_id,justificacion) values (#{id},#{estu},#{conasi},null,#{est},#{dec},#{jus});
         
     </insert>
     

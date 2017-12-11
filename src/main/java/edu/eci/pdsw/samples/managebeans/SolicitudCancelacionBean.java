@@ -8,11 +8,17 @@ package edu.eci.pdsw.samples.managebeans;
 import edu.eci.pdsw.samples.dao.PersistenceException;
 import edu.eci.pdsw.samples.dao.mybatis.ConsultaSolicitudCancelacionDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.EstudianteDAOMyBatis;
+import edu.eci.pdsw.samples.entities.Acudiente;
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
 import edu.eci.pdsw.samples.entities.ProgramaAcademico;
 import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
+import edu.eci.pdsw.samples.mailapp.Email;
+import edu.eci.pdsw.samples.mailapp.EmailConfiguration;
+import edu.eci.pdsw.samples.mailapp.EmailSender;
+import edu.eci.pdsw.samples.mailapp.SimpleEmail;
+import edu.eci.pdsw.samples.mailapp.SimpleEmailSender;
 import edu.eci.pdsw.samples.services.ExcepcionSolicitudes;
 import edu.eci.pdsw.samples.services.ServiciosCancelacionesFactory;
 import java.io.Serializable;
@@ -27,6 +33,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.mail.MessagingException;
 /**
  *
  * @author USER
@@ -34,10 +41,13 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name = "SolicitudesEstudiantes")
 @SessionScoped
 //@RequestScoped
-public class SolicitudCancelacionBean implements Serializable{
+public final class SolicitudCancelacionBean implements Serializable{
  
     @ManagedProperty(value="#{loginBean}")    
     private ShiroLoginBean loginBean;
+    
+    private final String subject="Cancelacion de asignaturas de su hijo/a";
+    private final String message="Su hija va a cancelar las asignaturas ";
     private PlanEstudios plane;
     private  ServiciosCancelaciones scm;
     private CalculadorDeImpactoSimple cdi;
@@ -62,9 +72,10 @@ public class SolicitudCancelacionBean implements Serializable{
     
     private List<Integer> prueb;
     private String justificacion;
+    //Temporal
+    private Acudiente ds;
     
-    
-    public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes{   
+    public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes, MessagingException{   
         justificacion="";
         prueb=new ArrayList<Integer>();
         prueb.add(1);
@@ -95,12 +106,13 @@ public class SolicitudCancelacionBean implements Serializable{
         estudiante=scm.loadEstudEspecific("Nicolas");
         //List<Asignatura> qqq=scm.allByEstud(estudiante.getId());
         //List<Asignatura> qqq=scm.allAsig();
-        
+        ds=new Acudiente("Pepino", 989, 10003,"pepino@mail.com");
         materiasActualesEst=scm.allByEstud(estudiante.getId());
         asignaturasPlanEstudios=scm.allAsig();
         //Creacion Plan de estudios
         prog=new ProgramaAcademico(50, "Ingenieria de sistemas", 13, 1999, 999);
         planer=new PlanEstudios(123, 150, prog, asignaturasPlanEstudios);        
+        sendMessage();
         //List<Asignatura> qqq=scm.allAsig();
         for(int i=0; i<materiasActualesEst.size();i++){
             Asignatura ui=materiasActualesEst.get(i);
@@ -114,7 +126,28 @@ public class SolicitudCancelacionBean implements Serializable{
         //re.cargarDatosPrueba();
         //materiasActualesEst=scm.verMateriasActuales(estudiante);
     }
-
+    //Envio Mensaje
+    public void sendMessage()throws ExcepcionSolicitudes, MessagingException{
+         String from= "escuela@gmail.com";
+         String to=ds.getCorreo();
+         String subjectr=subject;
+         String messager=message;
+         Email email=new SimpleEmail(to, subjectr, messager);
+         EmailSender sender=new SimpleEmailSender(new EmailConfiguration());
+         try{
+             sender.send(email);
+             System.out.println("Exito al mandar");
+ 
+         }catch (MessagingException es){
+             throw new ExcepcionSolicitudes("NO se pudo mandar nada", es);
+         }
+         
+    }
+    
+    
+    
+    
+    
     public int getCodigo() {
         return codigo;
     }

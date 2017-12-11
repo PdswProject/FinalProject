@@ -15,12 +15,15 @@ public class Acudiente {
     private int id;
     private boolean vistoBueno;
     private int estudiante_id;
-    
-    public Acudiente(String nombre, int id, int estudiante_id){
+    private String correo;
+
+    public Acudiente(){}
+    public Acudiente(String nombre, int id, int estudiante_id,String correo){
         this.nombre=nombre;
         this.id=id;
         this.estudiante_id=estudiante_id;
         this.vistoBueno=false;
+        this.correo=correo;
     }
     public String getNOmbre(){
         return nombre;
@@ -48,13 +51,13 @@ public class Acudiente {
     public void setVistoBueno(boolean vistoBueno){
         this.vistoBueno=vistoBueno;
     }
+    public void setCorreo(String co){
+        correo=co;
+    }
     
+    public String getCorreo(){
+        return  correo;
     
-    
-    
-    
-    
-    
-    
+    }
     
 }
