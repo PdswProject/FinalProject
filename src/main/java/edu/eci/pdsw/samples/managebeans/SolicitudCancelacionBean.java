@@ -95,8 +95,9 @@ public final class SolicitudCancelacionBean implements Serializable{
     private CalculadorDeImpactoSimple calcu; 
     private Asignatura[] salva;
     //Temporal
+    private int ressp;
     private Acudiente ds;
-    
+    private String correo;
     public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes, MessagingException{   
         salva= new Asignatura[10];
         justificacion="";
@@ -119,17 +120,7 @@ public final class SolicitudCancelacionBean implements Serializable{
         salva[0]=as1;
         salva[1]=as2;
         salva[2]=as3;
-        //asignaturasPlanEstudios.add(as1);
-        //asignaturasPlanEstudios.add(as2);
-        //asignaturasPlanEstudios.add(as3);
-               
-        //List<Asignatura> asig =re.getMateriaActual();
-        //ProgramaAcademico p1= re.getProgramaAcademico();
-        
-        //List<Asignatura> qqq=scm.allByEstud(estudiante.getId());
-        //List<Asignatura> qqq=scm.allAsig();
         ds=new Acudiente("Pepino", 989, 10003,"pepino@mail.com");
-        //materiasActualesEst=scm.allByEstud(estudiante.getId());
         asignaturasPlanEstudios=scm.allAsig();
         //Creacion Plan de estudios
         
@@ -142,8 +133,8 @@ public final class SolicitudCancelacionBean implements Serializable{
         }*/
 
         salva=materiasActualesEst.toArray(salva);
-        calcularImpacto(estudiante,salva, planer);
-        sendMessage();
+        //calcularImpacto(estudiante,salva, planer);
+        //sendMessage();
         //List<Asignatura> qqq=scm.allAsig();
         for(int i=0; i<materiasActualesEst.size();i++){
             Asignatura ui=materiasActualesEst.get(i);
@@ -152,16 +143,12 @@ public final class SolicitudCancelacionBean implements Serializable{
             System.out.println("que imprime de creditos"+ui.getCreditos());
         }
         
-        //estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, asig);
-        //ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
-        //re.cargarDatosPrueba();
-        //materiasActualesEst=scm.verMateriasActuales(estudiante);
     }
     
     
     
     //Envio Mensaje
-    public void sendMessage()throws ExcepcionSolicitudes, MessagingException{
+    public void sendMessage(String correo)throws ExcepcionSolicitudes, MessagingException{
          String from= "escuela@gmail.com";
          String to=ds.getCorreo();
          String subjectr=subject;
@@ -188,8 +175,7 @@ public final class SolicitudCancelacionBean implements Serializable{
 
     public Estudiante getEstudiante() throws ExcepcionSolicitudes, MessagingException{
         String gu=getUser();
-        System.out.println("que valor imprime QWEWQWQ"+gu);
-        //return estudiante;
+        
         return scm.loadEstudEspecific(gu);
     }
 
@@ -248,6 +234,20 @@ public final class SolicitudCancelacionBean implements Serializable{
     public String getApellido() {
         return apellido;
     }
+    
+    public void getSendCorreoAcudiente() throws ExcepcionSolicitudes, MessagingException{
+        sendMessage(GetCorreoAcudiente());
+    
+    }
+    
+    public void setCorreoAcudiente(String corrreo){
+        this.correo=correo;
+        
+    }
+    public String GetCorreoAcudiente(){
+        return correo;
+    }
+    
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
@@ -288,17 +288,24 @@ public final class SolicitudCancelacionBean implements Serializable{
 
 
 
-    public void calcularImpacto(Estudiante e ,Asignatura[] vistasActualmente, PlanEstudios plane) throws ExcepcionSolicitudes{
+    public int getCalcularImpacto(Estudiante e ,List<Asignatura> vistasActualmente) throws ExcepcionSolicitudes{
         //respCalc=0+calcu.calcularImpacto(vistasActualmente, plane);
-        //respCalc=scm.calcularImpacto(e, vistasActualmente);
-        //System.out.println("que imprime"+respCalc);
-        //return scm.calcularImpacto(estudiante, vistasActualmente);
+        //respCalc=scm.calcularImpacto(e, (Asignatura[]) vistasActualmente.toArray());
+        System.out.println("que imprime"+respCalc);
         respCalc=0;
-       ;
+        return respCalc;
     }   
-    public int getCalcularImpacto(){        
+
+    public int getCalcularImpacto()throws ExcepcionSolicitudes{      
+        String gu=getUser();
+        Estudiante re=scm.loadEstudEspecific(gu);
+        List<Asignatura> rer=scm.verMateriasActuales(re);
+        
+        respCalc=getCalcularImpacto(re,rer);
+    
         return respCalc;
     }
+
 
     /**
      * @return the bean

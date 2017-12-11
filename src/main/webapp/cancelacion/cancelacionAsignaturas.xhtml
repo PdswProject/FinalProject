@@ -42,6 +42,11 @@ and open the template in the editor.
 
                     </h:panelGrid>
                         <p:commandButton value="Cancelar" id="dsa" update="asignatura1" actionListener="#{SolicitudesEstudiantes.addMateriasCancelar(u)}" styleClass="ui-priority-primary" />
+                       
+                        <p:inputText id="CorreoAcudiente" required="true" value="#{SolicitudesEstudiantes.setCorreoAcudiente(corrreo)}" style="text-align: right"  />                        
+                        <p:commandButton value="Envio" id="Enviod" update="asignatura1" actionListener="#{SolicitudesEstudiantes.sendCorreoAcudiente}" styleClass="ui-priority-primary" />
+                        
+
                     <h:outputLink value="/logout">logout</h:outputLink>
                 </p:panel>
                     

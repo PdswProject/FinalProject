@@ -19,13 +19,11 @@ public class CalculadorDeImpactoSimple implements CalculadorDeImpacto{
     @Override
     public int calcularImpacto(Asignatura[] asigna, PlanEstudios plan) {
         
-        //verificarPlanEstudios(plan);
+        verificarPlanEstudios(plan);
         int resp=0;
-        System.out.println(" QUE IMPRIMEEEEE DASPOOOOOOOOOOOOO"); 
         for(Asignatura asi:asigna)
             resp+=calcularImpacto(asi);
         
-        System.out.println("IMPRIME RESPUESTA"+resp);
         return resp;
 
     }

@@ -56,7 +56,10 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     private AsignaturaDAO est;
     @Inject
     private ConsultaSolicitudCancelacionDAO con;
-    private final Estudiante estudiantes;
+    //private final Estudiante estudiantes;
+    private final Map<Tupla<Integer, String>, Estudiante> estudiantes;
+    //private final Asignatura[] vistasActualmente;
+    
     private final List<Asignatura> asignaturasPlanEstudios;
     private final List<Asignatura> vistasActualmente;
 
@@ -68,20 +71,13 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
     
     public ServiciosCancelacionesImpl(){
-        //this.estudiantes = new LinkedHashMap<Tupla<Integer, String>, Estudiante>();
-        asignaturasPlanEstudios=new ArrayList<Asignatura>();
-        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
-        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
-        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
-        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-
-        asignaturasPlanEstudios.add(as1);
-        asignaturasPlanEstudios.add(as2);
-        asignaturasPlanEstudios.add(as3);
-        estudiantes=new Estudiante(32, "Pepito", "Pelon",32,p1, 4, 54, 234, 12343, 98877,asignaturasPlanEstudios);
+      this.estudiantes = new LinkedHashMap<>();
+        asignaturasPlanEstudios = new LinkedList<>();
+        //vistasActualmente= new Asignatura[6];
         vistasActualmente=new ArrayList<Asignatura>();
         cargarDatosPrueba();
+        cargarDatosEstaticosGrafo();
+
 
     }          
     @Override
@@ -174,6 +170,24 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         return re;
         
     }
+    public void cargarDatosPrueba(){
+        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
+        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
+        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
+        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        asignaturasPlanEstudios.add(as1);
+        asignaturasPlanEstudios.add(as2);
+        asignaturasPlanEstudios.add(as3);
+        //vistasActualmente[0]=as1; 
+        vistasActualmente.add(as1);
+        vistasActualmente.add(as2);
+        PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
+        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
+        
+    }
+    
+    
    public List<Asignatura> getAsignaturasPlanEstudios() {
         return asignaturasPlanEstudios;
     }
@@ -184,30 +198,19 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
     
    
 
-public void cargarDatosPrueba(){
-        ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);      
-        Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
-        Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
-        Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        Asignatura as4 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        List<Asignatura> pr=new ArrayList<Asignatura>();
-        pr.add(as1);
-        pr.add(as2);
-        pr.add(as3);
-        asignaturasPlanEstudios.add(as1);
-        asignaturasPlanEstudios.add(as2);
-        asignaturasPlanEstudios.add(as3);
-
-        vistasActualmente.add(as1);
+    private void cargarDatosEstaticosGrafo()
+    {
         
-        vistasActualmente.add(as2);
-        vistasActualmente.add(as3);
-        PlanEstudios plan= new PlanEstudios(1, 3, p1, asignaturasPlanEstudios);
-        //PlanEstudios plan= new PlanEstudios(1, 3, p1, pr);
-        Estudiante est= new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, vistasActualmente);
+        
+        Asignatura a1 =new Asignatura(0, "materia1", new ProgramaAcademico(), "pajarito", 1, 4);
+        Asignatura a4 =new Asignatura(1, "materia4", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a5 =new Asignatura(2, "materia5", new ProgramaAcademico(), "pajarito", 1, 3);
+        Asignatura a3 =new Asignatura(3, "materia3", new ProgramaAcademico(), "pajarito", 1, 4,Arrays.asList(a5));
+        Asignatura a2 =new Asignatura(4, "materia2", new ProgramaAcademico(), "pajarito", 1, 2,Arrays.asList(a3,a4));
+        
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a2,a3,a4,a5));
         
     }
-
     @Override
     public List<Estudiante> getAllEstudiantes() throws ExcepcionSolicitudes {
         List<Estudiante> resp=con.loadAll();
@@ -243,8 +246,9 @@ public void cargarDatosPrueba(){
         List<SolicitudCancelacion> re=cd.loadAllSolicitud(num);
         return re;
     }
+
    
-    class Tupla<A, B> {
+class Tupla<A, B> {
 
     A a;
     B b;
