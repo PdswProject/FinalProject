@@ -17,15 +17,17 @@ import java.util.List;
 public class CalculadorDeImpactoSimple implements CalculadorDeImpacto{
 
     @Override
-    public int calcularImpacto(List<Asignatura> asigs, PlanEstudios plan) {
+    public int calcularImpacto(Asignatura[] asigna, PlanEstudios plan) {
         
         //verificarPlanEstudios(plan);
         int resp=0;
-        for(int i=0; i<asigs.size();i++){
-            Asignatura re=asigs.get(i);
-            resp+=calcularImpacto(re);
-        }
+        System.out.println(" QUE IMPRIMEEEEE DASPOOOOOOOOOOOOO"); 
+        for(Asignatura asi:asigna)
+            resp+=calcularImpacto(asi);
+        
+        System.out.println("IMPRIME RESPUESTA"+resp);
         return resp;
+
     }
     
     private int calcularImpacto(Asignatura asig)

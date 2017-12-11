@@ -44,7 +44,7 @@ CREATE TABLE Estudiante (
     apellido varchar(25)  NULL,
     semestre int  NULL,
     creditosAprobados int  NULL,
-    SolicitudCancelacion_id int  NOT NULL,
+    SolicitudCancelacion_id int   NULL,
     Acudiente_id int  NOT NULL,
     ConsejeroAcademico_id int  NOT NULL,
     CONSTRAINT Estudiante_pk PRIMARY KEY (id)

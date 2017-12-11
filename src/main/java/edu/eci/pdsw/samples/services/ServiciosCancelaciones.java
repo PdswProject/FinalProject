@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Asignatura;
+import edu.eci.pdsw.samples.entities.Consejero;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
 import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
@@ -27,7 +28,7 @@ public interface ServiciosCancelaciones {
      * @return The number of credit that will be pending.
      * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes
      */
-    public abstract int calcularImpacto(Estudiante e, List<Asignatura> asigs) throws ExcepcionSolicitudes;
+    public abstract int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes;
     
     
     /**
@@ -113,4 +114,8 @@ public interface ServiciosCancelaciones {
     public abstract Estudiante loadEstudEspecific(String nombre) throws ExcepcionSolicitudes;
     public abstract List<Asignatura> allByEstud( int codigo ) throws ExcepcionSolicitudes;
     public abstract List<Asignatura> allAsig() throws ExcepcionSolicitudes ;
+    public abstract Consejero loadByConsejero(String nombre) throws ExcepcionSolicitudes ;
+
+    public abstract List<SolicitudCancelacion> loadAllSolicitud(int num) throws ExcepcionSolicitudes ;
+    
 }

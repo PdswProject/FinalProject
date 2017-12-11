@@ -5,8 +5,12 @@
  */
 package edu.eci.pdsw.samples.dao.mybatis;
 
+import com.google.inject.Inject;
 import edu.eci.pdsw.samples.dao.ConsejeroDAO;
+import edu.eci.pdsw.samples.dao.mybatis.mappers.ConsejeroMapper;
+import edu.eci.pdsw.samples.entities.Consejero;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
 import java.util.List;
 
 /**
@@ -15,9 +19,22 @@ import java.util.List;
  */
 public class ConsejeroDAOMyBatis implements ConsejeroDAO{
 
+    @Inject
+    ConsejeroMapper conmap;
+
+    
     @Override
-    public List<Estudiante> loadEstudiantes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Consejero loadByConsejero(String nombre) {
+        Consejero resp=conmap.loadByConsejero(nombre);
+        return resp;
     }
+
+    @Override
+    public List<SolicitudCancelacion> loadAllSolicitud(int num) {
+        List<SolicitudCancelacion> resp=conmap.loadAllSolicitud(num);
+        return resp;
+    }
+    
+
     
 }

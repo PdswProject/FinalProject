@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.pdsw.samples.dao.AsignaturaDAO;
+import edu.eci.pdsw.samples.dao.ConsejeroDAO;
 import edu.eci.pdsw.samples.dao.ConsultaSolicitudCancelacionDAO;
 import edu.eci.pdsw.samples.dao.DecanoDAO;
 import edu.eci.pdsw.samples.dao.EstudianteDAO;
@@ -41,6 +42,9 @@ import java.util.logging.Logger;
  * @author 2104481
  */
 public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
+    
+    @Inject
+    private ConsejeroDAO cd;
     
     @Inject
     private DecanoDAO d;
@@ -81,7 +85,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
     }          
     @Override
-    public int calcularImpacto(Estudiante e, List<Asignatura> asigs) throws ExcepcionSolicitudes {
+    public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
         try
         {
             
@@ -127,7 +131,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
         //Falta que daniel CIN implemente el calculador de impacto para que funcione
         
         //int resSc=calculadorDeImpacto.calcularImpacto(a, planEstudios);
-        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, false);
+        SolicitudCancelacion new2=new SolicitudCancelacion(justificacion, a, null, "NO aprobado");
         //int rep=calcularImpacto(e, a);
         
         
@@ -226,6 +230,18 @@ public void cargarDatosPrueba(){
     public List<Asignatura> allAsig() throws ExcepcionSolicitudes {
         List<Asignatura>resp=est.allAsig();
         return resp;
+    }
+
+    @Override
+    public Consejero loadByConsejero(String nombre) throws ExcepcionSolicitudes {
+        Consejero re=cd.loadByConsejero(nombre);
+        return re;
+    }
+
+    @Override
+    public List<SolicitudCancelacion> loadAllSolicitud(int num) throws ExcepcionSolicitudes {
+        List<SolicitudCancelacion> re=cd.loadAllSolicitud(num);
+        return re;
     }
    
     class Tupla<A, B> {

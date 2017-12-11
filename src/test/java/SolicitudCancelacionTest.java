@@ -132,56 +132,35 @@ public class SolicitudCancelacionTest {
     }
     
     
-    //@Test
-    public void pruebasCalculoImpactoSimpleClase2()
+@Test
+    public void pruebasExtraerPlanEstudiosClase2()
     {
-
-        ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
-        //ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
-
-        //ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
-//        ServiciosCancelaciones sc =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();
-
-         ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
-        Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
+        ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
+        ProgramaAcademico p = new ProgramaAcademico(1,"PlanPrueba",30,18,150);
+        
+         Asignatura a1 =new Asignatura(1, "materia1",p, "pajarito", 1, 4);
         Asignatura a4 =new Asignatura(4, "materia4",p, "pajarito", 1, 3);
         Asignatura a5 =new Asignatura(5, "materia5", p, "pajarito", 1, 3);
         Asignatura a3 =new Asignatura(3, "materia3",p, "pajarito", 1, 4,Arrays.asList(a5));
         Asignatura a2 =new Asignatura(2, "materia2",p, "pajarito", 1, 2,Arrays.asList(a3,a4));
-        
-        List<Asignatura> materiasEst = new ArrayList<Asignatura>();
-        materiasEst.add(a1);
-        materiasEst.add(a2);
-        materiasEst.add(a3);   
-        materiasEst.add(a4);
-        materiasEst.add(a5);
-        //for (int i=0;i<materiasEst.length;i++){
-            //materiasEst[i] = pr.get(i);
-        //} 
-
-
-
-
-        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
-        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
-        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
-        try
-        {
-            int impacto=sc.calcularImpacto(e1,materiasEst);            
-            assertEquals("No se calcula bien con CF5",a2.getCreditos()+a3.getCreditos()+a4.getCreditos()+a5.getCreditos(),impacto);
+        Estudiante e = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,Arrays.asList(a1,a2));
+        PlanEstudios pe=new PlanEstudios(1, 5, new ProgramaAcademico(),Arrays.asList(a1,a4,a5,a3,a2));
+        try {
+            PlanEstudios plan = sc.extraerPlanEstudios(e);
             
-            impacto=sc.calcularImpacto(e2,materiasEst);
-            assertEquals("No se calcula bien si la asignatura tiene correquisitos",a3.getCreditos()+a5.getCreditos(),impacto);
-            impacto=sc.calcularImpacto(e3,materiasEst);
-            assertEquals("No se calcula bien con CF3",a5.getCreditos(),impacto);
-
-        }catch(ExcepcionSolicitudes ex){
-                        Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertEquals("El plan extraido tiene mas o menos materias de las que deberia",pe.getNumero_materias(),plan.getNumero_materias());
+            for(int i=0;i<pe.getNumero_materias();i++)
+            {
+                assertEquals("El plan extraido no tiene las materias que deberia",pe.getMaterias().get(i).getCodigo()
+                                                                                 ,plan.getMaterias().get(i).getCodigo());
+                assertEquals("Las materias no se estan creando con el numero de creditos adecuado",pe.getMaterias().get(i).getCreditos()
+                                                                                                  ,plan.getMaterias().get(i).getCreditos());
+            }
+            
+        } catch (ExcepcionSolicitudes ex) {
+            Logger.getLogger(SolicitudCancelacionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }
-    
+    }    
     //@Test
     public void pruebasExtraerPlanEstudiosClase1()
     {
@@ -197,8 +176,8 @@ public class SolicitudCancelacionTest {
         
     }
     
-    //@Test
-    public void pruebasExtraerPlanEstudiosClase2()
+    @Test
+    public void pruebasExtraerPlanEstudiosClase20()
     {
         ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
         //ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();

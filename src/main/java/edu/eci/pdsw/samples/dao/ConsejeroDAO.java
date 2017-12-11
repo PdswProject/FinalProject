@@ -5,8 +5,11 @@
  */
 package edu.eci.pdsw.samples.dao;
 
+import edu.eci.pdsw.samples.entities.Consejero;
 import edu.eci.pdsw.samples.entities.Estudiante;
+import edu.eci.pdsw.samples.entities.SolicitudCancelacion;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -14,6 +17,6 @@ import java.util.List;
  */
 public interface ConsejeroDAO {
     
-    public List<Estudiante> loadEstudiantes();
-    
+    public Consejero loadByConsejero(String nombre);
+    public List<SolicitudCancelacion> loadAllSolicitud(int num);    
 }

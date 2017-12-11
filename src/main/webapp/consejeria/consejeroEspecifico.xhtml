@@ -9,7 +9,7 @@ and open the template in the editor.
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style type="text/css">
@@ -20,9 +20,33 @@ and open the template in the editor.
                 background-position: 000px 100px;
             }
         </style>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <div>BIenvenido Consejero Especifico</div>
+        
+        
+               DATOS DEL Consejero<br/>
+                       
+               <p:dataTable id="con" var="cons" value= "#{ConsejeroEstudiantes}">
+                    <style type="text/css">
+                                body{
+                                background-image: url(http://www.neuralrehabilitation.org/en/wp-content/uploads/2017/06/IMG-20170613-WA0015.jpg);
+                                background-repeat: no-repeat;
+                                background-size: 120%;
+                                background-position: 000px 100px;
+                            }    
+                    </style>      
+ 
+                    <p:column headerText="Id">                
+                        <h:outputText value="#{ConsejeroEstudiantes.idCons}" />
+                    </p:column>
+                    <p:column headerText="Nombre">    
+                        <h:outputText value="#{ConsejeroEstudiantes.nombreCons}"/>
+                    </p:column>
+                   
+                </p:dataTable>
+                <p:link   value="Revisar Solicitudes Estudiantes" outcome="/consejeria/EstudiantesEspecificos" style="color:blue" />         
+        
         <h:outputLink value="/logout">Desea Salir</h:outputLink>
-    </body>
+    </h:body>
 </html>

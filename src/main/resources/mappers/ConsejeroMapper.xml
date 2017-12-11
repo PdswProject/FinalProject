@@ -6,10 +6,30 @@
 
 <mapper namespace="edu.eci.pdsw.samples.dao.mybatis.mappers.ConsejeroMapper">
 
-    <resultMap type='Consejero' id="ConsejeroResult">
-        
-    </resultMap>
+    <resultMap type='Consejero' id="ConsejeroResult">        
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombre"/>
+        <result property="comentarios" column="comentarios"/>
 
+    </resultMap>
+    
+    <select parameterType="map" id="loadByConsejero" resultMap="ConsejeroResult">
+        Select * from consejeroacademico where nombre= #{doc}
+    </select>
+    
+        
+    <resultMap type='Solicitudcancelacion' id="SolicitudResult">        
+        <id property="id" column="id"/>
+        <result property="estudiante" column="estu"/>
+        <result property="nombAsignatura" column="asignatura"/>
+        <result property="estado" column="estado"/>
+        <result property="justificacion" column="justificacion"/>
+
+    </resultMap>
+    
+    <select parameterType="map" id="loadAllSolicitud" resultMap="SolicitudResult">
+        Select * from solicitudcancelacion where consejero_id= #{num}
+    </select>
      
     
     

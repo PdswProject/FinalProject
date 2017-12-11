@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.managebeans;
 
+import com.google.inject.Inject;
 import edu.eci.pdsw.samples.dao.PersistenceException;
 import edu.eci.pdsw.samples.dao.mybatis.ConsultaSolicitudCancelacionDAOMyBatis;
 import edu.eci.pdsw.samples.dao.mybatis.EstudianteDAOMyBatis;
@@ -72,10 +73,14 @@ public final class SolicitudCancelacionBean implements Serializable{
     
     private List<Integer> prueb;
     private String justificacion;
+    @Inject
+    private CalculadorDeImpactoSimple calcu; 
+    private Asignatura[] salva;
     //Temporal
     private Acudiente ds;
     
     public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes, MessagingException{   
+        salva= new Asignatura[10];
         justificacion="";
         prueb=new ArrayList<Integer>();
         prueb.add(1);
@@ -97,6 +102,9 @@ public final class SolicitudCancelacionBean implements Serializable{
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
         Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
+        salva[0]=as1;
+        salva[1]=as2;
+        salva[2]=as3;
         //asignaturasPlanEstudios.add(as1);
         //asignaturasPlanEstudios.add(as2);
         //asignaturasPlanEstudios.add(as3);
@@ -104,14 +112,24 @@ public final class SolicitudCancelacionBean implements Serializable{
         //List<Asignatura> asig =re.getMateriaActual();
         //ProgramaAcademico p1= re.getProgramaAcademico();
         estudiante=scm.loadEstudEspecific("Nicolas");
+        
         //List<Asignatura> qqq=scm.allByEstud(estudiante.getId());
         //List<Asignatura> qqq=scm.allAsig();
         ds=new Acudiente("Pepino", 989, 10003,"pepino@mail.com");
         materiasActualesEst=scm.allByEstud(estudiante.getId());
         asignaturasPlanEstudios=scm.allAsig();
         //Creacion Plan de estudios
+        
         prog=new ProgramaAcademico(50, "Ingenieria de sistemas", 13, 1999, 999);
         planer=new PlanEstudios(123, 150, prog, asignaturasPlanEstudios);        
+        /**
+        for(int pp=0;pp<materiasActualesEst.size();pp++){
+            Asignatura re=materiasActualesEst.get(pp);
+            salva[pp]=re;
+        }*/
+
+        salva=materiasActualesEst.toArray(salva);
+        calcularImpacto(estudiante,salva, planer);
         sendMessage();
         //List<Asignatura> qqq=scm.allAsig();
         for(int i=0; i<materiasActualesEst.size();i++){
@@ -143,10 +161,6 @@ public final class SolicitudCancelacionBean implements Serializable{
          }
          
     }
-    
-    
-    
-    
     
     public int getCodigo() {
         return codigo;
@@ -259,9 +273,12 @@ public final class SolicitudCancelacionBean implements Serializable{
 
 
 
-    public void calcularImpacto(Estudiante estudiante, List<Asignatura> vistasActualmente) throws ExcepcionSolicitudes{
-        respCalc=0;
+    public void calcularImpacto(Estudiante e ,Asignatura[] vistasActualmente, PlanEstudios plane) throws ExcepcionSolicitudes{
+        //respCalc=0+calcu.calcularImpacto(vistasActualmente, plane);
+        //respCalc=scm.calcularImpacto(e, vistasActualmente);
+        //System.out.println("que imprime"+respCalc);
         //return scm.calcularImpacto(estudiante, vistasActualmente);
+        respCalc=0;
        ;
     }   
     public int getCalcularImpacto(){
@@ -293,12 +310,6 @@ public final class SolicitudCancelacionBean implements Serializable{
         EstudianteDAOMyBatis re=new EstudianteDAOMyBatis();
         re.solicitudCancelacion(estudiante.getId(), estudiante, o.getCodigo(), null, "No aprobado", 1999, "Me fue mal");
 
-        
-        
-        
-    
-    
-    
     
     }
     
