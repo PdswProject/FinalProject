@@ -5,25 +5,43 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
         <style type="text/css">
-        body{
+            body{
                 background-image: url(https://i.ytimg.com/vi/Ys6tfaT-Qdk/maxresdefault.jpg);
                 background-repeat: no-repeat;
                 background-size: 120%;
                 background-position: -200px -200px;
             }
         </style>
-        
+
     </head>
     <body style="font-size: 70px" >
         <div  style="color: aliceblue">Bienvenido Acudiente</div>
-        
+
         <div style="color:white">La Situacion de su estudiante es la siguiente</div>
-                
+
+        <p:outputLabel value="Nombre: #{SolicitudesEstudiantes.estudiante.nombre}"/>
+        <p:outputLabel value="Apellido: #{SolicitudesEstudiantes.estudiante.apellido}"/>
+        <p:outputLabel value="Codigo: #{SolicitudesEstudiantes.estudiante.id}"/>
+        <p:outputLabel value="Asignatura a cancelar: #{SolicitudesEstudiantes.materiasCancelar}"/>
+        <p:outputLabel value="Analisis impacto: #{SolicitudesEstudiantes.calcularImpacto(e, vistasActualmente, plane)}"/>
+        <h:panelGrid columns="2">
+            <p:outputLabel value="Comentarios Consejero"/>  
+            <p:inputText value="#{SolicitudesEstudiantes.comentarios}"/>
+        </h:panelGrid>
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <h:outputText value="Basic: " />
+            <p:selectBooleanCheckbox value="#{SolicitudesEstudiantes.value1}" />
+        </h:panelGrid>
+
+
+
     </body>
 </html>

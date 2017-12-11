@@ -60,6 +60,15 @@ public final class SolicitudCancelacionBean implements Serializable{
     private int creditos=0;
     int idEstudiante=0;
     String apellido="";
+
+    public String getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+    String comentarios="";
     int creditosAprobados=0;
     List<Asignatura> materiasActualesEst=new ArrayList<>();
     private PlanEstudios planer;
@@ -71,7 +80,15 @@ public final class SolicitudCancelacionBean implements Serializable{
     private List<Asignatura> materiasCancelar;
     private ProgramaAcademico prog;
     private String nombreAsig;
-    
+
+    public boolean isValue1() {
+        return value1;
+    }
+
+    public void setValue1(boolean value1) {
+        this.value1 = value1;
+    }
+    private boolean value1;
     private List<Integer> prueb;
     private String justificacion;
     @Inject
