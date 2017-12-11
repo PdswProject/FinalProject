@@ -81,7 +81,7 @@ public   class ServiciosCancelacionesImpl implements ServiciosCancelaciones{
 
     }          
     @Override
-    public int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes {
+    public int calcularImpacto(Estudiante e, List<Asignatura> asigs) throws ExcepcionSolicitudes {
         try
         {
             

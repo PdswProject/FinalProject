@@ -15,15 +15,15 @@ import java.util.List;
 public class Asignatura {
     private int codigo;
     private String nombre;
-    //private ProgramaAcademico programa;
+    private ProgramaAcademico programa;
     private String unidadAcademica;
-  //  private boolean aprobada;
-   // private int vecesCancelada;
+    private boolean aprobada;
+    private int vecesCancelada;
     private int creditos;
     private int profesor;
     private int plandeEstudios;
     private List<Asignatura> correquisitos;
-
+    public Asignatura(){}
     public Asignatura(int codigo, String nombre, String unidadAcademica,int profesor, int plandeEstudios){
        this.codigo=codigo;
        this.nombre=nombre;

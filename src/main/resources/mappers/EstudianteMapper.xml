@@ -10,7 +10,14 @@
         from EstudianteAsignatura as ea left join Estudiante as e on(ea.Estudiante_id=e.id) left join Asignatura as a on(ea.Asignatura_codgo=a.codigo)
         order by ea.Asignatura_codigo by desc
     </select>
+   
+    <insert id="solicitudCancelacion">
+        insert into solicitudcancelacion (id,estudiante,asignatura,fecha,estado,decano_id,justificacion) values (#{id},#{estu},#{conasi},#{dat},#{est},#{dec},#{jus});
+        
+    </insert>
     
+     
+       
     <resultMap type='Estudiante' id='EstudianteResult'>
         <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>

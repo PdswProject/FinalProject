@@ -149,31 +149,30 @@ public class SolicitudCancelacionTest {
         Asignatura a3 =new Asignatura(3, "materia3",p, "pajarito", 1, 4,Arrays.asList(a5));
         Asignatura a2 =new Asignatura(2, "materia2",p, "pajarito", 1, 2,Arrays.asList(a3,a4));
         
-        Asignatura[] materiasEst = new Asignatura[2];
-        List<Asignatura> pr=new ArrayList<Asignatura>();
-        pr.add(a1);
-        pr.add(a2);
-        pr.add(a3);   
-        pr.add(a4);
-        pr.add(a5);
-        for (int i=0;i<materiasEst.length;i++){
-            materiasEst[i] = pr.get(i);
-        } 
+        List<Asignatura> materiasEst = new ArrayList<Asignatura>();
+        materiasEst.add(a1);
+        materiasEst.add(a2);
+        materiasEst.add(a3);   
+        materiasEst.add(a4);
+        materiasEst.add(a5);
+        //for (int i=0;i<materiasEst.length;i++){
+            //materiasEst[i] = pr.get(i);
+        //} 
 
 
 
 
-        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
-        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
-        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,pr);
+        Estudiante e1 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
+        Estudiante e2 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
+        Estudiante e3 = new Estudiante(1, "daniel", "asdf", 1, p, 1, 0, 0, 1, 1,materiasEst);
         try
         {
-            int impacto=sc.calcularImpacto(e1,new Asignatura[]{a2});            
+            int impacto=sc.calcularImpacto(e1,materiasEst);            
             assertEquals("No se calcula bien con CF5",a2.getCreditos()+a3.getCreditos()+a4.getCreditos()+a5.getCreditos(),impacto);
             
-            impacto=sc.calcularImpacto(e2,new Asignatura[]{a3});
+            impacto=sc.calcularImpacto(e2,materiasEst);
             assertEquals("No se calcula bien si la asignatura tiene correquisitos",a3.getCreditos()+a5.getCreditos(),impacto);
-            impacto=sc.calcularImpacto(e3,new Asignatura[]{a5});
+            impacto=sc.calcularImpacto(e3,materiasEst);
             assertEquals("No se calcula bien con CF3",a5.getCreditos(),impacto);
 
         }catch(ExcepcionSolicitudes ex){

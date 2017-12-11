@@ -7,6 +7,8 @@ package edu.eci.pdsw.samples.dao;
 
 import java.util.List;
 import edu.eci.pdsw.samples.entities.Asignatura;
+import edu.eci.pdsw.samples.entities.Estudiante;
+import java.util.Date;
 
 /**
  *
@@ -14,5 +16,5 @@ import edu.eci.pdsw.samples.entities.Asignatura;
  */
 public interface EstudianteDAO {
     public List<Asignatura> loadAll() throws PersistenceException;
-
+    public void solicitudCancelacion(int id, Estudiante e, int condAsignatuea, Date fecha, String estado, int decano_id, String Justificacion)throws PersistenceException;
 }

@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.managebeans;
 
 import edu.eci.pdsw.samples.dao.PersistenceException;
 import edu.eci.pdsw.samples.dao.mybatis.ConsultaSolicitudCancelacionDAOMyBatis;
+import edu.eci.pdsw.samples.dao.mybatis.EstudianteDAOMyBatis;
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
@@ -20,6 +21,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import edu.eci.pdsw.samples.services.ServiciosCancelaciones;
+import edu.eci.pdsw.samples.services.impl.CalculadorDeImpactoSimple;
 import edu.eci.pdsw.samples.services.impl.ServiciosCancelacionesImpl;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -36,8 +38,9 @@ public class SolicitudCancelacionBean implements Serializable{
  
     @ManagedProperty(value="#{loginBean}")    
     private ShiroLoginBean loginBean;
-    
+    private PlanEstudios plane;
     private  ServiciosCancelaciones scm;
+    private CalculadorDeImpactoSimple cdi;
     Asignatura asignatura=new Asignatura(0, 0);
     List<Asignatura> listaAsignaturasPE=new LinkedList<>();
     private int codigo=0;
@@ -47,13 +50,25 @@ public class SolicitudCancelacionBean implements Serializable{
     String apellido="";
     int creditosAprobados=0;
     List<Asignatura> materiasActualesEst=new ArrayList<>();
-    private PlanEstudios plane;
+    private PlanEstudios planer;
     private List<Asignatura> vistasActualmente;
     private  List<Asignatura> asignaturasPlanEstudios=new ArrayList<>();       
     String nombre;        
+    int respCalc;
     Estudiante estudiante= new Estudiante();
-
+    private List<Asignatura> materiasCancelar;
+    private ProgramaAcademico prog;
+    private String nombreAsig;
+    
+    private List<Integer> prueb;
+    private String justificacion;
+    
+    
     public SolicitudCancelacionBean() throws PersistenceException, ExcepcionSolicitudes{   
+        justificacion="";
+        prueb=new ArrayList<Integer>();
+        prueb.add(1);
+        materiasCancelar=new ArrayList<Asignatura>();//Queda fin
         //Nombre=getUser();
         System.out.println("QUE VOY A CONSULTAR LA ERICK "+nombre);
         ServiciosCancelaciones scm =ServiciosCancelacionesFactory.getInstance().getServiciosCancelaciones();    
@@ -61,45 +76,39 @@ public class SolicitudCancelacionBean implements Serializable{
         //String prue2=getUser();
         //System.out.println("QUE VOY A CONSULTAR LA ERICK "+prue2);
         //asignaturasPlanEstudios
-
-        
-        
-        
         //plane=scm.extraerPlanEstudios(re);
         //vistasActualmente=plane.getMaterias();
 
         materiasActualesEst=new ArrayList<Asignatura>();
         List<Asignatura> asig = new LinkedList<>();
         ProgramaAcademico p1= new ProgramaAcademico(1, "Ingenieria Sistemas", 10, 210, 150);
-        
-        
-        
+
         Asignatura as1 = new Asignatura(101, "Logica", p1, "Departamento Matematica", 504,3);
         Asignatura as2 = new Asignatura(102, "Modelos", p1, "Departamento Matematica", 505,4);
         Asignatura as3 = new Asignatura(103, "Redes", p1, "Departamento Matematica", 510,3);
-        asig.add(as1);
-        asig.add(as2);
-        asig.add(as3);
-        materiasActualesEst.add(as1);
-        materiasActualesEst.add(as2);
-        materiasActualesEst.add(as3);    
-        asignaturasPlanEstudios.add(as1);
-        asignaturasPlanEstudios.add(as2);
-        asignaturasPlanEstudios.add(as3);
-        
-
-        
+        //asignaturasPlanEstudios.add(as1);
+        //asignaturasPlanEstudios.add(as2);
+        //asignaturasPlanEstudios.add(as3);
+               
         //List<Asignatura> asig =re.getMateriaActual();
         //ProgramaAcademico p1= re.getProgramaAcademico();
         estudiante=scm.loadEstudEspecific("Nicolas");
         //List<Asignatura> qqq=scm.allByEstud(estudiante.getId());
-        /**
-        List<Asignatura> qqq=scm.allAsig();
-        for(int i=0; i<qqq.size();i++){
-            Asignatura ui=qqq.get(i);
+        //List<Asignatura> qqq=scm.allAsig();
+        
+        materiasActualesEst=scm.allByEstud(estudiante.getId());
+        asignaturasPlanEstudios=scm.allAsig();
+        //Creacion Plan de estudios
+        prog=new ProgramaAcademico(50, "Ingenieria de sistemas", 13, 1999, 999);
+        planer=new PlanEstudios(123, 150, prog, asignaturasPlanEstudios);        
+        //List<Asignatura> qqq=scm.allAsig();
+        for(int i=0; i<materiasActualesEst.size();i++){
+            Asignatura ui=materiasActualesEst.get(i);
             System.out.println("que imprime"+ui.getNombre());
+            System.out.println("que imprime de codigo"+ui.getCodigo());
+            System.out.println("que imprime de creditos"+ui.getCreditos());
         }
-        */
+        
         //estudiante = new Estudiante(2104481, "daniel", "cas", 6,p1,1,78, 001, 313, 9, asig);
         //ServiciosCancelacionesImpl re= new ServiciosCancelacionesImpl();
         //re.cargarDatosPrueba();
@@ -121,9 +130,7 @@ public class SolicitudCancelacionBean implements Serializable{
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
     }
-    
-    
-
+   
     public Asignatura getAsignatura() {
         return asignatura;
     }
@@ -131,8 +138,6 @@ public class SolicitudCancelacionBean implements Serializable{
     public void setAsignatura(Asignatura asignatura) {
         this.asignatura = asignatura;
     }
-
-   
 
     public List<Asignatura> getListaAsignaturasPE() {
         return listaAsignaturasPE;
@@ -198,10 +203,6 @@ public class SolicitudCancelacionBean implements Serializable{
         this.creditosAprobados = creditosAprobados;
     }
     
-    
-    
-
-    //public Asignatura[] getMateriasActualesEst() {
     public List<Asignatura> getMateriasActualesEst() {
         return materiasActualesEst;
     }
@@ -214,7 +215,6 @@ public class SolicitudCancelacionBean implements Serializable{
         }
         return nuev;
     }
-    //public void setMateriasActualesEst(Asignatura[] materiasActualesEst) {
     public void setMateriasActualesEst(List<Asignatura> materiasActualesEst) {
         this.materiasActualesEst = materiasActualesEst;
     }
@@ -225,10 +225,15 @@ public class SolicitudCancelacionBean implements Serializable{
     }
 
 
-    public int calcularImpacto(Estudiante estudiante, Asignatura[] vistasActualmente) throws ExcepcionSolicitudes{
+
+    public void calcularImpacto(Estudiante estudiante, List<Asignatura> vistasActualmente) throws ExcepcionSolicitudes{
+        respCalc=0;
         //return scm.calcularImpacto(estudiante, vistasActualmente);
-        return 0;
+       ;
     }   
+    public int getCalcularImpacto(){
+        return respCalc;
+    }
 
     /**
      * @return the bean
@@ -240,7 +245,52 @@ public class SolicitudCancelacionBean implements Serializable{
     /**
      * @param bean the bean to set
      */
+    
     public void setloginBean(ShiroLoginBean beana) {
         this.loginBean = beana;
     }
+    private void setJusti(String justi){
+        justificacion=justi;
+    }
+    private String getJusti(){
+        return justificacion;
+    }     
+    public void enviarJusti() throws PersistenceException {
+        Asignatura o=materiasActualesEst.get(1);
+        EstudianteDAOMyBatis re=new EstudianteDAOMyBatis();
+        re.solicitudCancelacion(estudiante.getId(), estudiante, o.getCodigo(), null, "No aprobado", 1999, "Me fue mal");
+
+        
+        
+        
+    
+    
+    
+    
+    }
+    
+    public void setNombreAsig(String a){
+        nombreAsig=a;
+    }
+    public String getNombreAsig(){
+        return nombreAsig;
+    }
+    
+    public void addMateriasCancelar(String asig){
+        System.out.println("que imprime"+asig);
+        //materiasCancelar.add(asi);
+        for(int y=0; y<materiasActualesEst.size();++y){
+            Asignatura o=materiasActualesEst.get(y);
+            if(asig.equals(o.getNombre())){
+                materiasCancelar.add(o);
+                System.out.println("QUE MATERIAS CANCELARA"+o.getNombre());
+            }
+
+        
+        }
+    }
+    public List<Asignatura> getMateriasCancelar(){
+        return materiasCancelar;
+    }
+
 }

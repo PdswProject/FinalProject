@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.services.impl;
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
 import edu.eci.pdsw.samples.services.CalculadorDeImpacto;
+import java.util.List;
 
 /**
  *
@@ -16,12 +17,14 @@ import edu.eci.pdsw.samples.services.CalculadorDeImpacto;
 public class CalculadorDeImpactoSimple implements CalculadorDeImpacto{
 
     @Override
-    public int calcularImpacto(Asignatura[] asigs, PlanEstudios plan) {
+    public int calcularImpacto(List<Asignatura> asigs, PlanEstudios plan) {
         
         //verificarPlanEstudios(plan);
         int resp=0;
-        for(Asignatura asig:asigs)
-            resp+=calcularImpacto(asig);
+        for(int i=0; i<asigs.size();i++){
+            Asignatura re=asigs.get(i);
+            resp+=calcularImpacto(re);
+        }
         return resp;
     }
     

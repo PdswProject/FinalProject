@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:growl id='matcan' showDetail="true" />
+                          LISTA DE MATERIAS A CANCELAR    <br/>                
+                <p:dataTable id="tableAsignaturass" var="ListaDeAsignaturas1" value= "#{SolicitudesEstudiantes.materiasCancelar}">
+ 
+                    <p:column headerText="Codigo">                
+                        <h:outputText value="#{ListaDeAsignaturas1.codigo}" />
+                    </p:column>
+                    <p:column headerText="Nombre">    
+                        <h:outputText value="#{ListaDeAsignaturas1.nombre}" />
+                    </p:column>
+                    <p:column headerText="Creditos">    
+                        <h:outputText value="#{ListaDeAsignaturas1.creditos}" />
+                    </p:column>
+                   
+                </p:dataTable>                
+  
+
+                <p:panel header="Seleccione las materias a cancelar" style="margin-bottom:12px;">
+                    
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="asignatura1" value="Asignatura1: " />
+                        <p:selectOneMenu id="asignatura1" value="#{SolicitudesEstudiantes.asignatura}" style="width:150px">
+                            <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{SolicitudesEstudiantes.nombreMateriasActualesEst}" />
+                        </p:selectOneMenu>
+
+                    </h:panelGrid>
+                        <p:commandButton value="Cancelar" id="dsa" update="asignatura1" actionListener="#{SolicitudesEstudiantes.addMateriasCancelar(u)}" styleClass="ui-priority-primary" />
+                    <h:outputLink value="/logout">logout</h:outputLink>
+                </p:panel>
+                    
+
+
+        </h:form>
+    </h:body>
+</html>

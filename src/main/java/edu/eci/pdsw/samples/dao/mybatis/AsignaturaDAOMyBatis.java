@@ -40,14 +40,14 @@ public class AsignaturaDAOMyBatis  implements AsignaturaDAO {
     
     @Override
     public List<Asignatura> allByEstud(int codigo) {
-        listas=mater.allByEstud(codigo);
+        List<Asignatura> listo=mater.allByEstud(codigo);
 
-        for(int i=0;i<listas.size();i++){
-            Asignatura re=listas.get(i);
+        for(int i=0;i<listo.size();i++){
+            Asignatura re=listo.get(i);
             System.out.println("que mateiras imprime"+re.getNombre());
 
         }
-        return listas;
+        return listo;
     }
 
     @Override

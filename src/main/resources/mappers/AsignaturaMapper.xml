@@ -11,17 +11,17 @@
         <result property="nombre" column="nombre"/>
         <result property="unidadAcademica" column="unidadAcademica"/>
         <result property="profesor" column="profesor_id"/>
-        <result property="plandeEstudios" column="plandeestudios_id"/>
+        <result property="plandeEstudios" column="planDeEstudios_id"/>
         <result property="creditos" column="creditos"/>
+        
     </resultMap>
     
     <select id="allAsig" resultMap="datosAsignatura">
-        Select * from Asignatura 
+        SELECT * FROM Asignatura 
     </select>    
-    
     <select id="allByEstud" resultMap="datosAsignatura">
-        Select asig.nombre from asignatura asig, estudianteasignatura estu where estu.asignatura_codigo=asig.codigo and estu.estudiante_id=#{nomb}
-    </select>
-    
-                
+        Select * from asignatura asig, estudianteasignatura estu where estu.asignatura_codigo=asig.codigo and estu.estudiante_id=#{nomb};
+    </select>    
+        
+
 </mapper>

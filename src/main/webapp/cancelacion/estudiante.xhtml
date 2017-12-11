@@ -67,28 +67,10 @@ and open the template in the editor.
                     </p:column>
                    
                 </p:dataTable>
-                
-                
-                <p:panel header="Seleccione las materias a cancelar" style="margin-bottom:12px;">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <p:outputLabel for="asignatura1" value="Asignatura 1: " />
-                        <p:selectOneMenu id="asignatura1" value="#{SolicitudesEstudiantes.asignatura}" style="width:150px">
-                            <f:selectItem itemLabel="Seleccionar" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{SolicitudesEstudiantes.nombreMateriasActualesEst}" />
-                        </p:selectOneMenu>
 
-                    </h:panelGrid>
-
-                    <p:separator />
-
-                    <p:commandButton value="Calcular impacto" actionListener="#{SolicitudesEstudiantes.nombreAsignatura}" icon="ui-icon-check" />
-                    <h:outputLink value="/logout">logout</h:outputLink>
-                </p:panel>
+                <p:link   value="Solicitud de cancelacion" outcome="/cancelacion/cancelacionAsignaturas" style="color:blue" />
                 
-                    
-
-                    
-                
+            
             </p:layoutUnit>
         </p:layout>
     </h:form>

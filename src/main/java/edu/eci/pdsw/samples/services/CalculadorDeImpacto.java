@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.services;
 import edu.eci.pdsw.samples.entities.Asignatura;
 import edu.eci.pdsw.samples.entities.Estudiante;
 import edu.eci.pdsw.samples.entities.PlanEstudios;
+import java.util.List;
 
 /**
  *
@@ -21,7 +22,7 @@ public interface CalculadorDeImpacto {
      * @param plan El plan de estudios del estudiante.
      * @return el numero de creditos que se dejarian de ver si se decide cancelar
      */
-    public int calcularImpacto(Asignatura[] asigs, PlanEstudios plan);
+    public int calcularImpacto(List<Asignatura> asigs, PlanEstudios plan);
     
     /**
      * Verifica que el grafo que representa un plan de estudios sea aciclico y dirigido.

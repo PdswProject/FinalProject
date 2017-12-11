@@ -27,7 +27,7 @@ public interface ServiciosCancelaciones {
      * @return The number of credit that will be pending.
      * @throws edu.eci.pdsw.samples.services.ExcepcionSolicitudes
      */
-    public abstract int calcularImpacto(Estudiante e, Asignatura[] asigs) throws ExcepcionSolicitudes;
+    public abstract int calcularImpacto(Estudiante e, List<Asignatura> asigs) throws ExcepcionSolicitudes;
     
     
     /**
