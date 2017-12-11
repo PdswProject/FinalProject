@@ -52,23 +52,16 @@ public class ConsultaSolicitudCancelacionDAOMyBatis implements ConsultaSolicitud
     
     @Override
     public Estudiante loadEstudEspecific(String nombre){
-        System.out.println("llegamos?");
-        System.out.println("Erick es una loca v2");
 
         Estudiante estu1=conMap.loadEstudEspecific(nombre);
-
-        System.out.println("Que imprime"+estu1.getNombre());
         return conMap.loadEstudEspecific(nombre);        
     }
     @Override
     public List<Estudiante> loadAll() {
         estudiantes=conMap.loadAll();
-        System.out.println("que retorna");
         for(int i=0;i<estudiantes.size();i++){
             Estudiante re=estudiantes.get(i);
-            System.out.println("que retorna"+re.getNombre());
         }
-        
         return estudiantes;
   
     }

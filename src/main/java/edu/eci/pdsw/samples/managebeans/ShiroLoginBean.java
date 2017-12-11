@@ -20,10 +20,11 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 
-@ManagedBean(name = "loginBean")
+@ManagedBean(name = "loginBean", eager=true)
+//@RequestScoped
 //@ViewScoped
 @SessionScoped
-//@RequestScoped
+
 public class ShiroLoginBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroLoginBean.class);
 

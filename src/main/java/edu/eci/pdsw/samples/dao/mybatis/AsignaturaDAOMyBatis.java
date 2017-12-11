@@ -44,7 +44,6 @@ public class AsignaturaDAOMyBatis  implements AsignaturaDAO {
 
         for(int i=0;i<listo.size();i++){
             Asignatura re=listo.get(i);
-            System.out.println("que mateiras imprime"+re.getNombre());
 
         }
         return listo;

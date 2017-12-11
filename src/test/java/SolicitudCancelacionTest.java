@@ -132,7 +132,7 @@ public class SolicitudCancelacionTest {
     }
     
     
-@Test
+    //@Test
     public void pruebasExtraerPlanEstudiosClase2()
     {
         ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
@@ -176,7 +176,7 @@ public class SolicitudCancelacionTest {
         
     }
     
-    @Test
+    //@Test
     public void pruebasExtraerPlanEstudiosClase20()
     {
         ServiciosCancelaciones  sc=ServiciosCancelacionesFactory.getInstance().getTestingServiciosCancelaciones();
