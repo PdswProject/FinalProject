@@ -235,7 +235,7 @@ public final class SolicitudCancelacionBean implements Serializable{
         return apellido;
     }
     
-    public void getSendCorreoAcudiente() throws ExcepcionSolicitudes, MessagingException{
+    public void getCorreoAcudiente() throws ExcepcionSolicitudes, MessagingException{
         sendMessage(GetCorreoAcudiente());
     
     }
