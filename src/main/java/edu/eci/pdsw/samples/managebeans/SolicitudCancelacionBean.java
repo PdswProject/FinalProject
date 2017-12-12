@@ -240,11 +240,11 @@ public final class SolicitudCancelacionBean implements Serializable{
     
     }
     
-    public void setSendCorreoAcudiente(String corrreo){
+    public void setCorreoAcudiente(String corrreo){
         this.correo=correo;
         
     }
-    public String GetCorreoAcudiente(){
+    public String GetSendCorreoAcudiente(){
         return correo;
     }
     
