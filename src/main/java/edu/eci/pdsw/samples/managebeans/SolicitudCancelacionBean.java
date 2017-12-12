@@ -240,7 +240,7 @@ public final class SolicitudCancelacionBean implements Serializable{
     
     }
     
-    public void setCorreoAcudiente(String corrreo){
+    public void setSendCorreoAcudiente(String corrreo){
         this.correo=correo;
         
     }
